@@ -1,0 +1,69 @@
+// For authoring Nightwatch tests, see
+// http://nightwatchjs.org/guide#usage
+
+module.exports = {
+  'default e2e tests': function (browser) {
+    // automatically uses dev Server port from /config.index.js
+    // default: http://localhost:8080
+    // see nightwatch.conf.js
+    const devServer = browser.globals.devServerURL
+
+    // browser
+      // .url(devServer)
+      // .waitForElementVisible('#app', 5000)
+      // .assert.elementPresent('.hello')
+      // .assert.containsText('h1', 'Welcome to Your Vue.js PWA')
+      // .assert.elementCount('img', 1)
+      // .end()
+    // browser
+      // .url('http://www.google.com')
+      // .waitForElementVisible('body', 1000)
+      // .setValue('input[type=text]', 'nightwatch')
+      // .waitForElementVisible('input.lsb[value]', 1000)
+      // .click('input.lsb[value]')
+      // .pause(2000)
+      // .assert.containsText('#resultStats', '搜尋結果')
+      // .end()
+    browser
+      .url('https://www.ird.gov.hk/chi/ese/st_comp_2017_18/cstcfrm.htm')
+      .waitForElementVisible('frameset', 700)
+      .element('css selector', 'frame[name="main"]', function(result){
+        // ref: https://github.com/nightwatchjs/nightwatch/issues/940
+        mainframe = result.value;
+        browser.frame(mainframe, function(result){
+          browser
+          .setValue('input#SelfIncome', '823400')
+          .click('input#Married[value="M"]')
+          .click('#ComputeButton')
+          .waitForElementVisible('table[border="1"]', 700)
+          .pause(700)
+          .elements('css selector', 'table[border="1"] tr:first-child > td', function(result0){
+            els = result0.value;
+            // var i = 0;
+            // els.forEach(function(el, j, elz){
+              // i++
+            // })
+            browser
+              // .assert.ok(2 === els.length, "Got Single Column")
+              .assert.equal(els.length, 2)
+          })
+          .useXpath()
+          // sibling: http://zvon.org/xxl/XPathTutorial/Output/example15.html
+          .elements('xpath', '//td[text()="你 應 繳 的 總 稅 款"]/following-sibling::*', function(result0){
+            els = result0.value;
+            
+            // sibling: https://stackoverflow.com/questions/30193943/assert-text-value-of-list-of-webelements-using-nightwatch-js
+            els.forEach(function(element0) {
+              browser.elementIdText(element0.ELEMENT, function(result1){
+                browser.assert.equal(result1.value.trim().replace(',', ''), '81598')
+              })
+            })
+
+          })
+          // .assert.containsText('#resultStats', '搜尋結果')
+        });
+      })
+      .pause(10000)
+      .end()
+  }
+}
