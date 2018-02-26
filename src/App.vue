@@ -1,7 +1,13 @@
 <template>
   <div id="app">
     <header>
-      <span>Tax Calculator demo</span>
+      <p class="main-logo pull-left">
+        <a href="javascript:(void);">
+          <img class="logo-hk01news" src="static/img/hk01news-logo.png" alt="01新聞 | 香港01">
+        </a>
+      </p>
+      <h2 class="text-muted text-center">薪俸計稅機</h2>
+      <p class="text-muted text-center"><small>2018/19年度預估</small></p>
     </header>
     <main>
       <router-view></router-view>
@@ -15,13 +21,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 body {
   margin: 0;
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  /* font-family: 'Avenir', Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -29,7 +35,7 @@ body {
 
 main {
   text-align: center;
-  margin-top: 40px;
+  /* margin-top: 40px; */
 }
 
 header {
@@ -50,4 +56,7 @@ header span {
   box-sizing: border-box;
   padding-top: 16px;
 }
+@import '../node_modules/slick-carousel/slick/slick.css';
+@import '../node_modules/vue-directive-tooltip/css/index.css';
+@import './style.scss';
 </style>

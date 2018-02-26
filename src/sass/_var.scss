@@ -1,0 +1,107 @@
+//
+// 0 On/Off
+// 1 Values
+// 2 Colors
+// 3 Use of Colors
+// 4 Media queries
+
+// 0 On/Off
+$enable_mobile: 1;
+$enable_custom: 1;
+
+//	_main.scss
+$font_adjust: 0;
+//	_header.scss
+$add_header_left: 1;
+$add_header_right: 1;
+
+//debug
+//_projectclass
+$cont_indicate: 0;
+
+
+
+// 1 Values
+$p_size: 14px;
+$customer_size: 15px;
+
+
+// 2 Colors
+$color1: #000000;
+$color2: #333333; //http://colourco.de/analogic-complement/5/%23b8bfe7
+$color3: #666666;
+$color4: #999999;
+$color5: #AAAAAA;
+$grey: #e5e3e4;
+$meta-yellow: #f9edd7;
+$meta-color: #f05223; // version 1: #f05223;
+$meta-light: #f05223; // version 1: #f36c2a;
+$meta-more: #E15D36;
+$meta-orange: #f9ccaf;
+$meta_deep: #4a4645;
+$meta-q: #898989;
+
+
+// 3 Use of Colors
+$nav_lv1_link: $color4;
+$nav_lv1_link_hover: $color4;
+$nav_lv1_link_bg: $color1;
+$nav_lv1_link_bg_hover: $color5;
+
+$nav_lv1_link_active: $color1;
+$nav_lv1_link_active_hover: $color5;
+$nav_lv1_link_active_bg: $color1;
+$nav_lv1_link_active_bg_hover: $color5;
+
+$nav_lv1_link_current: $color1;
+$nav_lv1_link_current_hover: $color5;
+$nav_lv1_link_current_bg: $color1;
+$nav_lv1_link_current_bg_hover: $color5;
+
+$placeholder_color_text: #a8a19e !default;
+
+$top_butn_text: $color1 !default;
+$top_butn_text_hover: $color2 !default;
+
+$go_back_text: #FFF !default;
+$go_back_text_hover: #DDD !default;
+
+
+// 4 Media queries - mobile-first
+// break-point
+//========= 640 ============ 768 ============= 992 ======== 1270 ========
+//      mobile][         tablet][ sub-dektop   [desktop     [HD
+//      100%             100%     768px         970px        1115px
+// container
+//
+$w_cont_mobile: 640px;
+$w_cont_tablet: 768px;
+$w_cont_desktop: 992px;
+$w_cont_hd: 1270px;
+$w_cont_2k: 1680px;
+
+@if $enable_mobile == 1 {
+// mobile
+@media screen and (max-width: $w_cont_mobile) {
+}
+}
+
+@if $enable_mobile == 1 {
+// tablet
+@media screen and (min-width: ($w_cont_mobile + 1px)) and (max-width: ($w_cont_tablet)) {
+}
+}
+
+@if $enable_mobile == 1 {
+// sub-desktop
+@media screen and (min-width: ($w_cont_tablet + 1px)) {
+}
+}
+
+// desktop
+@media screen and (min-width: ($w_cont_desktop)) {
+}
+
+// HD
+@media screen and (min-width: ($w_cont_hd)) {
+}

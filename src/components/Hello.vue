@@ -1,150 +1,214 @@
 <template>
   <div class="hello">
     <div class="wrapper">
-      <h2>[Input] taxtype: {{ STCMainRV }} - 有傷殘： {{ STCIn8 }}</h2>
+      <h2 class="hide">[Input] taxtype: {{ STCMainRV }} - 有傷殘： {{ STCIn8 }}</h2>
       <div class="slider_cont">
 
         <div class="a_slide">
-          <p>單身／已婚</p>
-
           <div class="a__option col-xs-6">
-            <input type="radio" :id="'mtr' + 0" value="S" v-model="martial_status" vX-on:change="chg_method">
-            <label :class="{'active': 'mtr' === 0}" :for="'mtr' + 0">單身</label>
+            <input type="radio" id="single" value="S" v-model="martial_status" vX-on:change="chg_method">
+            <label for="single" class="martial single" :class="{active: martial_status !== 'M'}">{{ lang.martial_single }}</label>
           </div>
 
           <div class="a__option col-xs-6">
-            <input type="radio" :id="'bus' + 0" value="M" v-model="martial_status" vX-on:change="chg_method">
-            <label :class="{'active': 'bus' === 0}" :for="'bus' + 0">已婚</label>
+            <input type="radio" id="married" value="M" v-model="martial_status" vX-on:change="chg_method">
+            <label for="married" class="martial married" :class="{active: martial_status === 'M'}">{{ lang.martial_married }}</label>
           </div>
         </div>
 
-        <!--
-        <div class="a_slide">
-          <label for="joint">合拼計算</label>
-          <input id="joint" type="checkbox" v-model="joint" />
-        </div>
-        -->
+        <vue-slider width="90%" v-model="progress_1" v-bind:max="progress_1_max" v-bind:tooltip="'none'" v-on:drag-end="slider_slick"></vue-slider>
+        <div class="slick_cont" :class="{is_single: martial_status !== 'M'}">
+        <slick ref="slick" :options="slickOptions" @afterChange="slick_afterchange">
+            <div class="a_slide">
+                <p class="item_title">{{ lang.income }}<span class="icon_info" v-tooltip="{ html: 'income_info' }">&nbsp;</span></p>
+                <label for="self_income"><span class="label_text">{{ lang.self }}</span>
+                <input id="self_income" type="number" min="0" max="999999999" v-model="slfIncome" />
+                </label>
+                <label v-if="martial_status === 'M'" for="spouse_income"><span class="label_text">{{ lang.spouse }}</span>
+                <input id="spouse_income" type="number" min="0" max="999999999" v-model="spsIncome" />
+                </label>
+            </div>
+    
+            <div class="a_slide deduct">
+                <p class="item_title">{{ lang.oe }}</p>
+                <label for="self_oe"><span class="label_text">{{ lang.self }}</span>
+                <input id="self_oe" type="number" min="0" max="999999999" v-model="slfOE" />
+                </label>
+                <label v-if="martial_status === 'M'" for="spouse_oe"><span class="label_text">{{ lang.spouse }}</span>
+                <input id="spouse_oe" type="number" min="0" max="999999999" v-model="spsOE" />
+                </label>
+            </div>
+            
+            <div class="a_slide deduct">
+                <p class="item_title">{{ lang.eduexp }}</p>
+                <label for="self_eduexp"><span class="label_text">{{ lang.self }}</span>
+                <input id="self_eduexp" type="number" min="0" max="999999999" v-model="slfSEE" />
+                </label>
+                <label v-if="martial_status === 'M'" for="spouse_eduexp"><span class="label_text">{{ lang.spouse }}</span>
+                <input id="spouse_eduexp" type="number" min="0" max="999999999" v-model="spsSEE" />
+                </label>
+            </div>
+            
+            <div class="a_slide deduct">
+                <p class="item_title">{{ lang.donation }}</p>
+                <label for="self_donation"><span class="label_text">{{ lang.self }}</span>
+                <input id="self_donation" type="number" min="0" max="999999999" v-model="slfDona" />
+                </label>
+                <label v-if="martial_status === 'M'" for="spouse_donation"><span class="label_text">{{ lang.spouse }}</span>
+                <input id="spouse_donation" type="number" min="0" max="999999999" v-model="spsDona" />
+                </label>
+            </div>
+            
+            <div class="a_slide deduct">
+                <p class="item_title">{{ lang.mpf }}</p>
+                <label for="self_mpf"><span class="label_text">{{ lang.self }}</span>
+                <input id="self_mpf" type="number" min="0" max="999999999" v-model="slfMpf" />
+                </label>
+                <label v-if="martial_status === 'M'" for="spouse_mpf"><span class="label_text">{{ lang.spouse }}</span>
+                <input id="spouse_mpf" type="number" min="0" max="999999999" v-model="spsMpf" />
+                </label>
+            </div>
+            
+            <div class="a_slide deduct">
+                <p class="item_title">{{ lang.homeloan }}</p>
+                <label for="self_homeloan"><span class="label_text">{{ lang.self }}</span>
+                <input id="self_homeloan" type="number" min="0" max="999999999" v-model="slfLoan" />
+                </label>
+                <label v-if="martial_status === 'M'" for="spouse_homeloan"><span class="label_text">{{ lang.spouse }}</span>
+                <input id="spouse_homeloan" type="number" min="0" max="999999999" v-model="spsLoan" />
+                </label>
+            </div>              
 
-        <div class="a_slide">
-          <label for="self_income">本人-入息</label>
-          <input id="self_income" type="text" v-model="slfIncome" />
-          <br>
-          <label for="spouse_income">配偶-入息</label>
-          <input id="spouse_income" type="text" v-model="spsIncome" />
+            <div class="a_slide">
+                <p class="item_title">{{ lang.residence }}</p>
+                <label for="self_residence"><span class="label_text">{{ lang.self }}</span>
+                <input id="self_residence" type="number" min="0" max="999999999" v-model="slfResi" />
+                </label>
+                <label v-if="martial_status === 'M'" for="spouse_residence"><span class="label_text">{{ lang.spouse }}</span>
+                <input id="spouse_residence" type="number" min="0" max="999999999" v-model="spsResi" />
+                </label>
+            </div>
+            
+        </slick>
         </div>
 
-        <div class="a_slide">
-          <label for="self_residence">本人-獲僱主或相聯公司提供居所的租值</label>
-          <input id="self_residence" type="text" v-model="slfResi" />
-          <br>
-          <label for="spouse_residence">配偶-獲僱主或相聯公司提供居所的租值</label>
-          <input id="spouse_residence" type="text" v-model="spsResi" />
-        </div>
         
-        <div class="a_slide">
-          <h2>扣除</h2>
-          <label for="self_oe">本人-支出及開支</label>
-          <input id="self_oe" type="text" v-model="slfOE" /> <!-- slfExp -->
-          <br>
-          <label for="spouse_oe">配偶-支出及開支</label>
-          <input id="spouse_oe" type="text" v-model="spsOE" />
-        </div>
-        
-        <div class="a_slide">
-          <label for="self_eduexp">本人-個人進修開支</label>
-          <input id="self_eduexp" type="text" v-model="slfSEE" /> <!-- slfEdu -->
-          <br>
-          <label for="spouse_eduexp">配偶-個人進修開支</label>
-          <input id="spouse_eduexp" type="text" v-model="spsSEE" />
-        </div>
-        
-        <div class="a_slide">
-          <label for="self_donation">本人-認可慈善捐款</label>
-          <input id="self_donation" type="text" v-model="slfDona" />
-          <br>
-          <label for="spouse_donation">配偶-認可慈善捐款</label>
-          <input id="spouse_donation" type="text" v-model="spsDona" />
-        </div>
-        
-        <div class="a_slide">
-          <label for="self_mpf">本人-MPF</label>
-          <input id="self_mpf" type="text" v-model="slfMpf" />
-          <br>
-          <label for="spouse_mpf">配偶-MPF</label>
-          <input id="spouse_mpf" type="text" v-model="spsMpf" />
-        </div>
-        
-        <div class="a_slide">
-          <label for="self_homeloan">本人-居所貸款利息</label>
-          <input id="self_homeloan" type="text" v-model="slfLoan" />
-          <br>
-          <label for="spouse_homeloan">配偶-居所貸款利息</label>
-          <input id="spouse_homeloan" type="text" v-model="spsLoan" />
-        </div>
-        
-        <div class="a_slide">
-          <h2>長者住宿照顧</h2>
-          <label for="self_elderly">本人-在安老院居住的受養人數目</label>
-          <input id="self_elderly" type="text" v-model="slfElder" />
-          <br>
-          <label for="self_disabledep">本人-傷殘受養人免稅額資格的受養人數目</label>
-          <input id="self_disabledep" type="text" v-model="slfDisdep" />
-          <br>
-          <label for="self_eldresi_amt">本人-支付給安老院的開支款額</label>
-          <input id="self_eldresi_amt" type="text" v-model="slfERCE" />
-          <br>
-          
-          <label for="spouse_elderly">配偶-在安老院居住的受養人數目</label>
-          <input id="spouse_elderly" type="text" v-model="spsElder" />
-          <br>
-          <label for="spouse_disabledep">配偶-傷殘受養人免稅額資格的受養人數目</label>
-          <input id="spouse_disabledep" type="text" v-model="spsDisdep" />
-          <br>
-          <label for="spouse_eldresi_amt">配偶-支付給安老院的開支款額</label>
-          <input id="spouse_eldresi_amt" type="text" v-model="spsERCE" />
+        <div class="additional">
+            <div class="a_slide" v-bind:class="{ active: sh_elderly }">
+                <p class="sect_title" v-on:click="toggleClass('sh_elderly')">長者照顧</p>
+
+                <div class="cont">
+                    <p class="item_title">{{ lang.self + '負責' }}</p>
+                    <label for="self_elderly"><span class="label_text">{{ lang.elderly }}</span>
+                    <!-- <input id="self_elderly" type="text" v-model="slfElder" /> -->
+                    <vue-slider width="90%" v-model="slfElder" v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-bind:tooltip="s_tooltip" v-on:drag-end=""></vue-slider>
+                    </label>
+
+                    <label v-if="slfElder > 0" for="self_disabledep"><span class="label_text">{{ lang.disabledep }}</span>
+                    <!-- <input id="self_disabledep" type="text" v-model="slfDisdep" /> -->
+                    <vue-slider width="90%" v-model="slfDisdep" v-bind:min="s_Elder_min" v-bind:max="slfElder" v-bind:tooltip="s_tooltip" v-on:drag-end=""></vue-slider>
+                    </label>
+
+                    <label v-if="slfElder > 0" for="self_eldresi_amt"><span class="label_text">{{ lang.eldresi_amt }}</span>
+                    <input id="self_eldresi_amt" type="number" min="0" max="999999999" v-model="slfERCE" />
+                    </label>
+                </div>
+
+                
+                <div class="cont" v-if="martial_status === 'M'">
+                    <p class="item_title">{{ lang.spouse + '負責' }}</p>
+                    <label for="spouse_elderly"><span class="label_text">{{ lang.elderly }}</span>
+                    <!-- <input id="spouse_elderly" type="text" v-model="spsElder" /> -->
+                    <vue-slider width="90%" v-model="spsElder" v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-bind:tooltip="s_tooltip" v-on:drag-end=""></vue-slider>
+                    </label>
+
+                    <label v-if="martial_status === 'M' && spsElder > 0" for="spouse_disabledep"><span class="label_text">{{ lang.disabledep }}</span>
+                    <!-- <input id="spouse_disabledep" type="text" v-model="spsDisdep" /> -->
+                    <vue-slider width="90%" v-model="spsDisdep" v-bind:min="s_Elder_min" v-bind:max="spsElder" v-bind:tooltip="s_tooltip" v-on:drag-end=""></vue-slider>
+                    </label>
+
+                    <label v-if="martial_status === 'M' && spsElder > 0" for="spouse_eldresi_amt"><span class="label_text">{{ lang.eldresi_amt }}</span>
+                    <input id="spouse_eldresi_amt" type="number" min="0" max="999999999" v-model="spsERCE" />
+                    </label>
+                </div>
+            </div>
+
+            <div class="a_slide" v-bind:class="{ active: sh_bb }">
+                <p class="sect_title" v-on:click="toggleClass('sh_bb')">受養人</p>
+                <div class="cont">
+
+                    <label for="NBbb">在課稅年度內出生子女（名）<!-- <input id="NBbb" type="text" v-model="NBbb" v-on:change="D3aOnChange()" /> <!- -  STCIn21 -->
+                    <vue-slider width="90%" v-model="NBbb" v-bind:min="s_bb_min" v-bind:max="s_bb_max" v-bind:tooltip="s_tooltip" v-on:drag-end="D3aOnChange()"></vue-slider>
+                    </label>
+                    <label for="CAbb">在其他課稅年度出生的子女（名）<!-- <input id="CAbb" type="text" v-model="CAbb" v-on:input="D3OnChange()" /> <!- -   STCIn4 -->
+                    <vue-slider width="90%" v-model="CAbb" v-bind:min="s_bb_min" v-bind:max="9 - NBbb" v-bind:tooltip="s_tooltip" v-on:drag-end="D3OnChange()"></vue-slider>
+                    </label>
+                    <br>                    
+                    <label for="brosis_dep">供養兄弟/姊妹</label><!-- <input id="brosis_dep" type="text" v-model="brosis_dep" v-on:change="D5OnChange()" /> <!- -   STCIn5 -->
+                    <vue-slider width="90%" v-model="brosis_dep" v-bind:min="s_bb_min" v-bind:max="s_bb_max" v-bind:tooltip="s_tooltip" v-on:drag-end="D5OnChange()"></vue-slider>
+                    <br>
+                    <p>供養全年與你同住的年滿60歲或以上的父母/祖父母或外祖父母</p>
+                    <label for="resi_parent">全年與你同住</label><!-- <input id="resi_parent" type="text" v-model="resi_parent" v-on:change="D7OnChange()" /> <!- -   STCIn6 -->
+                    <vue-slider width="90%" v-model="resi_parent" v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-bind:tooltip="s_tooltip" v-on:drag-end="D7OnChange()"></vue-slider>
+                    <label for="non_resi_parent">並非全年與你同住</label><!-- <input id="non_resi_parent" type="text" v-model="non_resi_parent" v-on:change="D9OnChange()" /> <!- -   STCIn7 -->
+                    <vue-slider width="90%" v-model="non_resi_parent" v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-bind:tooltip="s_tooltip" v-on:drag-end="D9OnChange()"></vue-slider>
+                    <br>
+                    <p>供養全年與你同住的年滿55歲但未滿60歲的父母/祖父母或外祖父母</p>
+                    <label for="resi_parent_5560">全年與你同住</label><!-- <input id="resi_parent_5560" type="text" v-model="resi_parent_5560" /> <!- -  STCIn17 -->
+                    <vue-slider width="90%" v-model="resi_parent_5560" v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-bind:tooltip="s_tooltip" v-on:drag-end=""></vue-slider>
+                    <label for="non_resi_parent_5560">並非全年與你同住</label><!-- <input id="non_resi_parent_5560" type="text" v-model="non_resi_parent_5560" /> <!- -  STCIn18 -->
+                    <vue-slider width="90%" v-model="non_resi_parent_5560" v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-bind:tooltip="s_tooltip" v-on:drag-end=""></vue-slider>
+                </div>
+            </div>
+
+            <div class="a_slide" v-bind:class="{ active: sh_bb_dis }">
+                <p class="sect_title" v-on:click="toggleClass('sh_bb_dis')">傷殘的受養人</p>
+                <div class="cont">
+
+                    <label v-if="NBbb > 0" for="NBbb_DIS"><span class="label_text">在課稅年度內出生子女（名）</span><!--<input id="NBbb_DIS" type="text" v-model="NBbb_DIS" v-on:change="D4aOnChange()" /> <!- -  STCIn10 -->
+                    <vue-slider width="90%" v-model="NBbb_DIS" v-bind:min="s_bb_min" v-bind:max="NBbb" v-bind:tooltip="s_tooltip" v-on:drag-end="D4aOnChange()"></vue-slider>
+                    </label>
+                    <label v-if="CAbb > 0" for="CAbb_DIS"><span class="label_text">在其他課稅年度出生的子女（名）</span><!--<input id="CAbb_DIS" type="text" v-model="CAbb_DIS" v-on:change="D4OnChange()" /> <!- -  STCIn22 -->
+                    <vue-slider width="90%" v-model="CAbb_DIS" v-bind:min="s_bb_min" v-bind:max="CAbb" v-bind:tooltip="s_tooltip" v-on:drag-end="D4OnChange()"></vue-slider>
+                    </label>
+                    <label for="brosis_dep_DIS">供養兄弟/姊妹</label><!--<input id="brosis_dep_DIS" type="text" v-model="brosis_dep_DIS" v-on:change="D6OnChange()" /> <!- -  STCIn11 -->
+                    <vue-slider width="90%" v-model="brosis_dep_DIS" v-bind:min="s_bb_min" v-bind:max="brosis_dep" v-bind:tooltip="s_tooltip" v-on:drag-end="D6OnChange()"></vue-slider>
+                    <br>
+                    <p>供養全年與你同住的年滿60歲或以上的父母/祖父母或外祖父母</p>
+                    <label for="resi_parent_DIS">全年與你同住</label><!--<input id="resi_parent_DIS" type="text" v-model="resi_parent_DIS" v-on:change="D8OnChange()" /> <!- -  STCIn12 -->
+                    <vue-slider width="90%" v-model="resi_parent_DIS" v-bind:min="s_Elder_min" v-bind:max="resi_parent" v-bind:tooltip="s_tooltip" v-on:drag-end="D8OnChange()"></vue-slider>
+                    <label for="non_resi_parent_DIS">並非全年與你同住</label><!--<input id="non_resi_parent_DIS" type="text" v-model="non_resi_parent_DIS" v-on:change="D10OnChange()" /> <!- -  STCIn13 -->
+                    <vue-slider width="90%" v-model="non_resi_parent_DIS" v-bind:min="s_Elder_min" v-bind:max="non_resi_parent" v-bind:tooltip="s_tooltip" v-on:drag-end="D10OnChange()"></vue-slider>
+                    <br>
+                    <label v-if="martial_status === 'M'" for="spouse_disabled_dependent_DIS">
+                        傷殘配偶受養人
+                        <span v-if="spouse_disabled_dependent_DIS">（合資格）</span>
+                        <span v-if="!spouse_disabled_dependent_DIS">（並非合資格）</span>
+                    </label>
+                    <switches v-if="martial_status === 'M'" v-model="spouse_disabled_dependent_DIS" theme="bootstrap" color="primary"></switches>
+                    <!-- <input id="spouse_disabled_dependent_DIS" type="number" v-model="spouse_disabled_dependent_DIS" /> <!- -  STCIn9 -->
+                </div>
+            </div>
+
+            <div v-if="martial_status === 'S' && NBbb + CAbb > 0" class="a_slide" v-bind:class="{ active: sh_single_parent }">
+                <p class="sect_title" v-on:click="toggleClass('sh_single_parent')">單親免稅額</p>
+                <div class="cont">
+                    <label for="single_parent">
+                        <span>單親免稅額</span>
+                        <span v-if="single_parent">（合資格）</span>
+                        <span v-if="!single_parent">（並非合資格）</span>
+                    </label>
+                    <switches v-model="single_parent" theme="bootstrap" color="primary"></switches>
+                    <!-- <input id="single_parent" type="number" v-model="single_parent" /> <!- -  STCIn23 -->
+                </div>
+            </div>
+
         </div>
 
-        <hr>
-
-
-        <div class="a_slide">
-          <h2>受養人</h2>
-          <label for="NBbb">在課稅年度內出生子女（名）</label><input id="NBbb" type="text" v-model="NBbb" v-on:change="D3aOnChange()" /> <!--  STCIn21 -->
-          <label for="CAbb">在其他課稅年度出生的子女（名）</label><input id="CAbb" type="text" v-model="CAbb" v-on:input="D3OnChange()" /> <!--   STCIn4 -->
-          <br>
-          <label for="single_parent">單親免稅額</label><input id="single_parent" type="text" v-model="single_parent" /> <!--  STCIn23 -->
-          <label for="brosis_dep">供養兄弟/姊妹</label><input id="brosis_dep" type="text" v-model="brosis_dep" v-on:change="D5OnChange()" /> <!--   STCIn5 -->
-          <br>
-          <p>供養全年與你同住的年滿60歲或以上的父母/祖父母或外祖父母</p>
-          <label for="resi_parent">全年與你同住</label><input id="resi_parent" type="text" v-model="resi_parent" v-on:change="D7OnChange()" /> <!--   STCIn6 -->
-          <label for="non_resi_parent">並非全年與你同住</label><input id="non_resi_parent" type="text" v-model="non_resi_parent" v-on:change="D9OnChange()" /> <!--   STCIn7 -->
-          <br>
-          <p>供養全年與你同住的年滿55歲但未滿60歲的父母/祖父母或外祖父母</p>
-          <label for="resi_parent_5560">全年與你同住</label><input id="resi_parent_5560" type="text" v-model="resi_parent_5560" /> <!--  STCIn17 -->
-          <label for="non_resi_parent_5560">並非全年與你同住</label><input id="non_resi_parent_5560" type="text" v-model="non_resi_parent_5560" /> <!--  STCIn18 -->
-        </div>
-
-
-        <div class="a_slide">
-          <h2>受養人-傷殘</h2>
-          <label for="NBbb_DIS">在課稅年度內出生子女（名）</label><input id="NBbb_DIS" type="text" v-model="NBbb_DIS" v-on:change="D4aOnChange()" /> <!--  STCIn10 -->
-          <label for="CAbb_DIS">在其他課稅年度出生的子女（名）</label><input id="CAbb_DIS" type="text" v-model="CAbb_DIS" v-on:change="D4OnChange()" /> <!--  STCIn22 -->
-          <br>
-          <label for="brosis_dep_DIS">供養兄弟/姊妹</label><input id="brosis_dep_DIS" type="text" v-model="brosis_dep_DIS" v-on:change="D6OnChange()" /> <!--  STCIn11 -->
-          <br>
-          <p>供養全年與你同住的年滿60歲或以上的父母/祖父母或外祖父母</p>
-          <label for="resi_parent_DIS">全年與你同住</label><input id="resi_parent_DIS" type="text" v-model="resi_parent_DIS" v-on:change="D8OnChange()" /> <!--  STCIn12 -->
-          <label for="non_resi_parent_DIS">並非全年與你同住</label><input id="non_resi_parent_DIS" type="text" v-model="non_resi_parent_DIS" v-on:change="D10OnChange()" /> <!--  STCIn13 -->
-          <br>
-          <label for="spouse_disabled_dependent_DIS">傷殘配偶受養人</label>
-          <input id="spouse_disabled_dependent_DIS" type="text" v-model="spouse_disabled_dependent_DIS" /> <!--  STCIn9 -->
-        </div>
-        
-      </div>
-      <hr>
-
-      <h2>Output</h2>
-      <table border="1" width="100%">
+      <h2 style="display: none;">Output</h2>
+      <tax2018 v-bind:msg='msg' v-bind:STCIn8='STCIn8' v-bind:martial_status='martial_status' v-bind:slfIncome='slfIncome' v-bind:spsIncome='spsIncome' v-bind:slfResi='slfResi' v-bind:spsResi='spsResi' v-bind:slfOE='slfOE' v-bind:spsOE='spsOE' v-bind:slfSEE='slfSEE' v-bind:spsSEE='spsSEE' v-bind:slfDona='slfDona' v-bind:spsDona='spsDona' v-bind:slfMpf='slfMpf' v-bind:spsMpf='spsMpf' v-bind:slfLoan='slfLoan' v-bind:spsLoan='spsLoan' v-bind:s_Elder_min='s_Elder_min' v-bind:s_Elder_max='s_Elder_max' v-bind:s_tooltip='s_tooltip' v-bind:slfElder='slfElder' v-bind:slfDisdep='slfDisdep' v-bind:slfERCE='slfERCE' v-bind:spsElder='spsElder' v-bind:spsDisdep='spsDisdep' v-bind:spsERCE='spsERCE' v-bind:s_bb_min='s_bb_min' v-bind:s_bb_max='s_bb_max' v-bind:NBbb='NBbb' v-bind:CAbb='CAbb' v-bind:single_parent='single_parent' v-bind:brosis_dep='brosis_dep' v-bind:resi_parent='resi_parent' v-bind:non_resi_parent='non_resi_parent' v-bind:resi_parent_5560='resi_parent_5560' v-bind:non_resi_parent_5560='non_resi_parent_5560' v-bind:NBbb_DIS='NBbb_DIS' v-bind:CAbb_DIS='CAbb_DIS' v-bind:brosis_dep_DIS='brosis_dep_DIS' v-bind:resi_parent_DIS='resi_parent_DIS' v-bind:non_resi_parent_DIS='non_resi_parent_DIS' v-bind:spouse_disabled_dependent_DIS='spouse_disabled_dependent_DIS' v-bind:STCMainRV='STCMainRV' v-bind:STCOut1='STCOut1' v-bind:end='end' ></tax2018>
+      
+      <table border="1" width="100%" style="display: none;">
           <tbody>
               <tr>
                   <td width="46%">總 入 息</td>
@@ -737,6 +801,11 @@
       </table>
 
 
+      </div>
+    </div>
+
+    <div class="tool_tips" id="income_info">
+        <p>入息是指課稅年度內的收入。<a href="https://www.gov.hk/tc/residents/taxes/salaries/salariestax/chargeable/index.htm" target="_blank">（詳情）</a></p>
     </div>
   </div>
 </template>
@@ -748,35 +817,5 @@ export default aliasHH
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-h1, h2 {
-  font-weight: normal;
-}
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #35495E;
-}
-
-
-
-.a_slide {
-  width: 150px;
-  min-height: 150px;
-  border: 1px solid #F00;
-  display: inline-block;
-  vertical-align: top;
-}
-
-.formulated {
-  color: mediumorchid;
-}
 </style>

@@ -1,0 +1,371 @@
+$dura_quick: 10s;
+$dura_slow: 50s;
+
+@if $enable_mobile == 1 {
+// small mobile
+@media screen and (max-width: 361px) {
+  .front .article .heading {
+    font-size: 2.8rem;
+  }
+}
+@media screen and (max-width: 390px) {
+  .line1b .car04,
+  .van01,
+  .van03,
+  .truck01,
+  .car05,
+  .car06 {
+    display: none;
+  }
+}
+// mobile
+@media screen and (max-width: $w_cont_mobile) {
+}
+}
+
+@if $enable_mobile == 1 {
+// tablet
+@media screen and (min-width: ($w_cont_mobile + 1px)) and (max-width: ($w_cont_tablet)) {
+}
+}
+
+@if $enable_mobile == 1 {
+// sub-desktop
+@media screen and (min-width: ($w_cont_tablet + 1px)) {
+  .front {
+    height: 100vh;
+    .video-cont {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    video {
+      min-width: 100%;
+      min-height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%,-50%);
+      transform: translate(-50%,-50%);
+      flex-shrink: 0;
+    }
+    .frame {
+    }
+    .article {
+      min-width: 300px;
+      max-width: 800px;
+      width: 80%;
+      .heading {
+        font-size: 6rem;
+      }
+    }
+  }
+
+
+  .placeholder {
+    display: none;
+  }
+  .frame {
+    width: 100%;
+    height: auto;
+
+    // position: relative;
+    .at_right & {
+      overflow: hidden;
+    }
+  }
+  .article {
+    min-width: 300px;
+    max-width: 560px;
+    width: 26%; // 30%;
+    margin: 0;
+
+    // desktop
+    position: relative;
+    bottom: auto;
+    background-color: transparent;
+    .at_right & {
+      float: right;
+    }
+
+    .heading {
+      margin: 0 0 3rem;
+      font-size: 3.5rem;
+      // font-weight: 700;
+    }
+    p {
+      margin: 0 0 2rem;
+      font-size: 2.3rem // 2.0rem;
+    }
+  }
+  ////////////////////////////////////////////
+  // Street View
+  #street-view {
+    width: 250px;
+    height: 0;
+    margin-top: -125px;
+    margin-left: -125px;
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    &.show {
+      height: 250px;
+    }
+    .close {
+      
+    }
+  }
+
+
+  ///////////////////////////////////////////
+  // Cam
+  .carcam_cont {
+    display: none;
+    &.show {
+      width: 50vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: auto;
+      right: 0;
+    }
+  }
+  .video-cam-cont {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    &:before {
+      content: "";
+      display: inline-block;
+      width: 1px;
+      height: 100%;
+      margin: 0 0 0 -10px;
+      vertical-align: middle;
+    }
+    video {
+      max-width: 50vw;
+      // width: 100%;
+      height: 80%;
+      // float: right;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  .carcam_title {
+    font-size: 48px;
+  }
+  .interaction_hint {
+    // display: none;
+    // visibility: hidden;
+  }
+
+
+  /////////////////////////////////////
+  // Animation
+  #animation {
+    min-height: 420px;
+    width: 65%;
+    margin: 0 0 0 -45px;
+    float: right;
+  }
+  .bg {
+    max-width: 910px;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    left: auto;
+    right: 30px;
+    background-position: 100% 100%;
+  }
+  .yr_anno {
+    font-size: 4em;
+    padding-left: 45px;
+  }
+  %_car_desktop {
+    background-size: 77% auto;
+  }
+  .line3a {
+    // animation: line_3 $dura_quick linear infinite;
+    // animation-delay: -25s;
+    .y2016 & {
+      max-width: 680px;
+      min-width: 620px;
+      // animation: line_3a_2016 $dura_slow linear infinite;
+      // animation-delay: -25s;
+    }
+  }
+  .line3b {
+    // animation: line_3 $dura_quick linear infinite;
+    .y2016 & {
+      max-width: 680px;
+      min-width: 620px;
+      // animation: line_3b_2016 $dura_slow linear infinite;
+    }
+  }
+
+  // at line3
+  .bus01 {
+    width: 360px;
+    height: 130px;
+  }
+  .bus02 {
+    width: 360px;
+    height: 130px;
+  }
+  .car06 {
+    width: 280px;
+    height: 48px;
+    left: 22%;
+  }
+  .car05 {
+    width: 280px;
+    height: 48px;
+    left: 19%;
+  }
+
+
+  // at line2
+  .car03 {
+    width: 280px;
+    height: 60px;
+    .line1a &,
+    .line1b & {
+      height: 65px;
+    }
+  }
+  .car04 {
+    width: 280px;
+    height: 60px;
+    .line1a &,
+    .line1b & {
+      height: 65px;
+    }
+  }
+  .van01 {
+    width: 280px;
+    height: 75px;
+    left: 60%;
+  }
+  .truck01 {
+    width: 280px;
+    height: 110px;
+    left: 120%;
+  }
+
+
+  .taxi01 {
+    width: 280px;
+    height: 60px;
+    left: -20%;
+    .line1a &,
+    .line1b & {
+      height: 70px;
+    }
+  }
+  .car02 {
+    width: 280px;
+    height: 60px;
+  }
+  .van02 {
+    width: 280px;
+    height: 75px;
+    left: 70%;
+  }
+  .truck02 {
+    width: 280px;
+    height: 110px;
+    left: 120%;
+  }
+
+
+  // at line1
+  .car01 {
+    width: 280px;
+    height: 65px;
+  }
+  .van03 {
+    width: 280px;
+    height: 80px;
+    .line1a &,
+    .line1b & {
+      height: 85px;
+    }
+  }
+
+  ////////////////////////////
+  // Chart
+  #mainchart,
+  .prechart {
+    min-height: 420px;
+    width: 65%;
+    margin: 0 0 0 -45px;
+    float: right;
+  }
+
+
+
+
+
+
+
+  ////////////////////////////
+  // Legend
+  .placeholder_desktop {
+    display: block;
+    max-width: 250px;
+    .legend_cont {
+      max-width: 250px;
+      width: 100%;
+      &.legend_2 {
+      bottom: 0;
+      }
+    }
+    img {
+      width: 100%;
+    }
+  }
+
+  .legend_cont {
+    padding: 1rem 1.2rem;
+  }
+
+
+
+
+  /////////////////////////////
+  // Special
+  .fp-viewing-page22 {
+    .article {
+      width: 43%;
+    }
+  }
+
+}
+}
+
+// desktop
+@media screen and (min-width: ($w_cont_desktop)) {
+}
+
+// HD
+@media screen and (min-width: ($w_cont_hd)) {
+}
+
+
+
+
+// long device
+@media screen and (min-height: 569px) {
+  .placeholder {
+    min-height: 65vh;
+    height: 400px;
+  }
+
+}

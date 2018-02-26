@@ -1,0 +1,380 @@
+$desktop-width: 768px;
+$desktop-input-width: 300px;
+
+// @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+@import 'sass/_var.scss';
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+* {
+  box-sizing: border-box;
+}
+// THIS IS //
+body * {
+  // font-family: "Microsoft YaHei", "Arial", sans-serif;
+  font-family: "Noto Sans TC", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", "Roboto Sans", Helvetica, Arial, sans-serif;
+  // color: #FFF;
+}
+.font-hel {
+  font-family: "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnBold', "Helvetica", "Tahoma", "Geneva", "Noto Sans TC", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", "Roboto Sans", Helvetica, Arial, sans-serif;
+}
+.access {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  text-indent: -999px;
+}
+.hide {
+  display: none;
+}
+.text-center {
+  text-align: center;
+}
+.js-hide {
+  opacity: 0 !important;
+}
+.wrapper {
+  max-width: $desktop-width;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  > .container {
+    position: relative;
+  }
+}
+header {
+  // width: 100%;
+  // position: absolute;
+  position: relative;
+  z-index: 110;
+  .main-logo,
+  h2,
+  p {
+    margin: 0;
+    line-height: 1.1;
+  }
+}
+select {
+  width: 100%;
+}
+button {
+  font-size: 1.2rem;
+}
+.main-logo {
+  position: absolute;
+}
+.hint {
+  margin: 0 0 4px;
+  padding: 8px 14px;
+}
+.logo-hk01news {
+  width: 3em;
+  height: auto;
+}
+
+////////////////////////////////////////////////////////////////////
+html,
+body {
+  height: 100%;
+  position: relative;
+}
+p, h1, h2, h3, h4, h5, h6, li, td, span {
+}
+a {
+  &:hover {
+    color: #AC9455;
+    text-decoration: none;
+  }
+  &:focus {
+  }
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+input {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+}
+.formulated {
+  color: mediumorchid;
+}
+.icon_info {
+  width: 16px;
+  height: 16px;
+  margin: 0 0 0 3px;
+  display: inline-block;
+  vertical-align: top;
+  background: url('../static/img/icon_info.png') 0 50% / 16px auto no-repeat transparent;
+}
+.vue-tooltip .tooltip-arrow {
+  border-color: transparent;
+}
+ 
+// Block Elements ///////////////////////////////////////////
+.section {
+  padding: 0 1em;
+  // border: 1px solid mediumvioletred;
+  &.front {
+    padding: 0;
+  }
+}
+
+// Martial ///////////////////////////////////////////
+.a__option {
+  width: 50%;
+  height: 48px;
+  float: left;
+  position: relative;
+}
+.martial {
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  &.single {
+    background: #7788BB;
+  }
+  &.married {
+    background: #BB8877;
+  }
+  &.active {
+    font-weight: 700;
+    color: #FFF;
+  }
+}
+
+// Input Fields ///////////////////////////////////////////
+.a_slide {
+  width: 100%;
+  // border: 1px solid #F00;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  hr ~ & {
+    max-height: 100px;
+  }
+}
+.slick-slider {
+  padding: 0 0 50px;
+  * {
+    box-sizing: content-box;
+  }
+  label {
+    max-width: $desktop-input-width * 0.9;
+    width: 90%;
+    margin: 0 auto 4px;
+    position: relative;
+    display: block;
+  }  
+  input {
+    max-width: $desktop-input-width;
+    width: 100%;
+    font-size: 1.2rem;
+    text-align: right;
+  }
+  .label_text {
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    opacity: 0.5;
+  }  
+  .slick-slide > div {
+    margin: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 4px 0 #AAA;
+  }
+  .slick-arrow {
+    position: relative;
+    z-index: 90;
+    &.slick-prev {
+      position: absolute;
+      left: 5px;
+      bottom: 5px;
+    }
+    &.slick-next {
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+    }
+  }
+  .a_slide {
+    min-height: 100px;
+    // background-color: rgb(223, 243, 220);
+    background-color: rgb(242, 201, 187);
+    .is_single & {
+      background-color: rgb(209, 219, 252);
+    }
+    &.deduct {
+      // background-color: rgb(240, 223, 218);
+    }
+    &.active {
+      max-height: none;
+    }
+  }
+}
+
+.slick_butn {
+  width: 40%;
+  height: 1.8rem;
+  &.slick-prev {
+    color: rgb(121, 14, 14);
+  }
+  &.slick-next {
+    color: rgb(15, 153, 15);
+  }
+}
+
+// Deduction ////////////////////////////////
+.additional {
+  padding: 0 0 14rem;
+  .a_slide {
+    max-height: 40px;
+    position: relative;
+    &:after {
+      // content: "";
+      // width: 100%;
+      // height: 20px;
+      // position: absolute;
+      // left: 0;
+      // bottom: 0;
+      // z-index: 110;
+      // background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8) 70%, #FFF);      
+    }
+    &.active {
+      max-height: none;
+      .cont {
+        max-height: none;
+        padding: 48px 0;
+      }
+      &:after {
+        // background-image: none;
+      }
+      .sect_title {
+        background-image: url('../static/img/arrow_up_dark.png');
+        // background-color: #f4f4f4;
+      }
+    }
+  }
+  label {
+    width: 90%;
+    margin: 0 auto 4px;
+    position: relative;
+    display: block;
+  }
+  input {
+    max-width: $desktop-input-width;
+    width: 100%;
+    font-size: 1.2rem;
+    text-align: right;
+  }
+  .cont {
+    margin: 0 20px 8px;
+    max-height: 0;
+    overflow: hidden;
+    box-shadow: 0 0 4px 0 #AAA;
+  }
+  .sect_title {
+    margin: 0 0 4px;
+    padding: 4px 0 4px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    background-image: url('../static/img/arrow_down_dark.png');
+    background-size: auto 1.5rem;
+    background-position: 90% 50%;
+    background-repeat: no-repeat;
+    background-color: #f4f4f4;
+  }
+  .item_title {
+    margin: 0 0 4px;
+  }
+  .label_text {
+    position: relative;
+    display: block;
+  }
+}
+
+// Slider ////////////////////////////////
+.vue-slider-horizontal {
+  margin: 30px auto 0;
+}
+
+// Switcher ////////////////////////////////
+.vue-switcher {
+  .additional & {
+    width: auto;
+    display: inline-block;
+  }
+  input {
+    margin: 0;
+    top: 0;
+    left: 0;
+  }
+}
+
+// Tax Result ////////////
+.difference {
+  p {
+    margin: 0;
+    background-color: rgb(255, 243, 230);
+  }
+  .less {
+    background-color: rgb(230, 255, 230);
+  }
+}
+.tax_result {
+  max-width: $desktop-width;
+  width: 100%;
+  padding: 8px;
+  position: fixed;
+  bottom: 0;
+  z-index: 110;
+  background-color: #f7f7f7;
+  box-shadow: 0 -2px 8px 0 #AAA;
+}
+.result_butn {
+  box-sizing: content-box;
+  width: 70%;
+  height: 1.8rem;
+}
+.reset_butn {
+  box-sizing: content-box;
+  height: 1.8rem;
+}
+.tax {
+  width: 48%;
+  margin: .5rem 0 0;
+  padding: .5rem 0;
+  border: 1px solid #AAA;
+  p {
+    margin: 0;
+  }
+}
+// Tooltips /////////////////////////////
+.tool_tips {
+  a,p,li {
+    color: #FFF;
+  }
+  p {
+    margin: .7rem;
+  }
+}
+
+// Footer
+.footer {
+  display: block;
+  clear: both;
+  p {
+    font-size: 0.6rem;
+    color: #AAA;
+  }
+}
+// Mobile ////////////////////////////////////
+@import 'sass/_home_mobile.scss';
