@@ -11,6 +11,7 @@ $desktop-input-width: 300px;
   box-sizing: border-box;
 }
 // THIS IS //
+noscript,
 body * {
   // font-family: "Microsoft YaHei", "Arial", sans-serif;
   font-family: "Noto Sans TC", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", "Roboto Sans", Helvetica, Arial, sans-serif;
@@ -24,6 +25,26 @@ body * {
   top: -9999px;
   left: -9999px;
   text-indent: -999px;
+}
+#accessibility-skip-content {
+  width: 1px;
+  height: 1px;
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  background: #FFF;
+  color: #000;
+  &:focus {
+    width: auto;
+    height: auto;
+    margin: 0 0 0 -360px;
+    padding: 5px;
+    top: 0;
+    left: 50%;
+    z-index: 999;
+  }
 }
 .hide {
   display: none;
@@ -54,6 +75,13 @@ header {
     margin: 0;
     line-height: 1.1;
   }
+  h2 {
+    font-size: 30px;
+    line-height: 56px;
+  }
+}
+main {
+  overflow: hidden;
 }
 select {
   width: 100%;
@@ -83,7 +111,7 @@ p, h1, h2, h3, h4, h5, h6, li, td, span {
 }
 a {
   &:hover {
-    color: #AC9455;
+    color: #333;
     text-decoration: none;
   }
   &:focus {
@@ -105,7 +133,7 @@ input {
 }
 .icon_info {
   width: 16px;
-  height: 16px;
+  height: 20px;
   margin: 0 0 0 3px;
   display: inline-block;
   vertical-align: top;
@@ -128,26 +156,52 @@ input {
 .a__option {
   width: 50%;
   height: 48px;
+  border-radius: 0;
   float: left;
   position: relative;
+  text-align: center;
+  background-color: #00abbd;
+  .is_married & {
+    background-color: #fec85b;
+  }
+}
+#single {
+  &:focus {
+    ~ label {
+      outline: 1px solid red;
+    }
+  }
 }
 .martial {
   width: 100%;
   height: 48px;
+  border-width: 3px 3px 0 3px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 0;
   line-height: 48px;
+  font-weight: 700;
   display: block;
   position: absolute;
   top: 0;
   left: 0;
+  color: #FFF;
   &.single {
-    background: #7788BB;
+    // border-color: #7788BB;
+    border-radius: 0 8px 0 0;
+    background-color: #fec85b;
   }
   &.married {
-    background: #BB8877;
+    // border-color: #BB8877;
+    border-radius: 8px 0 0 0;
+    background-color: #00abbd;
   }
   &.active {
     font-weight: 700;
-    color: #FFF;
+    background-color: #FFF;
+    z-index: 91;
+    box-shadow: 0 0 8px 0 #666;
+    color: #333;
   }
 }
 
@@ -155,62 +209,23 @@ input {
 .a_slide {
   width: 100%;
   // border: 1px solid #F00;
+  border-radius: 10px;
   display: inline-block;
   vertical-align: top;
+  text-align: left;
   overflow: hidden;
   hr ~ & {
     max-height: 100px;
   }
-}
-.slick-slider {
-  padding: 0 0 50px;
-  * {
-    box-sizing: content-box;
+  .slider_cont > & {
+    border-radius: 0;
   }
-  label {
-    max-width: $desktop-input-width * 0.9;
-    width: 90%;
-    margin: 0 auto 4px;
-    position: relative;
-    display: block;
-  }  
-  input {
-    max-width: $desktop-input-width;
-    width: 100%;
-    font-size: 1.2rem;
-    text-align: right;
-  }
-  .label_text {
-    position: absolute;
-    top: 2px;
-    left: 4px;
-    opacity: 0.5;
-  }  
-  .slick-slide > div {
-    margin: 10px;
-    border-radius: 4px;
-    box-shadow: 0 0 4px 0 #AAA;
-  }
-  .slick-arrow {
-    position: relative;
-    z-index: 90;
-    &.slick-prev {
-      position: absolute;
-      left: 5px;
-      bottom: 5px;
-    }
-    &.slick-next {
-      position: absolute;
-      right: 5px;
-      bottom: 5px;
-    }
-  }
-  .a_slide {
-    min-height: 100px;
+  .slick-slider & {
+    min-height: 125px;
     // background-color: rgb(223, 243, 220);
-    background-color: rgb(242, 201, 187);
-    .is_single & {
-      background-color: rgb(209, 219, 252);
+    background-color: #fec85b;
+    .is_married & {
+      background-color: #00abbd;
     }
     &.deduct {
       // background-color: rgb(240, 223, 218);
@@ -219,23 +234,7 @@ input {
       max-height: none;
     }
   }
-}
-
-.slick_butn {
-  width: 40%;
-  height: 1.8rem;
-  &.slick-prev {
-    color: rgb(121, 14, 14);
-  }
-  &.slick-next {
-    color: rgb(15, 153, 15);
-  }
-}
-
-// Deduction ////////////////////////////////
-.additional {
-  padding: 0 0 14rem;
-  .a_slide {
+  .additional & {
     max-height: 40px;
     position: relative;
     &:after {
@@ -252,31 +251,148 @@ input {
       max-height: none;
       .cont {
         max-height: none;
-        padding: 48px 0;
+        padding: 8px 8px;
       }
       &:after {
         // background-image: none;
       }
       .sect_title {
-        background-image: url('../static/img/arrow_up_dark.png');
+        padding: 0 16px;
+        text-align: left;
+        // background-image: url('../static/img/arrow_up_dark.png');
         // background-color: #f4f4f4;
+        .icon_info {
+          vertical-align: -3px;
+        }
       }
     }
   }
+}
+.slick-slider {
+  padding: 0;
+  * {
+    box-sizing: content-box;
+  }
   label {
+    max-width: $desktop-input-width * 0.9;
     width: 90%;
     margin: 0 auto 4px;
     position: relative;
     display: block;
-  }
+  }  
   input {
     max-width: $desktop-input-width;
     width: 100%;
+    border: 0;
+    font-size: 1.2rem;
+    text-align: right;
+  }
+  .label_text {
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    opacity: 0.5;
+  }
+  .item_title {
+    text-align: center;
+    font-weight: 700;
+    color: #000;
+    .is_married & {
+      color: #FFF;
+    }
+  }
+  .slick-slide > div {
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 4px 0 #AAA;
+  }
+}
+
+.slick-dots {
+  margin: 0 0 12px;
+  li {
+    margin: 0 1px;
+    &.slick-active {
+      button {
+        background: #fec85b;
+        .is_married & {
+          background: #00abbd;
+        }
+      }
+    }
+    button {
+      width: .5rem;
+      height: .5rem;
+      margin: 0 .2rem;
+      padding: .3rem;
+      border: 0;
+      border-radius: 50%;
+      display: inline-block;  
+      font-size: 0;
+      line-height: .8rem;
+    }
+  }
+}
+
+$arrowW: 20px;
+$arrowH: 18px;
+.slick_butn {
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 30px solid transparent;
+  border-width: $arrowH $arrowW;
+  position: absolute;
+  top: 54px;
+  z-index: 90;
+  background: transparent;
+  &.slick-prev {
+    left: - $arrowW;
+    border-right-color: #FEE0A3;
+    color: rgb(121, 14, 14);
+    .is_married & {
+      border-right-color: #97B9BD;
+    }
+  }
+  &.slick-next {
+    right: - $arrowW;
+    border-left-color: #FEE0A3;
+    color: rgb(15, 153, 15);
+    .is_married & {
+      border-left-color: #97B9BD;
+    }
+  }
+}
+.slick-disabled {
+  display: none !important;
+}
+
+// Deduction ////////////////////////////////
+.section_heading {
+  margin: 8px 0;
+}
+.additional {
+  ~ .additional {
+    padding: 0 0 14rem;
+  }
+  label:not(.vue-switcher) {
+    // width: 90%;
+    margin: 0 auto 4px;
+    position: relative;
+    display: block;
+    // border: 1px solid #333;
+    overflow: hidden;
+  }
+  input {
+    max-width: $desktop-input-width;
+    width: 12rem;
+    float: right;
     font-size: 1.2rem;
     text-align: right;
   }
   .cont {
-    margin: 0 20px 8px;
+    margin: 0 16px 8px;
     max-height: 0;
     overflow: hidden;
     box-shadow: 0 0 4px 0 #AAA;
@@ -286,7 +402,7 @@ input {
     padding: 4px 0 4px;
     font-size: 1.3rem;
     font-weight: 700;
-    background-image: url('../static/img/arrow_down_dark.png');
+    // background-image: url('../static/img/arrow_down_dark.png');
     background-size: auto 1.5rem;
     background-position: 90% 50%;
     background-repeat: no-repeat;
@@ -296,14 +412,45 @@ input {
     margin: 0 0 4px;
   }
   .label_text {
+    // position: relative;
+    // display: block;
+    // width: 56%;
+    // margin: 0 auto 4px;
     position: relative;
-    display: block;
+    display: inline-block;
+    font-size: 88%;
+    color: #555;
+  }
+  .lbl_large {
+    font-weight: 700;
+    font-size: 93%;
+    color: #333;
   }
 }
 
 // Slider ////////////////////////////////
 .vue-slider-horizontal {
-  margin: 30px auto 0;
+  // margin: 30px auto 0;
+}
+.quantity-toggle {
+  width: 36%;
+  // margin: 0 -5% 0 0;
+  float: right;
+  text-align: right;
+  .quan_input {
+    max-width: 3rem;
+    width: 2rem;
+    height: 32px;
+    vertical-align: top;
+    text-align: center;
+    float: none;
+  }
+}
+.quan_butn {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  vertical-align: top;
 }
 
 // Switcher ////////////////////////////////
@@ -318,15 +465,28 @@ input {
     left: 0;
   }
 }
+.switch_cont {
+  width: 48%;
+  padding: 2px;
+  float: right;
+  text-align: right;
+}
 
 // Tax Result ////////////
+.t2018 {
+  // float: left;
+}
 .difference {
+  // float: right;
+  background-color: #13547a;
   p {
     margin: 0;
-    background-color: rgb(255, 243, 230);
+    font-size: 1.2rem;
+    color: #FFF;
+    // background-color: rgb(255, 243, 230);
   }
   .less {
-    background-color: rgb(230, 255, 230);
+    // background-color: rgb(230, 255, 230);
   }
 }
 .tax_result {
@@ -342,17 +502,49 @@ input {
 .result_butn {
   box-sizing: content-box;
   width: 70%;
-  height: 1.8rem;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(#FFF, #DDD 70%, #AAA) #fff3e6;
+  box-shadow: 0 3px 8px 0 #AAA;
+  &:hover,
+  &:focus {
+    box-shadow: none;
+    background: linear-gradient(#DDD, #FFF 70%, #F0F0F0) #fff3e6;
+  }
 }
 .reset_butn {
-  box-sizing: content-box;
-  height: 1.8rem;
+  width: 5rem;
+  height: 32px;
+  padding: 0 0 0 32px;
+  border: 0;
+  display: inline-block;
+  position: relative;
+
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(#FFF, #DDD 70%, #AAA) #fff3e6;
+  box-shadow: 0 3px 8px 0 #AAA;
+  &:hover,
+  &:focus {
+    box-shadow: none;
+    background: linear-gradient(#DDD, #FFF 70%, #F0F0F0) #fff3e6;
+  }
+  &:before {
+    content: "";
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url('../static/img/icon_refresh.png') 0 50% / 32px auto no-repeat transparent;
+  }
 }
 .tax {
-  width: 48%;
   margin: .5rem 0 0;
   padding: .5rem 0;
   border: 1px solid #AAA;
+  display: block;
   p {
     margin: 0;
   }
@@ -367,13 +559,60 @@ input {
   }
 }
 
+// Popup ////////////////////////////////
+.v--modal-box.v--modal {
+  padding: 10px;
+}
+.new_budget {
+  td {
+    border: 1px solid #AAA;
+    border-width: 0.5px 0;
+    font-size: 88%;
+    ~ td {
+      text-align: right;
+    }
+  }
+}
+.nb_pay {
+  font-size: 1.3rem;
+}
+.nb_save {
+  font-size: 1.3rem;
+}
+.pay_amt {
+  color: rgb(129, 14, 14);
+}
+.save_amt {
+  color: rgb(129, 14, 14);  
+}
+.big_save {
+  font-size: 2rem;
+}
+.difference {
+  overflow: hidden;
+}
+.difference .diff_title {
+  margin-left: 5rem;
+  height: 45px;
+  float: left;
+  vertical-align: bottom;
+  line-height: 45px;
+}
+.difference .diff_value {
+  width: 48%;
+  height: 45px;
+  float: right;
+  vertical-align: bottom;
+}
+
 // Footer
 .footer {
   display: block;
   clear: both;
   p {
-    font-size: 0.6rem;
-    color: #AAA;
+    margin: 0 0 3px;
+    font-size: 0.75rem;
+    color: #999;
   }
 }
 // Mobile ////////////////////////////////////

@@ -194,7 +194,9 @@ export default {
     'resi_parent_DIS',
     'non_resi_parent_DIS',
     'spouse_disabled_dependent_DIS',
-    'STCOut1'
+    'STCOut1',
+    'slfMedInsu', // onday_onday(6)
+    'spsMedInsu'
   ],
   data () {
     return {
@@ -212,66 +214,6 @@ export default {
       s_Elder_max: 4,
       s_bb_min: 0,
       s_bb_max: 9,
-
-      // slfIncome: 800000,
-      // spsIncome: 600000,
-      // slfResi: 10000,
-      // spsResi: 10000,
-      // slfOE: 20000,
-      // spsOE: 25000,
-      // slfSEE: 12000,
-      // spsSEE: 13000,
-      // slfDona: 300,
-      // spsDona: 400,
-      // slfMpf: 5000,
-      // spsMpf: 6000,
-      // slfLoan: 1300,
-      // spsLoan: 1400,
-      // slfElder: 1, // 0,
-      // slfDisdep: 0, // 0,
-      // slfERCE: 4000,
-      // spsElder: 0, // 1,
-      // spsDisdep: 0, // 1,
-      // spsERCE: 0, // 5000,
-      // slfRebateAmt: 0,
-
-      // slfIncome: 800000,
-      // spsIncome: 600000,
-      // slfResi: 0,
-      // spsResi: 0,
-      // slfOE: 0,
-      // spsOE: 0,
-      // slfSEE: 0,
-      // spsSEE: 0,
-      // slfDona: 0,
-      // spsDona: 0,
-      // slfMpf: 0,
-      // spsMpf: 0,
-      // slfLoan: 0,
-      // spsLoan: 0,
-      // slfElder: 0, // 0,
-      // slfDisdep: 0, // 0,
-      // slfERCE: 0,
-      // spsElder: 0, // 1,
-      // spsDisdep: 0, // 1,
-      // spsERCE: 0, // 5000,
-      // slfRebateAmt: 0,
-
-      // NBbb: 0, // 1,
-      // CAbb: 0, // 1,
-      // single_parent: 0, // 1,
-      // brosis_dep: 0, // 1,
-      // resi_parent: 0, // 1,
-      // non_resi_parent: 0, // 1,
-      // resi_parent_5560: 0, // 1,
-      // non_resi_parent_5560: 0, // 1,
-
-      // NBbb_DIS: 0,
-      // CAbb_DIS: 0,
-      // brosis_dep_DIS: 0,
-      // resi_parent_DIS: 0,
-      // non_resi_parent_DIS: 0,
-      // spouse_disabled_dependent_DIS: 1,
 
       STCIn21: 0, // 1,
       STCIn4: 0, // 1,
@@ -472,7 +414,9 @@ export default {
         'brosis_dep_DIS': this.brosis_dep_DIS,
         'resi_parent_DIS': this.resi_parent_DIS,
         'non_resi_parent_DIS': this.non_resi_parent_DIS,
-        'spouse_disabled_dependent_DIS': this.spouse_disabled_dependent_DIS
+        'spouse_disabled_dependent_DIS': this.spouse_disabled_dependent_DIS,
+        'slfMedInsu': this.slfMedInsu, // onday_onday(7)
+        'spsMedInsu': this.spsMedInsu
       }
     }
   },
@@ -488,13 +432,39 @@ export default {
       var vm = this
       vm[var_name] = !vm[var_name]
     },
+    pop_up () {
+      var vm = this
+      var have_to_pay = 0 // 2018-19
+      var saved_pay = 0
+      if (vm.tax.martial_status !== 'M') {
+        have_to_pay = vm.STCOut2[30]
+      } else {
+        if ('' + vm.STCOut2[33] !== '0' && vm.STCOut2[32] < vm.STCOut2[33]) {
+          have_to_pay = vm.STCOut2[33]
+        } else {
+          have_to_pay = vm.STCOut2[32]
+        }
+      }
+      if (vm.tax.martial_status !== 'M') {
+        saved_pay = vm.STCOut2[30] - vm.STCOut1[30]
+      } else {
+        if ('' + vm.STCOut2[33] !== '0' && vm.STCOut2[32] < vm.STCOut2[33]) {
+          saved_pay = vm.STCOut2[33] - vm.STCOut1[33]
+        } else {
+          saved_pay = vm.STCOut2[32] - vm.STCOut1[32]
+        }
+      }
+      vm.$parent.GA(have_to_pay, saved_pay)
+      vm.toggleClass('sh_result')
+      vm.$parent.$modal.show('new_budget')
+    },
     make_STCOut2 () {
       this.STCOut2_func()
     },
     to_float (num) {
       return parseFloat(num).toFixed(2)
     },
-    get_rate () {
+    get_rate () { // onday_onday(6)
       var year = '2018-2019'
       this.YrEnd = year.split('-')[1]
       var i
@@ -535,9 +505,9 @@ export default {
         this.SADPGPA = 23000 // PSADPGPA
         this.VAPRP_RATE = 10
         this.TAX_RANGE[0] = 0
-        this.TAX_RANGE[1] = 50000 // MOCK 45000
-        this.TAX_RANGE[2] = 50000 // MOCK 45000
-        this.TAX_RANGE[3] = 50000 // MOCK 45000
+        this.TAX_RANGE[1] = 45000 // MOCK 45000
+        this.TAX_RANGE[2] = 45000 // MOCK 45000
+        this.TAX_RANGE[3] = 45000 // MOCK 45000
         this.TAX_RANGE[4] = 0
         this.TAX_RANGE[5] = 0
         this.TAX_RANGE[6] = 0
@@ -551,9 +521,9 @@ export default {
         this.TAX_RANGE[14] = 0
         this.TAX_RANGE[15] = 0
         this.TAX_RATE[0] = 0
-        this.TAX_RATE[1] = 1.5 // MOCK 2
-        this.TAX_RATE[2] = 5 // MOCK 7
-        this.TAX_RATE[3] = 10 // MOCK 17
+        this.TAX_RATE[1] = 2 // MOCK 2
+        this.TAX_RATE[2] = 7 // MOCK 7
+        this.TAX_RATE[3] = 17 // MOCK 17
         this.TAX_RATE[4] = 0
         this.TAX_RATE[5] = 0
         this.TAX_RATE[6] = 0
@@ -627,7 +597,7 @@ export default {
       this.ACC_RANGE = ACC_RANGE
       return true
     },
-    get_deduction () {
+    get_deduction () { // onday_onday(7)
       var YrValue = '2018-2019'
       // parent.LSPYrEnd = YrValue
       // // //
@@ -1459,6 +1429,7 @@ export default {
       }
     },
     reset_form () {
+      this.sh_result = false
       this.$parent.reset_form1()
     },
     STCOut2_func () {
@@ -1541,9 +1512,13 @@ export default {
       vm.tax.slfDona = parseFloat(vm.tax.slfDona)
       vm.tax.spsDona = parseFloat(vm.tax.spsDona)
 
+      // 扣稅總額
       this.STCIn14 = parseFloat(vm.tax.slfDona) + parseFloat(vm.tax.slfERCE) + parseFloat(vm.tax.slfMpf) + parseFloat(vm.tax.slfSEE) + parseFloat(vm.tax.slfOE)
       this.STCIn15 = parseFloat(vm.tax.spsDona) + parseFloat(vm.tax.spsERCE) + parseFloat(vm.tax.spsMpf) + parseFloat(vm.tax.spsSEE) + parseFloat(vm.tax.spsOE)
-      // console.log('this.STCIn14: ', this.STCIn14)
+
+      // 扣稅總額 onday_onday(5)
+      this.STCIn14 = this.STCIn14 + parseFloat(vm.tax.slfMedInsu)
+      this.STCIn15 = this.STCIn15 + parseFloat(vm.tax.spsMedInsu)
 
       // TO-WORK!!! T3tag T4tag has maximum donation
       this.STCIn16 = parseFloat(vm.tax.slfDona) + parseFloat(vm.tax.spsDona) // STCIn16 = CDbl(vm.T3tag) + CDbl(vm.T4tag)
@@ -1930,7 +1905,7 @@ export default {
           STCOut2018[26] = STCOut2018[4] + STCOut2018[18] + STCOut2018[19] + STCOut2018[20] + STCOut2018[66] + STCOut2018[23] + STCOut2018[75]
           STCOut2018[29] = this.netJointI - STCOut2018[26]
           if (STCOut2018[29] < 0) STCOut2018[29] = 0
-          console.log('JJJJoin ', this.jointStdTP, STCOut2018[29], this.netJointI, this.STD_RATE / 100)
+          // console.log('JJJJoin ', this.jointStdTP, STCOut2018[29], this.netJointI, this.STD_RATE / 100)
           STCOut2018[33] = Math.floor(this.CompTP(this.jointStdTP, STCOut2018[29]))
           STCOut2018[36] = this.StdFlag
 
@@ -1999,7 +1974,7 @@ export default {
       // console.log('30,31: ', STCOut2018[30], STCOut2018[31])
       // console.log('33,32: ', STCOut2018[33], STCOut2018[32])
       if (this.martial_status === 'M' && this.STCIn3 !== 0 && this.STCIn2 !== 0) {
-        console.log('(1)合拼 vs 分開: ', STCOut2018[33], STCOut2018[32])
+        // console.log('(1)合拼 vs 分開: ', STCOut2018[33], STCOut2018[32])
 
         // 分開抵啲
         if ((STCOut2018[33] - this.JARebate) < (STCOut2018[32] - this.slfRebate - this.spsRebate)) {

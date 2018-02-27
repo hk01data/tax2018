@@ -3,8 +3,31 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+    <meta property="fb:app_id" content="1651866545051541">
+    <meta property="og:title" content="打工仔計稅機" />
+    <meta property="og:description" content="打工仔計稅機" />
+    <meta property="og:site_name" content="01數據新聞" />
+    <meta property="og:image" content="https://hk01data.github.io/tax2018/static/img/hk01news-logo.png" />
+    <meta property="article:publisher" content="https://www.facebook.com/hk01.news/" />
+    <meta property="article:author" content="https://www.facebook.com/hk01.news/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hk01data.github.io/tax2018/" />
+
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:site" content="@hk01wemedia">
+    <meta property="twitter:url" content="https://hk01data.github.io/tax2018/">
+    <meta property="twitter:description" content="打工仔計稅機">
+    <meta property="twitter:image" content="https://hk01data.github.io/tax2018/static/img/hk01news-logo.png">
+
+    <title>打工仔計稅機 | 香港01</title>
+    <meta name="keywords" content="salaries tax,budget,paul chan,chan mau po,carrie,lam,calculator,government,inland department,財政預算案,香港,2018,財政司,派糖,薪俸稅,減稅,香港01,01新聞,01數據">
+    <meta name="description" content="財政預算案宣布多項措施 打工仔計稅機計算來年新措施或可節省多少稅款">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>vue_pwa_tax</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+
     <link rel="icon" type="image/png" sizes="32x32" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="<%= htmlWebpackPlugin.files.publicPath %>static/img/icons/favicon-16x16.png">
     <!--[if IE]><link rel="shortcut icon" href="/static/img/icons/favicon.ico"><![endif]-->
@@ -25,12 +48,37 @@
         for (var file of chunk.files) {
           if (file.match(/\.(js|css)$/)) { %>
     <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
+    <style>
+    a {
+      color: #13547a;
+    }
+    a:hover {
+      color: #333;
+    }
+    #app,
+    noscript * {
+      /* font-family: "Microsoft YaHei", "Arial", sans-serif; */
+      font-family: "Noto Sans TC", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", "Roboto Sans", Helvetica, Arial, sans-serif;
+      text-align: center;
+    }
+    </style>
   </head>
   <body>
     <noscript>
-      This is your fallback content in case JavaScript fails to load.
+      <p>此網站需要啟用 Javascript 瀏覽。</p>
+      <p>JavaScript is required to be enabled to continue.</p>
+      <p><a href="https://www.hk01.com/">香港01有限公司 &copy; 2018</a></p>
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+        <div class="text-center">
+          <h1 class="heading">打工仔計稅機</h1>
+          <h2>請稍片刻...</h2>
+          <p>此網站需要啟用 Javascript 瀏覽。</p>
+          <p>JavaScript is required to be enabled to continue.</p>
+          <hr>
+          <p><a href="https://www.hk01.com/">香港01有限公司 &copy; 2018</a></p>
+        </div>
+    </div>
     <!-- Todo: only include in production -->
     <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
     <!-- built files will be auto injected -->

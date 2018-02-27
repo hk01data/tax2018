@@ -1,6 +1,12 @@
-# vue_pwa_tax
+# Calculator for Hong Kong Salaries Tax
 
-> ird tax calculator
+Demo: [https://hk01data.github.io/tax2018/](https://hk01data.github.io/tax2018/)
+
+Hong Kong Government Budget 2018 is announced, there are several new financial policies, updating Tax Computation.
+
+-----
+
+> Salaries Tax Calculator
 
 ## Build Setup
 
@@ -32,9 +38,8 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 
 
-Reference:
-https://www.ird.gov.hk/eng/pdf/pam61e.pdf
-https://www.ird.gov.hk/chi/ese/st_comp_2017_18/cstcfrm.htm
-https://www.ird.gov.hk/chi/ese/st_comp_2017_18/cstc.htm
-
+## Reference:
+- [Tax Rate Table (2017/18)](https://www.ird.gov.hk/eng/pdf/pam61e.pdf)
+- [Tax Computation (Chinese) - IRD](https://www.ird.gov.hk/chi/ese/st_comp_2017_18/cstcfrm.htm)
+- [Tax Computation (English) - IRD](https://www.ird.gov.hk/eng/ese/st_comp_2017_18/stcfrm.htm)
 

@@ -1,13 +1,14 @@
 <template>
   <div id="app">
+    <a href="#content" id="accessibility-skip-content"><span class="access">Go to main content</span></a>
     <header>
       <p class="main-logo pull-left">
         <a href="javascript:(void);">
           <img class="logo-hk01news" src="static/img/hk01news-logo.png" alt="01新聞 | 香港01">
         </a>
       </p>
-      <h2 class="text-muted text-center">薪俸計稅機</h2>
-      <p class="text-muted text-center"><small>2018/19年度預估</small></p>
+      <h2 class="text-muted text-center">打工仔計稅機</h2>
+      <p class="text-muted text-center"><small></small></p>
     </header>
     <main>
       <router-view></router-view>
@@ -42,7 +43,7 @@ header {
   margin: 0;
   height: 56px;
   padding: 0 16px 0 24px;
-  background-color: #35495E;
+  background-color: #13547a;
   color: #ffffff;
 }
 

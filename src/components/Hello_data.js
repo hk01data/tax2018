@@ -170,7 +170,6 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js PWA 1',
-      martial_status: 'S',
       joint: false,
       taxtype: 10,
 
@@ -206,6 +205,7 @@ export default {
       // spsERCE: 0, // 5000,
       // slfRebateAmt: 0,
 
+      martial_status: 'S',
       slfIncome: 0,
       spsIncome: 0,
       slfResi: 0,
@@ -243,6 +243,9 @@ export default {
       resi_parent_DIS: 0,
       non_resi_parent_DIS: 0,
       spouse_disabled_dependent_DIS: false, // 1
+
+      slfMedInsu: 0, // onday_onday(1)
+      spsMedInsu: 0,
 
       STCIn21: 0, // 1,
       STCIn4: 0, // 1,
@@ -399,17 +402,17 @@ export default {
       LimD_rate_MPF: 0,
       LimP_rate_VAPRP: 0,
 
-      sh_elderly: false,
-      sh_bb: false,
-      sh_bb_dis: false,
-      sh_single_parent: false,
+      sh_elderly: true,
+      sh_bb: true,
+      sh_bb_dis: true,
+      sh_single_parent: true,
       infin_update: 0,
       end: 0,
       progress_1: 0,
       progress_1_max: 6,
       slickOptions: {
         infinite: false,
-        // dots: true,
+        dots: true,
         centerMode: true,
         centerPadding: '20px',
         slidesToShow: 1, // Any other options that can be got from plugin documentation
@@ -417,8 +420,8 @@ export default {
         swipeToSlide: true,
         mobileFirst: true,
         edgeFriction: 0,
-        prevArrow: '<button type="button" class="slick_butn slick-prev">上一項</button>',
-        nextArrow: '<button type="button" class="slick_butn slick-next">下一項</button>',
+        prevArrow: '<button type="button" class="slick_butn slick-prev"><span class="access">上一項</span></button>',
+        nextArrow: '<button type="button" class="slick_butn slick-next"><span class="access">下一項</span></button>',
         end: 0
       },
       lang: {
@@ -428,11 +431,11 @@ export default {
         spouse: '配偶',
         sep: '-',
 
-        income: '入息',
+        income: '課稅年度收入', // '入息',
         self_income: '本人-入息',
         spouse_income: '配偶-入息',
 
-        residence: '獲僱主或相聯公司提供居所的租值',
+        residence: '僱主提供的房屋津貼', // '獲僱主或相聯公司提供居所的租值',
         self_residence: '本人-獲僱主或相聯公司提供居所的租值',
         spouse_residence: '配偶-獲僱主或相聯公司提供居所的租值',
 
@@ -448,7 +451,7 @@ export default {
         self_donation: '本人-認可慈善捐款',
         spouse_donation: '配偶-認可慈善捐款',
 
-        mpf: 'MPF供款',
+        mpf: '課稅年度強積金供款', // 'MPF供款',
         self_mpf: '本人-MPF',
         spouse_mpf: '配偶-MPF',
 
@@ -456,9 +459,14 @@ export default {
         self_homeloan: '本人-居所貸款利息',
         spouse_homeloan: '配偶-居所貸款利息',
 
-        elderly: '在安老院居住的受養人數目',
-        disabledep: '傷殘受養人免稅額資格的受養人數目',
-        eldresi_amt: '支付給安老院的開支款額',
+        elderly: '在安老院居住的受養人數', // '在安老院居住的受養人數目',
+        disabledep: '當中符合傷殘受養人免稅額人數', // '傷殘受養人免稅額資格的受養人數目',
+        eldresi_amt: '支付給安老院的總開支', // '支付給安老院的開支款額',
+
+        medic_insu: '醫療保險開支',
+        self_medic_insu: '本人-醫療保險開支',
+        spouse_medic_insu: '配偶-醫療保險開支',
+
         end: 0
       }
     }
@@ -576,6 +584,14 @@ export default {
     },
     progress_1: function (val) {
       this.slider_slick()
+    },
+    slfMedInsu: function (val) { // onday_onday(2)
+      this.slfMedInsuOnBlur()
+      this.STCOut1_func(this.infin_update)
+    },
+    spsMedInsu: function (val) {
+      this.spsMedInsuOnBlur()
+      this.STCOut1_func(this.infin_update)
     }
   },
   methods: {
@@ -583,12 +599,22 @@ export default {
       var vm = this
       vm[var_name] = !vm[var_name]
     },
+    GA (have_to_pay, saved_pay) {
+      var inputs = this.return_vm()
+      inputs['have_to_pay'] = have_to_pay
+      inputs['saved_pay'] = saved_pay
+      var inputs_str = JSON.stringify(inputs)
+      // console.log('GA: ', 'record_V1', 'martial-' + this.martial_status, inputs_str, 1)
+      this.$ga.event('record_V1', 'martial-' + this.martial_status, inputs_str, 1)
+    },
     slick_afterchange () {
       var vm = this
+      /*
       console.log('slick_afterchange')
       setTimeout(function () {
         vm.progress_1 = vm.$refs.slick.currentSlide()
       }, 200)
+      */
     },
     slider_slick () {
       var vm = this
@@ -1124,6 +1150,42 @@ export default {
         vm.oT14 = ValueResidence
         vm.ChkDD(0)
       }
+    },
+    slfMedInsuOnBlur () { // onday_onday(3)
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      var Limit = 5000
+      Income = vm.FormatInput(vm.slfMedInsu, 0, Limit)
+      if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        vm.slfMedInsu = 0
+        Income = 0
+      } else if (Income === '+') {
+        MustReset = true
+        vm.slfMedInsu = Limit
+        Income = Limit
+      }
+      vm.slfMedInsu = Income
+      vm.ChkDD(0)
+    },
+    spsMedInsuOnBlur () {
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      var Limit = 5000
+      Income = vm.FormatInput(vm.spsMedInsu, 0, Limit)
+      if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        vm.spsMedInsu = 0
+        Income = 0
+      } else if (Income === '+') {
+        MustReset = true
+        vm.spsMedInsu = Limit
+        Income = Limit
+      }
+      vm.spsMedInsu = Income
+      vm.ChkDD(0)
     },
     ChkDD (X) {
       var vm = this
@@ -1695,6 +1757,9 @@ export default {
       vm.resi_parent_DIS = 0
       vm.non_resi_parent_DIS = 0
       vm.spouse_disabled_dependent_DIS = false
+
+      vm.slfMedInsu = 0 // onday_onday(4)
+      vm.spsMedInsu = 0
     },
     STCOut1_func () {
       // console.log('loop_count', this.infin_update)
@@ -1806,9 +1871,9 @@ export default {
       this.slfDona = parseFloat(this.slfDona)
       this.spsDona = parseFloat(this.spsDona)
 
+      // 扣稅總額
       this.STCIn14 = parseFloat(this.slfDona) + parseFloat(this.slfERCE) + parseFloat(this.slfMpf) + parseFloat(this.slfSEE) + parseFloat(this.slfOE)
       this.STCIn15 = parseFloat(this.spsDona) + parseFloat(this.spsERCE) + parseFloat(this.spsMpf) + parseFloat(this.spsSEE) + parseFloat(this.spsOE)
-      // console.log('this.STCIn14: ', this.STCIn14)
 
       // TO-WORK!!! T3tag T4tag has maximum donation
       this.STCIn16 = parseFloat(this.slfDona) + parseFloat(this.spsDona) // STCIn16 = CDbl(vm.T3tag) + CDbl(vm.T4tag)
@@ -2263,7 +2328,7 @@ export default {
       // console.log('30,31: ', STCOut[30], STCOut[31])
       // console.log('33,32: ', STCOut[33], STCOut[32])
       if (this.martial_status === 'M' && this.STCIn3 !== 0 && this.STCIn2 !== 0) {
-        console.log('(1)合拼 vs 分開: ', STCOut[33], STCOut[32])
+        // console.log('(1)合拼 vs 分開: ', STCOut[33], STCOut[32])
 
         // 分開抵啲
         if ((STCOut[33] - this.JARebate) < (STCOut[32] - this.slfRebate - this.spsRebate)) {
@@ -2854,7 +2919,9 @@ export default {
         '#brosis_dep_DIS': this.brosis_dep_DIS,
         '#resi_parent_DIS': this.resi_parent_DIS,
         '#non_resi_parent_DIS': this.non_resi_parent_DIS,
-        '#spouse_disabled_dependent_DIS': this.spouse_disabled_dependent_DIS
+        '#spouse_disabled_dependent_DIS': this.spouse_disabled_dependent_DIS,
+        '#self_medic_insu': this.slfMedInsu, // onday_onday(11)
+        '#spouse_medic_insu': this.spsMedInsu
       }
     }
   },
