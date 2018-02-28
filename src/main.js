@@ -11,7 +11,7 @@ Vue.use(VueAnalytics, {
   id: ['UA-112679299-1', 'UA-70981149-1'],
   checkDuplicatedScript: true,
   autoTracking: {
-    pageviewOnLoad: true,
+    pageviewOnLoad: false,
     page: true
   },
   ready () {

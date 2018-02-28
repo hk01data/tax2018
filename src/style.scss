@@ -132,12 +132,16 @@ input {
   color: mediumorchid;
 }
 .icon_info {
-  width: 16px;
+  width: 20px;
   height: 20px;
   margin: 0 0 0 3px;
   display: inline-block;
   vertical-align: top;
-  background: url('../static/img/icon_info.png') 0 50% / 16px auto no-repeat transparent;
+  text-decoration: none;
+  background: url('../static/img/icon_info.png') 0 50% / 20px auto no-repeat transparent;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .vue-tooltip .tooltip-arrow {
   border-color: transparent;
@@ -168,7 +172,6 @@ input {
 #single {
   &:focus {
     ~ label {
-      outline: 1px solid red;
     }
   }
 }
@@ -374,7 +377,6 @@ $arrowH: 18px;
 }
 .additional {
   ~ .additional {
-    padding: 0 0 14rem;
   }
   label:not(.vue-switcher) {
     // width: 90%;
@@ -433,7 +435,7 @@ $arrowH: 18px;
   // margin: 30px auto 0;
 }
 .quantity-toggle {
-  width: 36%;
+  width: 40%;
   // margin: 0 -5% 0 0;
   float: right;
   text-align: right;
@@ -607,6 +609,7 @@ $arrowH: 18px;
 
 // Footer
 .footer {
+  padding: 0 0 7rem;  
   display: block;
   clear: both;
   p {
