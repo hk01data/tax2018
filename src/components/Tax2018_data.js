@@ -196,7 +196,8 @@ export default {
     'spouse_disabled_dependent_DIS',
     'STCOut1',
     'slfMedInsu', // onday_onday(6)
-    'spsMedInsu'
+    'spsMedInsu',
+    'self_disabled_DIS'
   ],
   data () {
     return {
@@ -378,6 +379,9 @@ export default {
     STCOut2 () {
       return this.STCOut2_func()
     },
+    only_one_income () {
+      return (parseFloat(this.slfIncome) === 0 || parseFloat(this.spsIncome) === 0)
+    },
     tax () {
       return {
         'martial_status': this.martial_status,
@@ -416,7 +420,8 @@ export default {
         'non_resi_parent_DIS': this.non_resi_parent_DIS,
         'spouse_disabled_dependent_DIS': this.spouse_disabled_dependent_DIS,
         'slfMedInsu': this.slfMedInsu, // onday_onday(7)
-        'spsMedInsu': this.spsMedInsu
+        'spsMedInsu': this.spsMedInsu,
+        'self_disabled_DIS': this.self_disabled_DIS
       }
     }
   },
@@ -439,19 +444,39 @@ export default {
       if (vm.tax.martial_status !== 'M') {
         have_to_pay = vm.STCOut2[30]
       } else {
-        if ('' + vm.STCOut2[33] !== '0' && vm.STCOut2[32] < vm.STCOut2[33]) {
-          have_to_pay = vm.STCOut2[33]
-        } else {
+        if (vm.STCOut2[32] < vm.STCOut2[33]) {
           have_to_pay = vm.STCOut2[32]
+        } else {
+          if (parseFloat(vm.tax.slfIncome) === 0 || parseFloat(vm.tax.spsIncome) === 0) {
+            have_to_pay = vm.STCOut2[32]
+            if (parseFloat(vm.tax.slfIncome) === 0) {
+              have_to_pay = vm.STCOut2[31]
+            }
+            if (parseFloat(vm.tax.spsIncome) === 0) {
+              have_to_pay = vm.STCOut2[30]
+            }
+          } else {
+            have_to_pay = vm.STCOut2[33]
+          }
         }
       }
       if (vm.tax.martial_status !== 'M') {
         saved_pay = vm.STCOut2[30] - vm.STCOut1[30]
       } else {
-        if ('' + vm.STCOut2[33] !== '0' && vm.STCOut2[32] < vm.STCOut2[33]) {
-          saved_pay = vm.STCOut2[33] - vm.STCOut1[33]
-        } else {
+        if (vm.STCOut2[32] < vm.STCOut2[33]) {
           saved_pay = vm.STCOut2[32] - vm.STCOut1[32]
+        } else {
+          if (parseFloat(vm.tax.slfIncome) === 0 || parseFloat(vm.tax.spsIncome) === 0) {
+            saved_pay = vm.STCOut2[32] - vm.STCOut1[32]
+            if (parseFloat(vm.tax.slfIncome) === 0) {
+              saved_pay = vm.STCOut2[31] - vm.STCOut1[31]
+            }
+            if (parseFloat(vm.tax.spsIncome) === 0) {
+              saved_pay = vm.STCOut2[30] - vm.STCOut1[30]
+            }
+          } else {
+            saved_pay = vm.STCOut2[33] - vm.STCOut1[33]
+          }
         }
       }
       vm.$parent.GA(have_to_pay, saved_pay)
@@ -477,38 +502,38 @@ export default {
         this.AAL_MARR = 0 // PAAL_MARR
         this.SPA = 132000 // PSPA
         this.CA[0] = 0
-        this.CA[1] = 100000
-        this.CA[2] = 200000
-        this.CA[3] = 300000
-        this.CA[4] = 400000
-        this.CA[5] = 500000
-        this.CA[6] = 600000
-        this.CA[7] = 700000
-        this.CA[8] = 800000
-        this.CA[9] = 900000
+        this.CA[1] = 120000 * 1 // MOCK 100000
+        this.CA[2] = 120000 * 2 // MOCK 200000
+        this.CA[3] = 120000 * 3 // MOCK 300000
+        this.CA[4] = 120000 * 4 // MOCK 400000
+        this.CA[5] = 120000 * 5 // MOCK 500000
+        this.CA[6] = 120000 * 6 // MOCK 600000
+        this.CA[7] = 120000 * 7 // MOCK 700000
+        this.CA[8] = 120000 * 8 // MOCK 800000
+        this.CA[9] = 120000 * 9 // MOCK 900000
         // PCHILDNB_AL1  to PCHILDNB_AL9
         this.NBCA[0] = 0
-        this.NBCA[1] = 100000
-        this.NBCA[2] = 200000
-        this.NBCA[3] = 300000
-        this.NBCA[4] = 400000
-        this.NBCA[5] = 500000
-        this.NBCA[6] = 600000
-        this.NBCA[7] = 700000
-        this.NBCA[8] = 800000
-        this.NBCA[9] = 900000
+        this.NBCA[1] = 120000 * 1 // MOCK 100000
+        this.NBCA[2] = 120000 * 2 // MOCK 200000
+        this.NBCA[3] = 120000 * 3 // MOCK 300000
+        this.NBCA[4] = 120000 * 4 // MOCK 400000
+        this.NBCA[5] = 120000 * 5 // MOCK 500000
+        this.NBCA[6] = 120000 * 6 // MOCK 600000
+        this.NBCA[7] = 120000 * 7 // MOCK 700000
+        this.NBCA[8] = 120000 * 8 // MOCK 800000
+        this.NBCA[9] = 120000 * 9 // MOCK 900000
         this.DBSA = 37500 // PDBSA
-        this.DPA = 46000 // PDPAAMT
-        this.ADPA = 46000 // PADPAAMT
+        this.DPA = 50000 // PDPAAMT 46000
+        this.ADPA = 50000 // PADPAAMT 46000
         this.DIS_DA = 75000 // PDDA
-        this.SDPGPA = 23000 // PSDPGPA
-        this.SADPGPA = 23000 // PSADPGPA
+        this.SDPGPA = 25000 // PSDPGPA 23000
+        this.SADPGPA = 25000 // PSADPGPA 23000
         this.VAPRP_RATE = 10
         this.TAX_RANGE[0] = 0
-        this.TAX_RANGE[1] = 45000 // MOCK 45000
-        this.TAX_RANGE[2] = 45000 // MOCK 45000
-        this.TAX_RANGE[3] = 45000 // MOCK 45000
-        this.TAX_RANGE[4] = 0
+        this.TAX_RANGE[1] = 50000 // MOCK 45000
+        this.TAX_RANGE[2] = 50000 // MOCK 45000
+        this.TAX_RANGE[3] = 50000 // MOCK 45000
+        this.TAX_RANGE[4] = 50000
         this.TAX_RANGE[5] = 0
         this.TAX_RANGE[6] = 0
         this.TAX_RANGE[7] = 0
@@ -522,9 +547,9 @@ export default {
         this.TAX_RANGE[15] = 0
         this.TAX_RATE[0] = 0
         this.TAX_RATE[1] = 2 // MOCK 2
-        this.TAX_RATE[2] = 7 // MOCK 7
-        this.TAX_RATE[3] = 17 // MOCK 17
-        this.TAX_RATE[4] = 0
+        this.TAX_RATE[2] = 6 // MOCK 7
+        this.TAX_RATE[3] = 10 // MOCK 12
+        this.TAX_RATE[4] = 14
         this.TAX_RATE[5] = 0
         this.TAX_RATE[6] = 0
         this.TAX_RATE[7] = 0
@@ -538,10 +563,10 @@ export default {
         this.TAX_RATE[15] = 0
         this.TAX_RATE_R = 17
         this.TAX[0] = 0
-        this.TAX[1] = 900
-        this.TAX[2] = 4050
-        this.TAX[3] = 9450
-        this.TAX[4] = 0
+        this.TAX[1] = 1000 // MOCK 900
+        this.TAX[2] = 4000 // MOCK 4050
+        this.TAX[3] = 9000 // MOCK 9450
+        this.TAX[4] = 16000
         this.TAX[5] = 0
         this.TAX[6] = 0
         this.TAX[7] = 0
@@ -606,7 +631,7 @@ export default {
         this.LimD_DonaUL = 35
         this.LimD_Education = 100000
         this.LimD_HomeLoan = 100000
-        this.LimD_Elderly = 92000
+        this.LimD_Elderly = 100000 // MOCK 92000
         this.LimD_MPF = 18000
         this.LimD_rate_MPF = 5
         this.LimP_rate_VAPRP = 10
@@ -1436,6 +1461,7 @@ export default {
       var vm = this
       var tmp = 0
       var i = 0
+      var self_DISABLE_deduct
       this.STCIn8 = false // 1: 有供養傷殘, 0: 沒有供養傷殘
 
       // INIT
@@ -1534,6 +1560,8 @@ export default {
       if (this.STCIn2 > 0 || this.STCIn3 > 0) {
         this.STCIn16 = this.STCIn16 + parseFloat(vm.tax.slfLoan) + parseFloat(vm.tax.spsLoan)
       }
+      this.STCIn16 = this.STCIn16 + parseFloat(vm.tax.slfMedInsu) + parseFloat(vm.tax.spsMedInsu)
+
       this.STCIn17 = parseInt(vm.tax.resi_parent_5560, 10)
       this.STCIn18 = parseInt(vm.tax.non_resi_parent_5560, 10)
       this.STCIn19 = (parseFloat(vm.tax.slfERCE) > 0) ? parseFloat(vm.tax.slfDisdep) : 0
@@ -1559,7 +1587,8 @@ export default {
       STCOut2018[75] = this.CA[this.STCIn21] + this.NBCA[this.STCIn21]
       STCOut2018[78] = this.slfERCE
       STCOut2018[79] = this.spsERCE
-
+      self_DISABLE_deduct = (vm.tax.self_disabled_DIS === true) ? 75000 : 0 // onday_onday(new)
+      console.log('self_DISABLE_deduct', self_DISABLE_deduct, vm.tax.self_disabled_DIS)
       // 供養父母的數目
       this.ADPNo = this.STCIn6
       this.DPNo = this.STCIn6 + this.STCIn7
@@ -1654,6 +1683,7 @@ export default {
 
         // SUM
         STCOut2018[24] = STCOut2018[3] + STCOut2018[5] + STCOut2018[6] + STCOut2018[7] + STCOut2018[8] + STCOut2018[60] + STCOut2018[11] + STCOut2018[73]
+        STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct
         STCOut2018[27] = this.netSelfI - STCOut2018[24]
         this.STCMainRV = 10
       } else { // === 'M'
@@ -1685,6 +1715,7 @@ export default {
             STCOut2018[11] = this.DIS_DA * this.STCIn19
           }
           STCOut2018[24] = STCOut2018[4] + STCOut2018[6] + STCOut2018[7] + STCOut2018[8] + STCOut2018[60] + STCOut2018[11] + STCOut2018[73]
+          STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct
           STCOut2018[27] = this.netSelfI - STCOut2018[24]
           if (STCOut2018[27] < 0) {
             STCOut2018[27] = 0
@@ -1823,6 +1854,7 @@ export default {
             STCOut2018[11] = this.DIS_DA * this.STCIn19
           }
           STCOut2018[24] = STCOut2018[3] + STCOut2018[6] + STCOut2018[7] + STCOut2018[8] + STCOut2018[60] + STCOut2018[11] + STCOut2018[73]
+          STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct
           STCOut2018[12] = this.CA[(1 - this.nMin) * this.STCIn4]
           STCOut2018[13] = this.DBSA * (this.STCIn5 - this.oMin)
           STCOut2018[15] = (this.DPA + this.ADPA) * (this.STCIn6 - this.mMin)
@@ -1922,6 +1954,7 @@ export default {
             }
             STCOut2018[17] = this.DIS_DA * ((1 - this.nMin) * (this.STCIn10 + this.STCIn22) + this.STCIn11 - this.odMin + this.STCIn13 - this.ldMin + this.STCIn12 - this.mdMin + this.STCIn20)
             STCOut2018[24] = STCOut2018[3] + STCOut2018[6] + STCOut2018[7] + STCOut2018[8] + STCOut2018[60] + STCOut2018[11] + STCOut2018[73]
+            STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct
             STCOut2018[25] = STCOut2018[3] + STCOut2018[12] + STCOut2018[13] + STCOut2018[14] + STCOut2018[63] + STCOut2018[17] + STCOut2018[74]
             STCOut2018[26] = STCOut2018[4] + STCOut2018[18] + STCOut2018[19] + STCOut2018[20] + STCOut2018[66] + STCOut2018[23] + STCOut2018[75]
             STCOut2018[49] = STCOut2018[45] + STCOut2018[46] + STCOut2018[47] + STCOut2018[48] + this.STCIn19
@@ -1931,6 +1964,7 @@ export default {
             STCOut2018[17] = this.DIS_DA * this.STCIn20
             STCOut2018[23] = this.DIS_DA * (this.STCIn19 + this.STCIn20)
             STCOut2018[24] = STCOut2018[3] + STCOut2018[6] + STCOut2018[7] + STCOut2018[8] + STCOut2018[60] + STCOut2018[11] + STCOut2018[73]
+            STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct
             STCOut2018[25] = STCOut2018[3] + STCOut2018[12] + STCOut2018[13] + STCOut2018[14] + STCOut2018[63] + STCOut2018[17] + STCOut2018[74]
             STCOut2018[26] = STCOut2018[4] + STCOut2018[18] + STCOut2018[19] + STCOut2018[20] + STCOut2018[66] + STCOut2018[23] + STCOut2018[75]
             STCOut2018[27] = this.netSelfI - STCOut2018[24]
@@ -1950,6 +1984,9 @@ export default {
           STCOut2018[57] = STCOut2018[57] - STCOut2018[78]
         }
       }
+
+      console.log('STCOut1[24]', this.STCOut1[24])
+      console.log('STCOut2018[24]', STCOut2018[24])
 
       if (STCOut2018[27] < 0) STCOut2018[27] = 0
       if (STCOut2018[28] < 0) STCOut2018[28] = 0
@@ -1983,6 +2020,7 @@ export default {
             this.STCMainRV = 42
 
             STCOut2018[24] = STCOut2018[3]
+            STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct
             STCOut2018[25] = STCOut2018[3] + STCOut2018[12] + STCOut2018[13] + STCOut2018[14] + STCOut2018[63] + STCOut2018[17] + STCOut2018[74] + STCOut2018[6] + STCOut2018[7] + STCOut2018[8] + STCOut2018[60] + STCOut2018[11] + STCOut2018[73]
 
             STCOut2018[27] = parseFloat(this.netSelfI) - parseFloat(STCOut2018[24]) + parseFloat(STCOut2018[78])

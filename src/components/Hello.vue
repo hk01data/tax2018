@@ -93,7 +93,51 @@
 
         <div class="additional new_add">
             <h2 class="section_heading">預算案新增項目<img class="new_gif" src="static/img/new.gif" alt="new items"></h2>
+
             <div class="a_slide" v-bind:class="{ active: sh_elderly }">
+                <p class="sect_title">傷殘人士免稅額</p>
+                <div class="cont">
+
+                    <label for="self_disabled_DIS">
+                        <span>你是否合資格傷殘人士？<span class="icon_info" v-tooltip.bottom.end="{ html: 'self_DIS_info' }">&nbsp;</span></span>
+                        <div class="switch_cont">
+                            <span class="yn">否</span>
+                            <switches v-model="self_disabled_DIS" theme="bootstrap" color="primary"></switches>
+                            <span class="yn">是</span>
+                            <!-- <input id="self_disabled_DIS" type="number" v-model="self_disabled_DIS" /> <!- -  STCIn9 -->
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="a_slide" v-bind:class="{ active: sh_elderly }">
+                <p class="sect_title">醫療保險開支</p>
+                <div class="cont">
+                    <p class="item_title" v-if="martial_status === 'M'">{{ lang.self + '負責' }}</p>
+                    <label for="slfMedInsu_ppl"><span class="label_text lbl_large">你為多少人交醫療保險費？（包括自己）</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_info' }">&nbsp;</span>
+                    <quantity v-bind:min="s_MedicInsu_min" v-bind:max="s_MedicInsu_max" v-model="slfMedInsu_ppl" v-on:drag-end=""></quantity>
+                    </label>
+
+                    <label v-if="slfMedInsu_ppl > 0" for="slfMedInsu"><span class="label_text">每年醫療保險總開支</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_amt_info' }">&nbsp;</span>
+                    <input id="slfMedInsu" type="number" min="0" max="999999999" v-model="slfMedInsu" />
+                    </label>
+                
+                    <div class="cont_sps" v-if="martial_status === 'M'">
+                        <p class="item_title" v-if="martial_status === 'M'">{{ lang.spouse + '負責' }}</p>
+                        <label for="spsMedInsu_ppl"><span class="label_text lbl_large">你為多少人交醫療保險費？（包括自己）</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_info' }">&nbsp;</span>
+                        <quantity v-bind:min="s_MedicInsu_min" v-bind:max="s_MedicInsu_max" v-model="spsMedInsu_ppl"></quantity>
+                        </label>
+
+                        <label v-if="spsMedInsu_ppl > 0" for="spsMedInsu"><span class="label_text">每年醫療保險總開支</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_amt_info' }">&nbsp;</span>
+                        <input id="spsMedInsu" type="number" min="0" max="999999999" v-model="spsMedInsu" />
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div v-if="false" class="a_slide" v-bind:class="{ active: sh_elderly }">
                 <p class="sect_title">醫療保險開支<span class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_info' }">&nbsp;</span></p>
                 <div class="cont">
 
@@ -234,7 +278,7 @@
             </div>
 
 
-            <div v-if="martial_status === 'M'" class="a_slide" v-bind:class="{ active: sh_bb }">
+            <div v-if="false && martial_status === 'M'" class="a_slide" v-bind:class="{ active: sh_bb }">
                 <div class="cont">
 
                     <label v-if="martial_status === 'M'" for="spouse_disabled_dependent_DIS">
@@ -256,9 +300,13 @@
       <tax2018 v-bind:STCIn8='STCIn8' v-bind:martial_status='martial_status' v-bind:slfIncome='slfIncome' v-bind:spsIncome='spsIncome' v-bind:slfResi='slfResi' v-bind:spsResi='spsResi' v-bind:slfOE='slfOE' v-bind:spsOE='spsOE' v-bind:slfSEE='slfSEE' v-bind:spsSEE='spsSEE' v-bind:slfDona='slfDona' v-bind:spsDona='spsDona' v-bind:slfMpf='slfMpf' v-bind:spsMpf='spsMpf' v-bind:slfLoan='slfLoan' v-bind:spsLoan='spsLoan' v-bind:s_Elder_min='s_Elder_min' v-bind:s_Elder_max='s_Elder_max' v-bind:s_tooltip='s_tooltip' v-bind:slfElder='slfElder' v-bind:slfDisdep='slfDisdep' v-bind:slfERCE='slfERCE' v-bind:spsElder='spsElder' v-bind:spsDisdep='spsDisdep' v-bind:spsERCE='spsERCE' v-bind:s_bb_min='s_bb_min' v-bind:s_bb_max='s_bb_max' v-bind:NBbb='NBbb' v-bind:CAbb='CAbb' v-bind:single_parent='single_parent' v-bind:brosis_dep='brosis_dep' v-bind:resi_parent='resi_parent' v-bind:non_resi_parent='non_resi_parent' v-bind:resi_parent_5560='resi_parent_5560' v-bind:non_resi_parent_5560='non_resi_parent_5560' v-bind:NBbb_DIS='NBbb_DIS' v-bind:CAbb_DIS='CAbb_DIS' v-bind:brosis_dep_DIS='brosis_dep_DIS' v-bind:resi_parent_DIS='resi_parent_DIS' v-bind:non_resi_parent_DIS='non_resi_parent_DIS' v-bind:spouse_disabled_dependent_DIS='spouse_disabled_dependent_DIS' v-bind:STCMainRV='STCMainRV' v-bind:STCOut1='STCOut1'
       v-bind:slfMedInsu='slfMedInsu'
       v-bind:spsMedInsu='spsMedInsu'
+      v-bind:slfMedInsu_ppl='slfMedInsu_ppl'
+      v-bind:spsMedInsu_ppl='spsMedInsu_ppl'
+      v-bind:self_disabled_DIS='self_disabled_DIS'
       v-bind:end='end' ></tax2018>
       
-      <table v-if="false" border="1" width="100%" style="display: none; margin: 0 0 500px;">
+      <h2 v-if="false">2017</h2>
+      <table v-if="false" class="tax2017" border="1" width="100%" style="margin: 0 0 500px;">
           <tbody>
               <tr>
                   <td width="46%">總 入 息</td>
@@ -495,7 +543,7 @@
                           <tbody>
                               <tr>
                                   <td width="75%" v-if="STCMainRV === 30 || STCMainRV === 40" align="right" class="formulated">{{ STCOut1[7] }}</td>
-                                  <td width="75%" v-if="STCMainRV === 42" align="right" class="formulated">{{ STCOut1[3] }}</td>
+                                  <td width="75%" v-if="STCMainRV === 42" align="right" class="formulated">{{ STCOut1[13] }}</td>
                                   <td width="75%" v-if="STCMainRV === 45" align="right" class="formulated">0</td>
                                   <td width="25%" align="center">
                                       <font v-if="STCMainRV === 30" color="#FF0000">({{ STCOut1[38] }})</font>
@@ -867,7 +915,7 @@
         <p><span v-if="martial_status !== 'M'">上限為入息35%</span><span v-if="martial_status === 'M'">上限為入息35%，你可把餘下的慈善捐款數額於配偶一方內輸入</span><a href="http://www.gov.hk/tc/residents/taxes/salaries/allowances/deductions/approveddonation.htm" target="_blank">（詳情）</a></p>
     </div>
     <div class="tool_tips" id="mpf_info">
-        <p>課稅年度內的總供款；上限$18,000<a href="http://www.ird.gov.hk/chi/pdf/pam38c.pdf" target="_blank">（詳情）</a></p>
+        <p>課稅年度內的總供款；上限$18,000，另政府正研究延期年金產品的供款扣稅<a href="http://www.ird.gov.hk/chi/pdf/pam38c.pdf" target="_blank">（詳情）</a></p>
     </div>
     <div class="tool_tips" id="homeloan_info">
         <p>只供業主作答；上限$100,000<a href="http://www.gov.hk/tc/residents/taxes/salaries/allowances/deductions/homeloan.htm" target="_blank">（詳情）</a></p>
@@ -876,14 +924,17 @@
         <p>上限為入息10%<a href="http://www.gov.hk/tc/residents/taxes/salaries/salariestax/chargeable/residence.htm" target="_blank">（詳情）</a></p>
     </div>
     <div class="tool_tips" id="medic_insu_info">
-        <p>財政預算案2018-19<a href="https://www.budget.gov.hk/2018/chi/index.html" target="_blank">（詳情）</a></p>
+        <p>市民為自己或受養人購買合資格自願醫保產品會有扣稅，每年每名受保人扣減保費上限為$8,000；可扣稅的受養人數並無限制<a href="https://www.budget.gov.hk/2018/chi/index.html" target="_blank">（詳情）</a></p>
+    </div>
+    <div class="tool_tips" id="medic_insu_amt_info">
+        <p>假設每份保單年供款低於$8,000<a href="https://www.budget.gov.hk/2018/chi/index.html" target="_blank">（詳情）</a></p>
     </div>
 
     <div class="tool_tips" id="elderly_info">
         <p>上限：4人</p>
     </div>
     <div class="tool_tips" id="eldresi_amt_info">
-        <p>每位受養人上限$92,000</p>
+        <p>每位受養人上限$100,000</p>
     </div>
     <div class="tool_tips" id="bb_info">
         <p>上限：9人</p>
@@ -897,6 +948,11 @@
     <div class="tool_tips" id="parent_5560_info">
         <p>上限：4人</p>
     </div>
+    <div class="tool_tips" id="self_DIS_info">
+        <p>18／19預算案新增$75,000免稅額</p>
+    </div>
+
+    
    
     
   </div>

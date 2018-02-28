@@ -182,6 +182,8 @@ export default {
       s_Elder_max: 4,
       s_bb_min: 0,
       s_bb_max: 9,
+      s_MedicInsu_min: 0,
+      s_MedicInsu_max: 30,
 
       // slfIncome: 800000,
       // spsIncome: 600000,
@@ -246,6 +248,9 @@ export default {
 
       slfMedInsu: 0, // onday_onday(1)
       spsMedInsu: 0,
+      slfMedInsu_ppl: 0,
+      spsMedInsu_ppl: 0,
+      self_disabled_DIS: false,
 
       STCIn21: 0, // 1,
       STCIn4: 0, // 1,
@@ -592,6 +597,17 @@ export default {
     spsMedInsu: function (val) {
       this.spsMedInsuOnBlur()
       this.STCOut1_func(this.infin_update)
+    },
+    slfMedInsu_ppl: function (val) {
+      this.slfMedInsuOnBlur()
+      this.STCOut1_func(this.infin_update)
+    },
+    spsMedInsu_ppl: function (val) {
+      this.spsMedInsuOnBlur()
+      this.STCOut1_func(this.infin_update)
+    },
+    self_disabled_DIS: function (val) {
+      this.STCOut1_func(this.infin_update)
     }
   },
   methods: {
@@ -766,7 +782,8 @@ export default {
         this.LimD_DonaUL = 35
         this.LimD_Education = 100000
         this.LimD_HomeLoan = 100000
-        this.LimD_Elderly = 92000
+        this.LimD_Elderly = 92000 // MOCK 92000
+        this.LimD_Elderly_new = 100000 // MOCK 92000
         this.LimD_MPF = 18000
         this.LimD_rate_MPF = 5
         this.LimP_rate_VAPRP = 10
@@ -1154,8 +1171,8 @@ export default {
     slfMedInsuOnBlur () { // onday_onday(3)
       var vm = this
       var Income, obj, MustReset, ValueResidence
-      var Limit = 5000
-      Income = vm.FormatInput(vm.slfMedInsu, 0, Limit)
+      var Limit = 8000
+      Income = vm.FormatInput(vm.slfMedInsu, 0, Limit * vm.slfMedInsu_ppl)
       if (Income === '*') {
         // ErrMsg('你輸入的數值不正確 !')
         MustReset = true
@@ -1163,8 +1180,8 @@ export default {
         Income = 0
       } else if (Income === '+') {
         MustReset = true
-        vm.slfMedInsu = Limit
-        Income = Limit
+        vm.slfMedInsu = Limit * vm.slfMedInsu_ppl
+        Income = Limit * vm.slfMedInsu_ppl
       }
       vm.slfMedInsu = Income
       vm.ChkDD(0)
@@ -1172,8 +1189,8 @@ export default {
     spsMedInsuOnBlur () {
       var vm = this
       var Income, obj, MustReset, ValueResidence
-      var Limit = 5000
-      Income = vm.FormatInput(vm.spsMedInsu, 0, Limit)
+      var Limit = 8000
+      Income = vm.FormatInput(vm.spsMedInsu, 0, Limit * vm.spsMedInsu_ppl)
       if (Income === '*') {
         // ErrMsg('你輸入的數值不正確 !')
         MustReset = true
@@ -1181,11 +1198,14 @@ export default {
         Income = 0
       } else if (Income === '+') {
         MustReset = true
-        vm.spsMedInsu = Limit
-        Income = Limit
+        vm.spsMedInsu = Limit * vm.spsMedInsu_ppl
+        Income = Limit * vm.spsMedInsu_ppl
       }
       vm.spsMedInsu = Income
       vm.ChkDD(0)
+    },
+    self_disabled_DISOnBlur () {
+      //
     },
     ChkDD (X) {
       var vm = this
@@ -1440,6 +1460,8 @@ export default {
       }
       if (NotNIL(vm.slfERCE)) {
         iv = vm.FormatInput(vm.slfERCE, 0, vm.LimD_Elderly * vm.slfElder)
+        var iv2 = vm.FormatInput(vm.slfERCE, 0, vm.LimD_Elderly_new * vm.slfElder)
+        var v2
         a = vm.FormatInput(vm.slfERCE, 0, 99999999999)
         v1 = '0'
         if (vm.YrEnd < 1999 && iv !== '0') {
@@ -1450,14 +1472,15 @@ export default {
         } else if (iv === '+') {
           MsgID = 9
           b = a
-          v1 = FormatMoney(vm.LimD_Elderly * vm.slfElder)
+          v1 = FormatMoney(vm.LimD_Elderly_new * vm.slfElder)
         } else {
-          v1 = iv
+          v1 = iv2
         }
         vm.slfERCE = SetTxt(vm.slfERCE, v1)
       }
       if (NotNIL(vm.spsERCE)) {
         iv = vm.FormatInput(vm.spsERCE, 0, vm.LimD_Elderly * vm.spsElder)
+        iv2 = vm.FormatInput(vm.spsERCE, 0, vm.LimD_Elderly_new * vm.spsElder)
         a = vm.FormatInput(vm.spsERCE, 0, 99999999999)
         v1 = '0'
         if (vm.YrEnd < 1999 && iv !== '0') {
@@ -1468,9 +1491,9 @@ export default {
         } else if (iv === '+') {
           MsgID = 9
           b = a
-          v1 = FormatMoney(vm.LimD_Elderly * vm.spsElder)
+          v1 = FormatMoney(vm.LimD_Elderly_new * vm.spsElder)
         } else {
-          v1 = iv
+          v1 = iv2
         }
         vm.spsERCE = SetTxt(vm.spsERCE, v1)
       }
@@ -1760,6 +1783,9 @@ export default {
 
       vm.slfMedInsu = 0 // onday_onday(4)
       vm.spsMedInsu = 0
+      vm.slfMedInsu_ppl = 0
+      vm.spsMedInsu_ppl = 0
+      vm.self_disabled_DIS = false
     },
     STCOut1_func () {
       // console.log('loop_count', this.infin_update)
@@ -1913,8 +1939,8 @@ export default {
       STCOut[58] = this.STCIn15
       STCOut[59] = this.STCIn16
       STCOut[75] = this.CA[this.STCIn21] + this.NBCA[this.STCIn21]
-      STCOut[78] = this.slfERCE
-      STCOut[79] = this.spsERCE
+      STCOut[78] = (this.slfERCE > this.LimD_Elderly * this.slfElder) ? this.LimD_Elderly * this.slfElder : this.slfERCE
+      STCOut[79] = (this.spsERCE > this.LimD_Elderly * this.slfElder) ? this.LimD_Elderly * this.slfElder : this.spsERCE
 
       // 供養父母的數目
       this.ADPNo = this.STCIn6
@@ -2921,7 +2947,8 @@ export default {
         '#non_resi_parent_DIS': this.non_resi_parent_DIS,
         '#spouse_disabled_dependent_DIS': this.spouse_disabled_dependent_DIS,
         '#self_medic_insu': this.slfMedInsu, // onday_onday(11)
-        '#spouse_medic_insu': this.spsMedInsu
+        '#spouse_medic_insu': this.spsMedInsu,
+        '#self_disabled_DIS': this.self_disabled_DIS
       }
     }
   },
