@@ -382,6 +382,11 @@ export default {
     only_one_income () {
       return (parseFloat(this.slfIncome) === 0 || parseFloat(this.spsIncome) === 0)
     },
+    last_pay () {
+      var vm = this
+      var min2017 = (vm.STCOut1[32] < vm.STCOut1[33]) ? vm.STCOut1[32] : vm.STCOut1[33]
+      return min2017
+    },
     min_saved () {
       var vm = this
       var min2018 = (vm.STCOut2[32] < vm.STCOut2[33]) ? vm.STCOut2[32] : vm.STCOut2[33]

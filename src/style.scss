@@ -1,7 +1,7 @@
 $desktop-width: 768px;
 $desktop-input-width: 300px;
 
-// @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+// @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css)
 @import 'sass/_var.scss';
 @keyframes fadeIn {
   from {opacity: 0;}
@@ -607,6 +607,10 @@ $arrowH: 18px;
   vertical-align: bottom;
 }
 
+.rebate_quota {
+  color: #fe5e50;
+}
+
 // Footer
 .footer {
   padding: 0 0 7rem;  
@@ -620,3 +624,6 @@ $arrowH: 18px;
 }
 // Mobile ////////////////////////////////////
 @import 'sass/_home_mobile.scss';
+.EOF_MARK {
+  color: #FFF;
+}

@@ -52,6 +52,7 @@ module.exports = {
       {
         test: /\.scss$/,
         loader: 'css-loader!sass-loader?indentedSyntax=false'
+        // loader: 'css-loader!sass-loader?indentedSyntax=false'
         /* // style-loader!css-loader!sass-loader?indentedSyntax=false
         use: ExtractTextPlugin.extract({
           // fallback: 'style-loader',

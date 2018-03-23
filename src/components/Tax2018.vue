@@ -639,22 +639,22 @@
         </div>
       
         <modal name="new_budget" height="auto" :scrollable="true" :adaptive="true" :maxWidth="420">
-            <p class="nb_pay" v-if="martial_status !== 'M'">你要交幾多稅？
+            <p class="nb_pay" v-if="martial_status !== 'M'">18/19年度你要交幾多稅？
                 <span class="pay_amt">{{ ('' + STCOut2[30]).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
             </p>
-            <p class="nb_pay" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome === 0">你要交幾多稅？
+            <p class="nb_pay" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome === 0">18/19年度你要交幾多稅？
                 <span class="pay_amt">0元</span>
             </p>
-            <p class="nb_pay" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome !== 0">你要交幾多稅？
+            <p class="nb_pay" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome !== 0">18/19年度你要交幾多稅？
                 <span class="pay_amt">{{ ('' + STCOut2[30]).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
             </p>
-            <p class="nb_pay" v-if="martial_status === 'M' && slfIncome === 0 && spsIncome !== 0">你要交幾多稅？
+            <p class="nb_pay" v-if="martial_status === 'M' && slfIncome === 0 && spsIncome !== 0">18/19年度你要交幾多稅？
                 <span class="pay_amt">{{ ('' + STCOut2[31]).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
             </p>
-            <p class="nb_pay" v-if="martial_status === 'M' && !only_one_income && STCOut2[32] < STCOut2[33]">你要交幾多稅？
+            <p class="nb_pay" v-if="martial_status === 'M' && !only_one_income && STCOut2[32] < STCOut2[33]">18/19年度你要交幾多稅？
                 <span class="pay_amt">{{ ('' + STCOut2[32]).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>（分開評稅）
             </p>
-            <p class="nb_pay" v-if="martial_status === 'M' && !only_one_income && STCOut2[32] >= STCOut2[33]">你要交幾多稅？
+            <p class="nb_pay" v-if="martial_status === 'M' && !only_one_income && STCOut2[32] >= STCOut2[33]">18/19年度你要交幾多稅？
                 <span class="pay_amt">{{ ('' + STCOut2[33]).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>（合併評稅）
             </p>
             <table class="new_budget" cellspacing="0" cellpadding="0" dir="ltr" border="0">
@@ -739,20 +739,25 @@
                     </tr>
                 </tbody>
             </table>
-            <p class="nb_save" v-if="martial_status !== 'M'" v-bind:class="{ less: STCOut2[30] - STCOut1[30] < 0 }">
-                較去年少交 <span class="save_amt">{{ ('' + (STCOut2[30] - STCOut1[30])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
+            <p class="nb_save a1" v-if="martial_status !== 'M'" v-bind:class="{ less: STCOut2[30] - STCOut1[30] < 0 }">
+                較去年少交 <span class="save_amt">{{ ('' + (STCOut2[30] - STCOut1[30])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span><br>
+                <span>17/18年度可獲稅款寬免：<span class="rebate_quota">{{ ((STCOut1[30]) * 0.75 > 30000 ? 30000 : (STCOut1[30]) * 0.75).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
-            <p class="nb_save" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome === 0" v-bind:class="{ }">
-                較去年少交 <span class="save_amt">0元</span>
+            <p class="nb_save a2" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome === 0" v-bind:class="{ }">
+                較去年少交 <span class="save_amt">0元</span><br>
+                <span>17/18年度可獲稅款寬免：<span class="rebate_quota">{{ 0 }}元</span></span>
             </p>
-            <p class="nb_save" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome !== 0" v-bind:class="{ }">
-                較去年少交 <span class="save_amt">{{ ('' + (STCOut2[30] - STCOut1[30])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元（分開評稅）</span>
+            <p class="nb_save a3" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome !== 0" v-bind:class="{ }">
+                較去年少交 <span class="save_amt">{{ ('' + (STCOut2[30] - STCOut1[30])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元（分開評稅）</span><br>
+                <span>17/18年度可獲稅款寬免：<span class="rebate_quota">{{ ((STCOut1[30]) * 0.75 > 30000 ? 30000 : (STCOut1[30]) * 0.75).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
-            <p class="nb_save" v-if="martial_status === 'M' && slfIncome === 0 && spsIncome !== 0" v-bind:class="{  }">
-                較去年少交 <span class="save_amt">{{ ('' + (STCOut2[31] - STCOut1[31])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元（分開評稅）</span>
+            <p class="nb_save a4" v-if="martial_status === 'M' && slfIncome === 0 && spsIncome !== 0" v-bind:class="{  }">
+                較去年少交 <span class="save_amt">{{ ('' + (STCOut2[31] - STCOut1[31])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元（分開評稅）</span><br>
+                <span>17/18年度可獲稅款寬免：<span class="rebate_quota">{{ ((STCOut1[31]) * 0.75 > 30000 ? 30000 : (STCOut1[31]) * 0.75).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
-            <p class="nb_save" v-if="martial_status === 'M' && !only_one_income" v-bind:class="{ less: STCOut2[32] - STCOut1[32] < 0 }">
-                較去年少交 <span class="save_amt">{{ ('' + (min_saved)).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
+            <p class="nb_save a5" v-if="martial_status === 'M' && !only_one_income" v-bind:class="{ less: STCOut2[32] - STCOut1[32] < 0 }">
+                較去年少交 <span class="save_amt">{{ ('' + (min_saved)).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span><br>
+                <span>17/18年度可獲稅款寬免：<span class="rebate_quota">{{ ((last_pay) * 0.75 > 30000 ? 30000 : (last_pay) * 0.75).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
         </modal>
     
