@@ -251,6 +251,7 @@ export default {
       slfMedInsu_ppl: 0,
       spsMedInsu_ppl: 0,
       self_disabled_DIS: false,
+      sps_disabled_DIS: false,
 
       STCIn21: 0, // 1,
       STCIn4: 0, // 1,
@@ -609,6 +610,9 @@ export default {
       this.STCOut1_func(this.infin_update)
     },
     self_disabled_DIS: function (val) {
+      this.STCOut1_func(this.infin_update)
+    },
+    sps_disabled_DIS: function (val) {
       this.STCOut1_func(this.infin_update)
     }
   },
@@ -1788,6 +1792,7 @@ export default {
       vm.slfMedInsu_ppl = 0
       vm.spsMedInsu_ppl = 0
       vm.self_disabled_DIS = false
+      vm.sps_disabled_DIS = false
     },
     STCOut1_func () {
       // console.log('loop_count', this.infin_update)
@@ -2952,7 +2957,8 @@ export default {
         '#spouse_disabled_dependent_DIS': this.spouse_disabled_dependent_DIS,
         '#self_medic_insu': this.slfMedInsu, // onday_onday(11)
         '#spouse_medic_insu': this.spsMedInsu,
-        '#self_disabled_DIS': this.self_disabled_DIS
+        '#self_disabled_DIS': this.self_disabled_DIS,
+        '#sps_disabled_DIS': this.sps_disabled_DIS
       }
     }
   },

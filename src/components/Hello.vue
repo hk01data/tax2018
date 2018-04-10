@@ -107,11 +107,21 @@
                             <!-- <input id="self_disabled_DIS" type="number" v-model="self_disabled_DIS" /> <!- -  STCIn9 -->
                         </div>
                     </label>
+
+                    <label v-if="martial_status === 'M'" for="sps_disabled_DIS">
+                        <span>你配偶是否合資格傷殘人士？<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'self_DIS_info' }">&nbsp;</a></span>
+                        <div class="switch_cont">
+                            <span class="yn">否</span>
+                            <switches v-model="sps_disabled_DIS" theme="bootstrap" color="primary"></switches>
+                            <span class="yn">是</span>
+                            <!-- <input id="sps_disabled_DIS" type="number" v-model="sps_disabled_DIS" /> <!- -  STCIn9 -->
+                        </div>
+                    </label>
                 </div>
             </div>
 
 
-            <div class="a_slide" v-bind:class="{ active: sh_elderly }">
+            <div v-if="false" class="a_slide" v-bind:class="{ active: sh_elderly }">
                 <p class="sect_title">醫療保險開支</p>
                 <div class="cont">
                     <p class="item_title" v-if="martial_status === 'M'">{{ lang.self + '負責' }}</p>
@@ -309,6 +319,7 @@
       v-bind:slfMedInsu_ppl='slfMedInsu_ppl'
       v-bind:spsMedInsu_ppl='spsMedInsu_ppl'
       v-bind:self_disabled_DIS='self_disabled_DIS'
+      v-bind:sps_disabled_DIS='sps_disabled_DIS'
       v-bind:end='end' ></tax2018>
       
       <table v-if="false" class="tax2017" border="1" width="100%" style="margin: 0 0 500px;">

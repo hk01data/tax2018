@@ -16,7 +16,7 @@ Vue.use(VueAnalytics, {
   },
   ready () {
     // here Google Analaytics is ready to track!
-    window.G.vm.$ga.page('/?tax2018')
+    window.G.vm.$ga.page('/?tax2018_V2')
   }
 })
 

@@ -197,7 +197,8 @@ export default {
     'STCOut1',
     'slfMedInsu', // onday_onday(6)
     'spsMedInsu',
-    'self_disabled_DIS'
+    'self_disabled_DIS',
+    'sps_disabled_DIS'
   ],
   data () {
     return {
@@ -433,7 +434,8 @@ export default {
         'spouse_disabled_dependent_DIS': this.spouse_disabled_dependent_DIS,
         'slfMedInsu': this.slfMedInsu, // onday_onday(7)
         'spsMedInsu': this.spsMedInsu,
-        'self_disabled_DIS': this.self_disabled_DIS
+        'self_disabled_DIS': this.self_disabled_DIS,
+        'sps_disabled_DIS': this.sps_disabled_DIS
       }
     }
   },
@@ -1478,6 +1480,7 @@ export default {
       var tmp = 0
       var i = 0
       var self_DISABLE_deduct
+      var sps_DISABLE_deduct
       this.STCIn8 = false // 1: 有供養傷殘, 0: 沒有供養傷殘
 
       // INIT
@@ -1603,7 +1606,8 @@ export default {
       STCOut2018[75] = this.CA[this.STCIn21] + this.NBCA[this.STCIn21]
       STCOut2018[78] = this.slfERCE
       STCOut2018[79] = this.spsERCE
-      self_DISABLE_deduct = (vm.tax.self_disabled_DIS === true) ? 75000 : 0 // onday_onday(new)
+      self_DISABLE_deduct = (vm.tax.self_disabled_DIS === true && this.STCIn2 > 0) ? 75000 : 0 // onday_onday(new)
+      sps_DISABLE_deduct = (vm.tax.sps_disabled_DIS === true && vm.tax.martial_status === 'M' && this.STCIn3 > 0) ? 75000 : 0 // onday_onday(new)
       // console.log('self_DISABLE_deduct', self_DISABLE_deduct, vm.tax.self_disabled_DIS)
       // 供養父母的數目
       this.ADPNo = this.STCIn6
@@ -1731,7 +1735,7 @@ export default {
             STCOut2018[11] = this.DIS_DA * this.STCIn19
           }
           STCOut2018[24] = STCOut2018[4] + STCOut2018[6] + STCOut2018[7] + STCOut2018[8] + STCOut2018[60] + STCOut2018[11] + STCOut2018[73]
-          STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct
+          STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct + sps_DISABLE_deduct
           STCOut2018[27] = this.netSelfI - STCOut2018[24]
           if (STCOut2018[27] < 0) {
             STCOut2018[27] = 0
@@ -1870,7 +1874,7 @@ export default {
             STCOut2018[11] = this.DIS_DA * this.STCIn19
           }
           STCOut2018[24] = STCOut2018[3] + STCOut2018[6] + STCOut2018[7] + STCOut2018[8] + STCOut2018[60] + STCOut2018[11] + STCOut2018[73]
-          STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct
+          STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct + sps_DISABLE_deduct
           STCOut2018[12] = this.CA[(1 - this.nMin) * this.STCIn4]
           STCOut2018[13] = this.DBSA * (this.STCIn5 - this.oMin)
           STCOut2018[15] = (this.DPA + this.ADPA) * (this.STCIn6 - this.mMin)
@@ -1951,7 +1955,7 @@ export default {
             STCOut2018[23] = this.DIS_DA * (this.STCIn19 + this.STCIn20)
           }
           STCOut2018[26] = STCOut2018[4] + STCOut2018[18] + STCOut2018[19] + STCOut2018[20] + STCOut2018[66] + STCOut2018[23] + STCOut2018[75]
-          STCOut2018[26] = STCOut2018[26] + self_DISABLE_deduct
+          STCOut2018[26] = STCOut2018[26] + self_DISABLE_deduct + sps_DISABLE_deduct
           STCOut2018[29] = this.netJointI - STCOut2018[26]
           if (STCOut2018[29] < 0) STCOut2018[29] = 0
           // console.log('JJJJoin ', this.jointStdTP, STCOut2018[29], this.netJointI, this.STD_RATE / 100)
@@ -1971,10 +1975,10 @@ export default {
             }
             STCOut2018[17] = this.DIS_DA * ((1 - this.nMin) * (this.STCIn10 + this.STCIn22) + this.STCIn11 - this.odMin + this.STCIn13 - this.ldMin + this.STCIn12 - this.mdMin + this.STCIn20)
             STCOut2018[24] = STCOut2018[3] + STCOut2018[6] + STCOut2018[7] + STCOut2018[8] + STCOut2018[60] + STCOut2018[11] + STCOut2018[73]
-            STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct
+            STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct + sps_DISABLE_deduct
             STCOut2018[25] = STCOut2018[3] + STCOut2018[12] + STCOut2018[13] + STCOut2018[14] + STCOut2018[63] + STCOut2018[17] + STCOut2018[74]
             STCOut2018[26] = STCOut2018[4] + STCOut2018[18] + STCOut2018[19] + STCOut2018[20] + STCOut2018[66] + STCOut2018[23] + STCOut2018[75]
-            STCOut2018[26] = STCOut2018[26] + self_DISABLE_deduct
+            STCOut2018[26] = STCOut2018[26] + self_DISABLE_deduct + sps_DISABLE_deduct
             STCOut2018[49] = STCOut2018[45] + STCOut2018[46] + STCOut2018[47] + STCOut2018[48] + this.STCIn19
             STCOut2018[54] = STCOut2018[50] + STCOut2018[51] + STCOut2018[52] + STCOut2018[53] + this.STCIn20
           } else {
@@ -1982,10 +1986,10 @@ export default {
             STCOut2018[17] = this.DIS_DA * this.STCIn20
             STCOut2018[23] = this.DIS_DA * (this.STCIn19 + this.STCIn20)
             STCOut2018[24] = STCOut2018[3] + STCOut2018[6] + STCOut2018[7] + STCOut2018[8] + STCOut2018[60] + STCOut2018[11] + STCOut2018[73]
-            STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct
+            STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct + sps_DISABLE_deduct
             STCOut2018[25] = STCOut2018[3] + STCOut2018[12] + STCOut2018[13] + STCOut2018[14] + STCOut2018[63] + STCOut2018[17] + STCOut2018[74]
             STCOut2018[26] = STCOut2018[4] + STCOut2018[18] + STCOut2018[19] + STCOut2018[20] + STCOut2018[66] + STCOut2018[23] + STCOut2018[75]
-            STCOut2018[26] = STCOut2018[26] + self_DISABLE_deduct
+            STCOut2018[26] = STCOut2018[26] + self_DISABLE_deduct + sps_DISABLE_deduct
             STCOut2018[27] = this.netSelfI - STCOut2018[24]
             STCOut2018[28] = this.netSpouseI - STCOut2018[25]
             STCOut2018[29] = this.netJointI - STCOut2018[26]
@@ -2036,7 +2040,7 @@ export default {
             this.STCMainRV = 42
 
             STCOut2018[24] = STCOut2018[3]
-            STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct
+            STCOut2018[24] = STCOut2018[24] + self_DISABLE_deduct + sps_DISABLE_deduct
             STCOut2018[25] = STCOut2018[3] + STCOut2018[12] + STCOut2018[13] + STCOut2018[14] + STCOut2018[63] + STCOut2018[17] + STCOut2018[74] + STCOut2018[6] + STCOut2018[7] + STCOut2018[8] + STCOut2018[60] + STCOut2018[11] + STCOut2018[73]
 
             STCOut2018[27] = parseFloat(this.netSelfI) - parseFloat(STCOut2018[24]) + parseFloat(STCOut2018[78])
