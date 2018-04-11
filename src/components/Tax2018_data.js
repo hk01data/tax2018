@@ -203,6 +203,7 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js PWA 1',
+      show_changes: false,
       // martial_status: 'M',
       joint: false,
       taxtype: 10,

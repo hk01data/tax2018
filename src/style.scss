@@ -576,16 +576,16 @@ $arrowH: 18px;
   }
 }
 .nb_pay {
-  font-size: 1.3rem;
+  // font-size: 1.3rem;
 }
 .nb_save {
-  font-size: 1.3rem;
+  // font-size: 1.3rem;
 }
 .pay_amt {
-  color: rgb(129, 14, 14);
+  // color: rgb(129, 14, 14);
 }
 .save_amt {
-  color: rgb(129, 14, 14);  
+  // color: rgb(129, 14, 14);  
 }
 .big_save {
   font-size: 2rem;
@@ -608,7 +608,11 @@ $arrowH: 18px;
 }
 
 .rebate_quota {
-  color: #fe5e50;
+  // color: #fe5e50;
+}
+.nb_result {
+  font-weight: 700;
+  color: rgb(129, 14, 14);
 }
 
 // Footer
