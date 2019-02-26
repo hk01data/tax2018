@@ -132,11 +132,12 @@ input {
   color: mediumorchid;
 }
 .icon_info {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   margin: 0 0 0 3px;
   display: inline-block;
   vertical-align: top;
+  vertical-align: 6px;
   text-decoration: none;
   background: url('../static/img/icon_info.png') 0 50% / 20px auto no-repeat transparent;
   &:hover {
@@ -265,7 +266,7 @@ input {
         // background-image: url('../static/img/arrow_up_dark.png');
         // background-color: #f4f4f4;
         .icon_info {
-          vertical-align: -3px;
+          vertical-align: 3px;
         }
       }
     }
@@ -278,7 +279,8 @@ input {
   }
   label {
     max-width: $desktop-input-width * 0.9;
-    width: 90%;
+    // width: 90%;
+    width: 70%;
     margin: 0 auto 4px;
     position: relative;
     display: block;
@@ -286,6 +288,7 @@ input {
   input {
     max-width: $desktop-input-width;
     width: 100%;
+    padding-right: 10px;
     border: 0;
     font-size: 1.2rem;
     text-align: right;
@@ -333,6 +336,7 @@ input {
       display: inline-block;  
       font-size: 0;
       line-height: .8rem;
+      background-color: #DDD;
     }
   }
 }
