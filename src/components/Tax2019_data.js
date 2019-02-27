@@ -1,6 +1,6 @@
 import vueSlider from 'vue-slider-component'
-import * as TrackEvent from '../../trackingTest/trackEvent_staging'
-// import * as TrackEvent from '../../trackingProd/trackEvent'
+// import * as TrackEvent from '../../trackingTest/trackEvent_staging'
+import * as TrackEvent from '../../trackingProd/trackEvent'
 var G = {}
 G['trackingCate'] = 'tax2019'
 
@@ -467,13 +467,18 @@ export default {
       var vm = this
       vm[var_name] = !vm[var_name]
       // Send Event
-      TrackEvent.fireEvent(`${G['trackingCate']}_toggle_class`, 'click', {
+      TrackEvent.fireEvent(`${G['trackingCate']}`, 'click_toggle_class', {
         'class': `${var_name}`,
         'toggle': `${vm[var_name]}`,
         'anonymous_id': TrackEvent.getAnonymousId(),
         'session_id': TrackEvent.getSessionId(),
         'ts': Date.now()
       })
+      if (vm.firstInteraction === 1 && vm.entrySource !== 'organic' && vm.entrySource !== 'base') {
+        vm.firstInteraction--
+        console.log(`[firstInteraction] `, vm.entrySource)
+        TrackEvent.fireArticlePV(TrackEvent.removehash(window.location.href))
+      }
     },
     pop_up () {
       var vm = this
@@ -522,12 +527,6 @@ export default {
         // }
       }
       // vm.$parent.GA(have_to_pay, saved_pay)
-      // Send Event
-      TrackEvent.fireEvent(`${G['trackingCate']}_submit`, 'click', {
-        'anonymous_id': TrackEvent.getAnonymousId(),
-        'session_id': TrackEvent.getSessionId(),
-        'ts': Date.now()
-      })
       vm.toggleClass('sh_result')
       vm.$parent.$modal.show('new_budget')
     },
@@ -1502,14 +1501,20 @@ export default {
       }
     },
     reset_form () {
+      var vm = this
       this.sh_result = false
       this.$parent.reset_form1()
       // Send Event
-      TrackEvent.fireEvent(`${G['trackingCate']}_reset`, 'click', {
+      TrackEvent.fireEvent(`${G['trackingCate']}`, 'click_reset', {
         'anonymous_id': TrackEvent.getAnonymousId(),
         'session_id': TrackEvent.getSessionId(),
         'ts': Date.now()
       })
+      if (vm.firstInteraction === 1 && vm.entrySource !== 'organic' && vm.entrySource !== 'base') {
+        vm.firstInteraction--
+        console.log(`[firstInteraction] `, vm.entrySource)
+        TrackEvent.fireArticlePV(TrackEvent.removehash(window.location.href))
+      }
     },
     STCOut2_func () {
       var vm = this
@@ -2687,7 +2692,9 @@ export default {
     this.get_rate()
     // this.make_STCOut2()
 
-    TrackEvent.fireMapPV(TrackEvent.removehash(window.location.href))
+    if (window.location.href.indexOf('?embed') === -1) {
+      TrackEvent.fireMapPV(TrackEvent.removehash(window.location.href))
+    }
 
     // onAnalyticsReady
     vm.detectSource(function (source, article_id) {
@@ -2702,7 +2709,7 @@ export default {
         console.log(`[AFTER] `, source)
         TrackEvent.fireArticlePV(TrackEvent.removehash(window.location.href))
       }
-      TrackEvent.fireEvent(`${G['trackingCate']}_landing`, 'view', {
+      TrackEvent.fireEvent(`${G['trackingCate']}`, 'view_landing', {
         'source': source,
         'article_id': article_id,
         'anonymous_id': TrackEvent.getAnonymousId(),

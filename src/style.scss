@@ -63,6 +63,11 @@ body * {
   > .container {
     position: relative;
   }
+  ~ .tool_tips {
+    max-height: 0;
+    visibility: hidden;
+    overflow: hidden;
+  }
 }
 header {
   // width: 100%;
@@ -455,6 +460,8 @@ $arrowH: 18px;
 .quan_butn {
   width: 32px;
   height: 32px;
+  padding-right: 3px;
+  padding-left: 3px;
   border: 0;
   vertical-align: top;
 }
@@ -499,15 +506,15 @@ $arrowH: 18px;
   max-width: $desktop-width;
   width: 100%;
   padding: 8px;
-  position: fixed;
+  // position: fixed;
   bottom: 0;
   z-index: 110;
   background-color: #f7f7f7;
-  box-shadow: 0 -2px 8px 0 #AAA;
+  // box-shadow: 0 -2px 8px 0 #AAA;
 }
 .result_butn {
   box-sizing: content-box;
-  width: 70%;
+  width: 60%;
   height: 32px;
   border: 0;
   border-radius: 8px;
@@ -549,7 +556,7 @@ $arrowH: 18px;
 .tax {
   margin: .5rem 0 0;
   padding: .5rem 0;
-  border: 1px solid #AAA;
+  // border: 1px solid #AAA;
   display: block;
   p {
     margin: 0;
@@ -568,6 +575,9 @@ $arrowH: 18px;
 // Popup ////////////////////////////////
 .v--modal-box.v--modal {
   padding: 10px;
+}
+.v--modal p {
+  margin: 0 0 4px;
 }
 .new_budget {
   td {

@@ -467,7 +467,7 @@ export default {
         self_homeloan: '本人-居所貸款利息',
         spouse_homeloan: '配偶-居所貸款利息',
 
-        elderly: '在安老院居住的受養人數', // '在安老院居住的受養人數目',
+        elderly: '在安老院居住的受養人數(收入需大於0)', // '在安老院居住的受養人數目',
         disabledep: '當中符合傷殘受養人免稅額人數', // '傷殘受養人免稅額資格的受養人數目',
         eldresi_amt: '支付給安老院的總開支', // '支付給安老院的開支款額',
 
@@ -799,7 +799,7 @@ export default {
     },
     IsNumber (Istr) {
       var AllowChars, i
-      AllowChars = '0123456789,'
+      AllowChars = '0123456789,.'
       for (i = 0; i < Istr.length; i++) {
         if (AllowChars.indexOf(Istr.charAt(i)) === -1) {
           return false

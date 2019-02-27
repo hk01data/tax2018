@@ -619,6 +619,7 @@
             </div>
         </div>
 
+        <!-- debug purpose
         <div v-if="false" class="tax difference">
             <p class="diff_title">較去年少交</p>
             <p class="diff_value" v-if="martial_status !== 'M'" v-bind:class="{ less: STCOut2[30] - STCOut1[30] < 0 }">
@@ -637,6 +638,7 @@
                 <span class="big_save">{{ ('' + (min_saved)).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</span>元
             </p>
         </div>
+        -->
 
         <modal name="new_budget" height="auto" :scrollable="true" :adaptive="true" :maxWidth="420">
             <h3>18/19 （本課稅年度）</h3>

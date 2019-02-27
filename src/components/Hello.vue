@@ -19,7 +19,7 @@
         <div class="slick_cont" :class="{is_married: martial_status === 'M'}">
         <slick ref="slick" :options="slickOptions" @afterChange="slick_afterchange">
             <div class="a_slide">
-                <p class="item_title">{{ lang.income }}<span class="icon_info" v-tooltip.bottom.end="{ html: 'income_info' }">&nbsp;</span></p>
+                <p class="item_title">{{ lang.income }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'income_info' }">&nbsp;</a></p>
                 <label for="self_income"><span class="label_text">{{ lang.self }}</span>
                 <input id="self_income" type="number" min="0" max="999999999" v-model="slfIncome" tabindex="100" />
                 </label>
@@ -29,7 +29,7 @@
             </div>
             
             <div class="a_slide deduct">
-                <p class="item_title">{{ lang.mpf }}<span class="icon_info" v-tooltip.bottom.end="{ html: 'mpf_info' }">&nbsp;</span></p>
+                <p class="item_title">{{ lang.mpf }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'mpf_info' }">&nbsp;</a></p>
                 <label for="self_mpf"><span class="label_text">{{ lang.self }}</span>
                 <input id="self_mpf" type="number" min="0" max="999999999" v-model="slfMpf" />
                 </label>
@@ -39,7 +39,7 @@
             </div>
 
             <div class="a_slide deduct">
-                <p class="item_title">{{ lang.eduexp }}<span class="icon_info" v-tooltip.bottom.end="{ html: 'eduexp_info' }">&nbsp;</span></p>
+                <p class="item_title">{{ lang.eduexp }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'eduexp_info' }">&nbsp;</a></p>
                 <label for="self_eduexp"><span class="label_text">{{ lang.self }}</span>
                 <input id="self_eduexp" type="number" min="0" max="999999999" v-model="slfSEE" />
                 </label>
@@ -49,7 +49,7 @@
             </div>
 
             <div class="a_slide deduct">
-                <p class="item_title">{{ lang.donation }}<span class="icon_info" v-tooltip.bottom.end="{ html: 'donation_info' }">&nbsp;</span></p>
+                <p class="item_title">{{ lang.donation }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'donation_info' }">&nbsp;</a></p>
                 <label for="self_donation"><span class="label_text">{{ lang.self }}</span>
                 <input id="self_donation" type="number" min="0" max="999999999" v-model="slfDona" />
                 </label>
@@ -59,7 +59,7 @@
             </div>
 
             <div class="a_slide deduct">
-                <p class="item_title">{{ lang.homeloan }}<span class="icon_info" v-tooltip.bottom.end="{ html: 'homeloan_info' }">&nbsp;</span></p>
+                <p class="item_title">{{ lang.homeloan }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'homeloan_info' }">&nbsp;</a></p>
                 <label for="self_homeloan"><span class="label_text">{{ lang.self }}</span>
                 <input id="self_homeloan" type="number" min="0" max="999999999" v-model="slfLoan" />
                 </label>
@@ -69,7 +69,7 @@
             </div>
 
             <div class="a_slide">
-                <p class="item_title">{{ lang.residence }}<span class="icon_info" v-tooltip.bottom.end="{ html: 'residence_info' }">&nbsp;</span></p>
+                <p class="item_title">{{ lang.residence }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'residence_info' }">&nbsp;</a></p>
                 <label for="self_residence"><span class="label_text">{{ lang.self }}</span>
                 <input id="self_residence" type="number" min="0" max="999999999" v-model="slfResi" />
                 </label>
@@ -79,7 +79,7 @@
             </div>
 
             <div class="a_slide deduct">
-                <p class="item_title">{{ lang.oe }}<span class="icon_info" v-tooltip.bottom.end="{ html: 'oe_info' }">&nbsp;</span></p>
+                <p class="item_title">{{ lang.oe }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'oe_info' }">&nbsp;</a></p>
                 <label for="self_oe"><span class="label_text">{{ lang.self }}</span>
                 <input id="self_oe" type="number" min="0" max="999999999" v-model="slfOE" />
                 </label>
@@ -91,9 +91,20 @@
         </slick>
         </div>
 
+        <h2 style="display: none;">Output</h2>
+        <!--  onday_onday(10) -->
+        <taxNewYear v-bind:STCIn8='STCIn8' v-bind:martial_status='martial_status' v-bind:slfIncome='slfIncome' v-bind:spsIncome='spsIncome' v-bind:slfResi='slfResi' v-bind:spsResi='spsResi' v-bind:slfOE='slfOE' v-bind:spsOE='spsOE' v-bind:slfSEE='slfSEE' v-bind:spsSEE='spsSEE' v-bind:slfDona='slfDona' v-bind:spsDona='spsDona' v-bind:slfMpf='slfMpf' v-bind:spsMpf='spsMpf' v-bind:slfLoan='slfLoan' v-bind:spsLoan='spsLoan' v-bind:s_Elder_min='s_Elder_min' v-bind:s_Elder_max='s_Elder_max' v-bind:s_tooltip='s_tooltip' v-bind:slfElder='slfElder' v-bind:slfDisdep='slfDisdep' v-bind:slfERCE='slfERCE' v-bind:spsElder='spsElder' v-bind:spsDisdep='spsDisdep' v-bind:spsERCE='spsERCE' v-bind:s_bb_min='s_bb_min' v-bind:s_bb_max='s_bb_max' v-bind:NBbb='NBbb' v-bind:CAbb='CAbb' v-bind:single_parent='single_parent' v-bind:brosis_dep='brosis_dep' v-bind:resi_parent='resi_parent' v-bind:non_resi_parent='non_resi_parent' v-bind:resi_parent_5560='resi_parent_5560' v-bind:non_resi_parent_5560='non_resi_parent_5560' v-bind:NBbb_DIS='NBbb_DIS' v-bind:CAbb_DIS='CAbb_DIS' v-bind:brosis_dep_DIS='brosis_dep_DIS' v-bind:resi_parent_DIS='resi_parent_DIS' v-bind:non_resi_parent_DIS='non_resi_parent_DIS' v-bind:spouse_disabled_dependent_DIS='spouse_disabled_dependent_DIS' v-bind:STCMainRV='STCMainRV' v-bind:STCOut1='STCOut1'
+        v-bind:slfMedInsu='slfMedInsu'
+        v-bind:spsMedInsu='spsMedInsu'
+        v-bind:slfMedInsu_ppl='slfMedInsu_ppl'
+        v-bind:spsMedInsu_ppl='spsMedInsu_ppl'
+        v-bind:self_disabled_DIS='self_disabled_DIS'
+        v-bind:sps_disabled_DIS='sps_disabled_DIS'
+        v-bind:end='end' ></taxNewYear>
+
         <div class="additional new_add">
             <h2 class="section_heading">
-                <!-- 預算案新增項目 -->
+                ⬇⬇⬇ 更多項目 ⬇⬇⬇
                 <!-- <img class="new_gif" src="static/img/new.gif" alt="new items"> -->
             </h2>
 
@@ -112,7 +123,7 @@
                     </label>
 
                     <label v-if="martial_status === 'M'" for="sps_disabled_DIS">
-                        <span>你配偶是否合資格傷殘人士？<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'self_DIS_info' }">&nbsp;</a></span>
+                        <span>你配偶是否合資格傷殘人士？<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'sps_DIS_info' }">&nbsp;</a></span>
                         <div class="switch_cont">
                             <span class="yn">否</span>
                             <switches v-model="sps_disabled_DIS" theme="bootstrap" color="primary"></switches>
@@ -128,21 +139,21 @@
                 <p class="sect_title">醫療保險開支</p>
                 <div class="cont">
                     <p class="item_title" v-if="martial_status === 'M'">{{ lang.self + '負責' }}</p>
-                    <label for="slfMedInsu_ppl"><span class="label_text lbl_large">你為多少人交醫療保險費？（包括自己）</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_info' }">&nbsp;</span>
+                    <label for="slfMedInsu_ppl"><span class="label_text lbl_large">你為多少人交醫療保險費？（包括自己）</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_info' }">&nbsp;</a>
                     <quantity v-bind:min="s_MedicInsu_min" v-bind:max="s_MedicInsu_max" v-model="slfMedInsu_ppl" v-on:drag-end=""></quantity>
                     </label>
 
-                    <label v-if="slfMedInsu_ppl > 0" for="slfMedInsu"><span class="label_text">每年醫療保險總開支</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_amt_info' }">&nbsp;</span>
+                    <label v-if="slfMedInsu_ppl > 0" for="slfMedInsu"><span class="label_text">每年醫療保險總開支</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_amt_info' }">&nbsp;</a>
                     <input id="slfMedInsu" type="number" min="0" max="999999999" v-model="slfMedInsu" />
                     </label>
                 
                     <div class="cont_sps" v-if="martial_status === 'M'">
                         <p class="item_title" v-if="martial_status === 'M'">{{ lang.spouse + '負責' }}</p>
-                        <label for="spsMedInsu_ppl"><span class="label_text lbl_large">你為多少人交醫療保險費？（包括自己）</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_info' }">&nbsp;</span>
+                        <label for="spsMedInsu_ppl"><span class="label_text lbl_large">你為多少人交醫療保險費？（包括自己）</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_info' }">&nbsp;</a>
                         <quantity v-bind:min="s_MedicInsu_min" v-bind:max="s_MedicInsu_max" v-model="spsMedInsu_ppl"></quantity>
                         </label>
 
-                        <label v-if="spsMedInsu_ppl > 0" for="spsMedInsu"><span class="label_text">每年醫療保險總開支</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_amt_info' }">&nbsp;</span>
+                        <label v-if="spsMedInsu_ppl > 0" for="spsMedInsu"><span class="label_text">每年醫療保險總開支</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_amt_info' }">&nbsp;</a>
                         <input id="spsMedInsu" type="number" min="0" max="999999999" v-model="spsMedInsu" />
                         </label>
                     </div>
@@ -151,7 +162,7 @@
             </div>
 
             <div v-if="false" class="a_slide" v-bind:class="{ active: sh_elderly }">
-                <p class="sect_title">醫療保險開支<span class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_info' }">&nbsp;</span></p>
+                <p class="sect_title">醫療保險開支<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_info' }">&nbsp;</a></p>
                 <div class="cont">
 
                     <label for="self_medic_insu"><span class="label_text">{{ lang.self }}</span>
@@ -173,7 +184,7 @@
                 <p class="sect_title">長者院舍開支</p>
                 <div class="cont">
                     <p class="item_title" v-if="martial_status === 'M'">{{ lang.self + '負責' }}</p>
-                    <label for="self_elderly"><span class="label_text lbl_large">{{ lang.elderly }}</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'elderly_info' }">&nbsp;</span>
+                    <label for="self_elderly"><span class="label_text lbl_large">{{ lang.elderly }}</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'elderly_info' }">&nbsp;</a>
                     <quantity v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-model="slfElder" v-on:drag-end=""></quantity>
                     </label>
 
@@ -181,13 +192,13 @@
                     <quantity v-bind:min="s_Elder_min" v-bind:max="slfElder" v-model="slfDisdep" v-on:drag-end=""></quantity>
                     </label>
 
-                    <label v-if="slfElder > 0" for="self_eldresi_amt"><span class="label_text lbl_large">{{ lang.eldresi_amt }}</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'eldresi_amt_info' }">&nbsp;</span>
+                    <label v-if="slfElder > 0" for="self_eldresi_amt"><span class="label_text lbl_large">{{ lang.eldresi_amt }}</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'eldresi_amt_info' }">&nbsp;</a>
                     <input id="self_eldresi_amt" type="number" min="0" max="999999999" v-model="slfERCE" />
                     </label>
                 
                     <div class="cont_sps" v-if="martial_status === 'M'">
                         <p class="item_title" v-if="martial_status === 'M'">{{ lang.spouse + '負責' }}</p>
-                        <label for="spouse_elderly"><span class="label_text lbl_large">{{ lang.elderly }}</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'elderly_info' }">&nbsp;</span>
+                        <label for="spouse_elderly"><span class="label_text lbl_large">{{ lang.elderly }}</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'elderly_info_2' }">&nbsp;</a>
                         <quantity v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-model="spsElder"></quantity>
                         </label>
 
@@ -195,7 +206,7 @@
                         <quantity v-bind:min="s_Elder_min" v-bind:max="spsElder" v-model="spsDisdep"></quantity>
                         </label>
 
-                        <label v-if="martial_status === 'M' && spsElder > 0" for="spouse_eldresi_amt"><span class="label_text">{{ lang.eldresi_amt }}</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'eldresi_amt_info' }">&nbsp;</span>
+                        <label v-if="martial_status === 'M' && spsElder > 0" for="spouse_eldresi_amt"><span class="label_text">{{ lang.eldresi_amt }}</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'eldresi_amt_info_2' }">&nbsp;</a>
                         <input id="spouse_eldresi_amt" type="number" min="0" max="999999999" v-model="spsERCE" />
                         </label>
                     </div>
@@ -205,7 +216,7 @@
 
 
             <div class="a_slide" v-bind:class="{ active: sh_bb }">
-                <p class="sect_title">子女<span class="icon_info" v-tooltip.bottom.end="{ html: 'bb_info' }">&nbsp;</span></p>
+                <p class="sect_title">子女<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'bb_info' }">&nbsp;</a></p>
                 <div class="cont">
                     <label for="NBbb"><span class="label_text lbl_large">課稅年度出生子女人數</span><!-- <input id="NBbb" type="text" v-model="NBbb" v-on:change="D3aOnChange()" /> <!- -  STCIn21 -->
                     <quantity v-bind:min="s_bb_min" v-bind:max="s_bb_max" v-model="NBbb" v-on:drag-end="D3aOnChange()"></quantity>
@@ -235,7 +246,7 @@
 
 
             <div class="a_slide" v-bind:class="{ active: sh_bb }">
-                <p class="sect_title">兄弟姊妹<span class="icon_info" v-tooltip.bottom.end="{ html: 'brosis_info' }">&nbsp;</span></p>
+                <p class="sect_title">兄弟姊妹<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'brosis_info' }">&nbsp;</a></p>
                 <div class="cont">
                     <label for="brosis_dep"><span class="label_text lbl_large">供養兄弟姊妹人數</span><!-- <input id="brosis_dep" type="text" v-model="brosis_dep" v-on:change="D5OnChange()" /> <!- -   STCIn5 -->
                     <quantity v-bind:min="s_bb_min" v-bind:max="s_bb_max" v-model="brosis_dep" v-on:drag-end="D5OnChange()"></quantity>
@@ -259,7 +270,7 @@
                 <div class="cont">
 
                     <p class="tiny_title">年滿60歲，或雖未滿60歲、<br>但有資格申索傷殘津貼的直系長輩</p>
-                    <label for="resi_parent"><span class="label_text lbl_large">全年與你同住人數</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'parent_info' }">&nbsp;</span><!-- <input id="resi_parent" type="text" v-model="resi_parent" v-on:change="D7OnChange()" /> <!- -   STCIn6 -->
+                    <label for="resi_parent"><span class="label_text lbl_large">全年與你同住人數</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'parent_info' }">&nbsp;</a><!-- <input id="resi_parent" type="text" v-model="resi_parent" v-on:change="D7OnChange()" /> <!- -   STCIn6 -->
                     <quantity v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-model="resi_parent" v-on:drag-end="D7OnChange()"></quantity>
                     <!-- <vue-slider width="90%" v-model="resi_parent" v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-bind:tooltip="s_tooltip" v-on:drag-end="D7OnChange()"></vue-slider> -->
                     </label>
@@ -268,7 +279,7 @@
                     <!-- <vue-slider width="90%" v-model="resi_parent_DIS" v-bind:min="s_Elder_min" v-bind:max="resi_parent" v-bind:tooltip="s_tooltip" v-on:drag-end="D8OnChange()"></vue-slider> -->
                     </label>
 
-                    <label for="non_resi_parent"><span class="label_text lbl_large">並非全年與你同住人數</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'parent_info' }">&nbsp;</span><!-- <input id="non_resi_parent" type="text" v-model="non_resi_parent" v-on:change="D9OnChange()" /> <!- -   STCIn7 -->
+                    <label for="non_resi_parent"><span class="label_text lbl_large">並非全年與你同住人數</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'parent_info_2' }">&nbsp;</a><!-- <input id="non_resi_parent" type="text" v-model="non_resi_parent" v-on:change="D9OnChange()" /> <!- -   STCIn7 -->
                     <quantity v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-model="non_resi_parent" v-on:drag-end="D9OnChange()"></quantity>
                     <!-- <vue-slider width="90%" v-model="non_resi_parent" v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-bind:tooltip="s_tooltip" v-on:drag-end="D9OnChange()"></vue-slider> -->
                     </label>
@@ -278,11 +289,11 @@
                     </label>
 
                     <p class="tiny_title">55-59歲的直系長輩</p>
-                    <label for="resi_parent_5560"><span class="label_text lbl_large">全年與你同住</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'parent_5560_info' }">&nbsp;</span><!-- <input id="resi_parent_5560" type="text" v-model="resi_parent_5560" /> <!- -  STCIn17 -->
+                    <label for="resi_parent_5560"><span class="label_text lbl_large">全年與你同住</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'parent_5560_info' }">&nbsp;</a><!-- <input id="resi_parent_5560" type="text" v-model="resi_parent_5560" /> <!- -  STCIn17 -->
                     <quantity v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-model="resi_parent_5560" v-on:drag-end=""></quantity>
                     <!-- <vue-slider width="90%" v-model="resi_parent_5560" v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-bind:tooltip="s_tooltip" v-on:drag-end=""></vue-slider> -->
                     </label>
-                    <label for="non_resi_parent_5560"><span class="label_text lbl_large">並非全年與你同住</span><span class="icon_info" v-tooltip.bottom.end="{ html: 'parent_5560_info' }">&nbsp;</span><!-- <input id="non_resi_parent_5560" type="text" v-model="non_resi_parent_5560" /> <!- -  STCIn18 -->
+                    <label for="non_resi_parent_5560"><span class="label_text lbl_large">並非全年與你同住</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'parent_5560_info_2' }">&nbsp;</a><!-- <input id="non_resi_parent_5560" type="text" v-model="non_resi_parent_5560" /> <!- -  STCIn18 -->
                     <quantity v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-model="non_resi_parent_5560" v-on:drag-end=""></quantity>
                     <!-- <vue-slider width="90%" v-model="non_resi_parent_5560" v-bind:min="s_Elder_min" v-bind:max="s_Elder_max" v-bind:tooltip="s_tooltip" v-on:drag-end=""></vue-slider> -->
                     </label>
@@ -310,13 +321,13 @@
 
         <div class="footer">
             <p>本計稅機不會收集任何可追溯到用戶身分的資料，上述結果乃根據讀者輸入的資料計算，僅適合香港居民計算其應繳之薪俸稅或個人入息課稅稅款，結果或與實際數目有出入，僅供讀者作參考之用。詳情可參考<a href="https://www.ird.gov.hk/" target="_blank">稅務局網站</a>所載資料。</p>
-            <p>資料來源：稅務局、18/19年度財政預算案</p>
+            <p>資料來源：稅務局、18/19及19/20年度財政預算案</p>
         </div>
 
 
       <h2 style="display: none;">Output</h2>
       <!--  onday_onday(10) -->
-      <taxNewYear v-bind:STCIn8='STCIn8' v-bind:martial_status='martial_status' v-bind:slfIncome='slfIncome' v-bind:spsIncome='spsIncome' v-bind:slfResi='slfResi' v-bind:spsResi='spsResi' v-bind:slfOE='slfOE' v-bind:spsOE='spsOE' v-bind:slfSEE='slfSEE' v-bind:spsSEE='spsSEE' v-bind:slfDona='slfDona' v-bind:spsDona='spsDona' v-bind:slfMpf='slfMpf' v-bind:spsMpf='spsMpf' v-bind:slfLoan='slfLoan' v-bind:spsLoan='spsLoan' v-bind:s_Elder_min='s_Elder_min' v-bind:s_Elder_max='s_Elder_max' v-bind:s_tooltip='s_tooltip' v-bind:slfElder='slfElder' v-bind:slfDisdep='slfDisdep' v-bind:slfERCE='slfERCE' v-bind:spsElder='spsElder' v-bind:spsDisdep='spsDisdep' v-bind:spsERCE='spsERCE' v-bind:s_bb_min='s_bb_min' v-bind:s_bb_max='s_bb_max' v-bind:NBbb='NBbb' v-bind:CAbb='CAbb' v-bind:single_parent='single_parent' v-bind:brosis_dep='brosis_dep' v-bind:resi_parent='resi_parent' v-bind:non_resi_parent='non_resi_parent' v-bind:resi_parent_5560='resi_parent_5560' v-bind:non_resi_parent_5560='non_resi_parent_5560' v-bind:NBbb_DIS='NBbb_DIS' v-bind:CAbb_DIS='CAbb_DIS' v-bind:brosis_dep_DIS='brosis_dep_DIS' v-bind:resi_parent_DIS='resi_parent_DIS' v-bind:non_resi_parent_DIS='non_resi_parent_DIS' v-bind:spouse_disabled_dependent_DIS='spouse_disabled_dependent_DIS' v-bind:STCMainRV='STCMainRV' v-bind:STCOut1='STCOut1'
+      <taxNewYear v-if="false" v-bind:STCIn8='STCIn8' v-bind:martial_status='martial_status' v-bind:slfIncome='slfIncome' v-bind:spsIncome='spsIncome' v-bind:slfResi='slfResi' v-bind:spsResi='spsResi' v-bind:slfOE='slfOE' v-bind:spsOE='spsOE' v-bind:slfSEE='slfSEE' v-bind:spsSEE='spsSEE' v-bind:slfDona='slfDona' v-bind:spsDona='spsDona' v-bind:slfMpf='slfMpf' v-bind:spsMpf='spsMpf' v-bind:slfLoan='slfLoan' v-bind:spsLoan='spsLoan' v-bind:s_Elder_min='s_Elder_min' v-bind:s_Elder_max='s_Elder_max' v-bind:s_tooltip='s_tooltip' v-bind:slfElder='slfElder' v-bind:slfDisdep='slfDisdep' v-bind:slfERCE='slfERCE' v-bind:spsElder='spsElder' v-bind:spsDisdep='spsDisdep' v-bind:spsERCE='spsERCE' v-bind:s_bb_min='s_bb_min' v-bind:s_bb_max='s_bb_max' v-bind:NBbb='NBbb' v-bind:CAbb='CAbb' v-bind:single_parent='single_parent' v-bind:brosis_dep='brosis_dep' v-bind:resi_parent='resi_parent' v-bind:non_resi_parent='non_resi_parent' v-bind:resi_parent_5560='resi_parent_5560' v-bind:non_resi_parent_5560='non_resi_parent_5560' v-bind:NBbb_DIS='NBbb_DIS' v-bind:CAbb_DIS='CAbb_DIS' v-bind:brosis_dep_DIS='brosis_dep_DIS' v-bind:resi_parent_DIS='resi_parent_DIS' v-bind:non_resi_parent_DIS='non_resi_parent_DIS' v-bind:spouse_disabled_dependent_DIS='spouse_disabled_dependent_DIS' v-bind:STCMainRV='STCMainRV' v-bind:STCOut1='STCOut1'
       v-bind:slfMedInsu='slfMedInsu'
       v-bind:spsMedInsu='spsMedInsu'
       v-bind:slfMedInsu_ppl='slfMedInsu_ppl'
@@ -952,7 +963,13 @@
     <div class="tool_tips" id="elderly_info">
         <p>上限：4人</p>
     </div>
+    <div class="tool_tips" id="elderly_info_2">
+        <p>上限：4人</p>
+    </div>
     <div class="tool_tips" id="eldresi_amt_info">
+        <p>每位受養人上限$100,000</p>
+    </div>
+    <div class="tool_tips" id="eldresi_amt_info_2">
         <p>每位受養人上限$100,000</p>
     </div>
     <div class="tool_tips" id="bb_info">
@@ -964,10 +981,19 @@
     <div class="tool_tips" id="parent_info">
         <p>上限：4人</p>
     </div>
+    <div class="tool_tips" id="parent_info_2">
+        <p>上限：4人</p>
+    </div>
     <div class="tool_tips" id="parent_5560_info">
         <p>上限：4人</p>
     </div>
+    <div class="tool_tips" id="parent_5560_info_2">
+        <p>上限：4人</p>
+    </div>
     <div class="tool_tips" id="self_DIS_info">
+        <p>18／19預算案新增$75,000免稅額</p>
+    </div>
+    <div class="tool_tips" id="sps_DIS_info">
         <p>18／19預算案新增$75,000免稅額</p>
     </div>
 
