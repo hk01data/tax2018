@@ -179,6 +179,9 @@ export default {
     'spsDona',
     'slfMpf',
     'spsMpf',
+    // MOCK
+    'slfBook',
+    'spsBook',
     'slfLoan',
     'spsLoan',
     'slfElder',
@@ -205,7 +208,14 @@ export default {
     'slfMedInsu', // onday_onday(6)
     'spsMedInsu',
     'self_disabled_DIS',
-    'sps_disabled_DIS'
+    'sps_disabled_DIS',
+    // MOCK
+    'self_iang_visa',
+    'sps_iang_visa',
+    'slfDiseaseExp',
+    'spsDiseaseExp',
+    'slfVolunMpf',
+    'spsVolunMpf'
   ],
   data () {
     return {
@@ -420,6 +430,9 @@ export default {
         'spsDona': this.spsDona,
         'slfMpf': this.slfMpf,
         'spsMpf': this.spsMpf,
+        // MOCK
+        'slfBook': this.slfBook,
+        'spsBook': this.spsBook,
         'slfLoan': this.slfLoan,
         'spsLoan': this.spsLoan,
         'slfElder': this.slfElder,
@@ -445,7 +458,14 @@ export default {
         'slfMedInsu': this.slfMedInsu, // onday_onday(7)
         'spsMedInsu': this.spsMedInsu,
         'self_disabled_DIS': this.self_disabled_DIS,
-        'sps_disabled_DIS': this.sps_disabled_DIS
+        'sps_disabled_DIS': this.sps_disabled_DIS,
+        // MOCK
+        'self_iang_visa': this.self_iang_visa,
+        'sps_iang_visa': this.sps_iang_visa,
+        'slfDiseaseExp': this.slfDiseaseExp,
+        'spsDiseaseExp': this.spsDiseaseExp,
+        'slfVolunMpf': this.slfVolunMpf, // onday_onday(7b)
+        'spsVolunMpf': this.spsVolunMpf // onday_onday(7b)
       }
     }
   },
@@ -549,37 +569,61 @@ export default {
         this.AAL_MARR = 0 // PAAL_MARR
         this.SPA = 132000 // PSPA
         this.CA[0] = 0
-        this.CA[1] = 120000 * 1 // MOCK 100000
-        this.CA[2] = 120000 * 2 // MOCK 200000
-        this.CA[3] = 120000 * 3 // MOCK 300000
-        this.CA[4] = 120000 * 4 // MOCK 400000
-        this.CA[5] = 120000 * 5 // MOCK 500000
-        this.CA[6] = 120000 * 6 // MOCK 600000
-        this.CA[7] = 120000 * 7 // MOCK 700000
-        this.CA[8] = 120000 * 8 // MOCK 800000
-        this.CA[9] = 120000 * 9 // MOCK 900000
+        // this.CA[1] = 120000 * 1 // MOCK 100000
+        // this.CA[2] = 120000 * 2 // MOCK 200000
+        // this.CA[3] = 120000 * 3 // MOCK 300000
+        // this.CA[4] = 120000 * 4 // MOCK 400000
+        // this.CA[5] = 120000 * 5 // MOCK 500000
+        // this.CA[6] = 120000 * 6 // MOCK 600000
+        // this.CA[7] = 120000 * 7 // MOCK 700000
+        // this.CA[8] = 120000 * 8 // MOCK 800000
+        // this.CA[9] = 120000 * 9 // MOCK 900000
+        // // PCHILDNB_AL1  to PCHILDNB_AL9
+        // this.NBCA[0] = 0
+        // this.NBCA[1] = 120000 * 1 // MOCK 100000
+        // this.NBCA[2] = 120000 * 2 // MOCK 200000
+        // this.NBCA[3] = 120000 * 3 // MOCK 300000
+        // this.NBCA[4] = 120000 * 4 // MOCK 400000
+        // this.NBCA[5] = 120000 * 5 // MOCK 500000
+        // this.NBCA[6] = 120000 * 6 // MOCK 600000
+        // this.NBCA[7] = 120000 * 7 // MOCK 700000
+        // this.NBCA[8] = 120000 * 8 // MOCK 800000
+        // this.NBCA[9] = 120000 * 9 // MOCK 900000
+        this.CA[1] = 150000 * 1 // MOCK 100000
+        this.CA[2] = 150000 * 2 // MOCK 200000
+        this.CA[3] = 150000 * 3 // MOCK 300000
+        this.CA[4] = 150000 * 4 // MOCK 400000
+        this.CA[5] = 150000 * 5 // MOCK 500000
+        this.CA[6] = 150000 * 6 // MOCK 600000
+        this.CA[7] = 150000 * 7 // MOCK 700000
+        this.CA[8] = 150000 * 8 // MOCK 800000
+        this.CA[9] = 150000 * 9 // MOCK 900000
         // PCHILDNB_AL1  to PCHILDNB_AL9
         this.NBCA[0] = 0
-        this.NBCA[1] = 120000 * 1 // MOCK 100000
-        this.NBCA[2] = 120000 * 2 // MOCK 200000
-        this.NBCA[3] = 120000 * 3 // MOCK 300000
-        this.NBCA[4] = 120000 * 4 // MOCK 400000
-        this.NBCA[5] = 120000 * 5 // MOCK 500000
-        this.NBCA[6] = 120000 * 6 // MOCK 600000
-        this.NBCA[7] = 120000 * 7 // MOCK 700000
-        this.NBCA[8] = 120000 * 8 // MOCK 800000
-        this.NBCA[9] = 120000 * 9 // MOCK 900000
+        this.NBCA[1] = 150000 * 1 // MOCK 100000
+        this.NBCA[2] = 150000 * 2 // MOCK 200000
+        this.NBCA[3] = 150000 * 3 // MOCK 300000
+        this.NBCA[4] = 150000 * 4 // MOCK 400000
+        this.NBCA[5] = 150000 * 5 // MOCK 500000
+        this.NBCA[6] = 150000 * 6 // MOCK 600000
+        this.NBCA[7] = 150000 * 7 // MOCK 700000
+        this.NBCA[8] = 150000 * 8 // MOCK 800000
+        this.NBCA[9] = 150000 * 9 // MOCK 900000
         this.DBSA = 37500 // PDBSA
-        this.DPA = 50000 // PDPAAMT 46000
-        this.ADPA = 50000 // PADPAAMT 46000
+        // this.DPA = 50000 // PDPAAMT 46000
+        // this.ADPA = 50000 // PADPAAMT 46000
+        this.DPA = 60000 // PDPAAMT 46000
+        this.ADPA = 60000 // PADPAAMT 46000
         this.DIS_DA = 75000 // PDDA
-        this.SDPGPA = 25000 // PSDPGPA 23000
-        this.SADPGPA = 25000 // PSADPGPA 23000
+        // this.SDPGPA = 25000 // PSDPGPA 23000
+        // this.SADPGPA = 25000 // PSADPGPA 23000
+        this.SDPGPA = 30000 // PSDPGPA 23000
+        this.SADPGPA = 30000 // PSADPGPA 23000
         this.VAPRP_RATE = 10
         this.TAX_RANGE[0] = 0
-        this.TAX_RANGE[1] = 50000 // MOCK 45000
-        this.TAX_RANGE[2] = 50000 // MOCK 45000
-        this.TAX_RANGE[3] = 50000 // MOCK 45000
+        this.TAX_RANGE[1] = 50000 // 50000 MOCK 40000, 60000
+        this.TAX_RANGE[2] = 50000 // 50000 MOCK 40000, 60000
+        this.TAX_RANGE[3] = 50000 // 50000 MOCK 40000, 60000
         this.TAX_RANGE[4] = 50000
         this.TAX_RANGE[5] = 0
         this.TAX_RANGE[6] = 0
@@ -594,9 +638,9 @@ export default {
         this.TAX_RANGE[15] = 0
         this.TAX_RATE[0] = 0
         this.TAX_RATE[1] = 2 // MOCK 2
-        this.TAX_RATE[2] = 6 // MOCK 7
-        this.TAX_RATE[3] = 10 // MOCK 12
-        this.TAX_RATE[4] = 14
+        this.TAX_RATE[2] = 6 // 6 MOCK 7
+        this.TAX_RATE[3] = 10 // 10 MOCK 12
+        this.TAX_RATE[4] = 14 // 14 MOCK 0
         this.TAX_RATE[5] = 0
         this.TAX_RATE[6] = 0
         this.TAX_RATE[7] = 0
@@ -610,9 +654,9 @@ export default {
         this.TAX_RATE[15] = 0
         this.TAX_RATE_R = 17
         this.TAX[0] = 0
-        this.TAX[1] = 1000 // MOCK 900
-        this.TAX[2] = 4000 // MOCK 4050
-        this.TAX[3] = 9000 // MOCK 9450
+        this.TAX[1] = 1000 // 1000 MOCK 1200
+        this.TAX[2] = 4000 // 4000 MOCK 4800
+        this.TAX[3] = 9000 // 9000 MOCK 9450
         this.TAX[4] = 16000
         this.TAX[5] = 0
         this.TAX[6] = 0
@@ -678,7 +722,7 @@ export default {
         this.LimD_DonaUL = 35
         this.LimD_Education = 100000
         this.LimD_HomeLoan = 100000
-        this.LimD_Elderly = 100000 // MOCK 92000
+        this.LimD_Elderly = 120000 // 100000 MOCK 120000
         this.LimD_MPF = 18000
         this.LimD_rate_MPF = 5
         this.LimP_rate_VAPRP = 10
@@ -1048,6 +1092,9 @@ export default {
           if (iv === '*') {
             MsgID = 1
           } else if (iv === '-') {
+            // changed
+            vm.tax.slfDona = SetTxt(vm.tax.slfDona, 0)
+            console.log(vm.tax.slfDona)
             MsgID = 5
             b = a
           } else {
@@ -1073,6 +1120,7 @@ export default {
             vm.oT3 = v1
           }
           if (parseFloat(vm.tax.slfDona) < lv) {
+            vm.tax.slfDona = SetTxt(vm.tax.slfDona, 0)
             // NOP: wait for input larger
           } else {
             vm.tax.slfDona = SetTxt(vm.tax.slfDona, v1)
@@ -1522,6 +1570,9 @@ export default {
       var i = 0
       var self_DISABLE_deduct
       var sps_DISABLE_deduct
+      // MOCK
+      var self_iang_visa_deduct
+      var sps_iang_visa_deduct
       this.STCIn8 = false // 1: 有供養傷殘, 0: 沒有供養傷殘
 
       // INIT
@@ -1595,8 +1646,8 @@ export default {
       if (vm.tax.spsOE + vm.tax.spsSEE > this.STCIn3) {
         vm.tax.spsOE = this.STCIn3 - vm.tax.spsSEE
       }
-      vm.tax.slfDona = parseFloat(vm.tax.slfDona)
-      vm.tax.spsDona = parseFloat(vm.tax.spsDona)
+      vm.tax.slfDona = isNaN(parseFloat(vm.tax.slfDona)) || parseFloat(vm.tax.slfDona) < 100 ? 0 : parseFloat(vm.tax.slfDona)
+      vm.tax.spsDona = isNaN(parseFloat(vm.tax.spsDona)) || parseFloat(vm.tax.spsDona) < 100 ? 0 : parseFloat(vm.tax.spsDona)
 
       // 扣稅總額
       this.STCIn14 = parseFloat(vm.tax.slfDona) + parseFloat(vm.tax.slfERCE) + parseFloat(vm.tax.slfMpf) + parseFloat(vm.tax.slfSEE) + parseFloat(vm.tax.slfOE)
@@ -1605,6 +1656,29 @@ export default {
       // 扣稅總額 onday_onday(5)
       this.STCIn14 = this.STCIn14 + parseFloat(vm.tax.slfMedInsu)
       this.STCIn15 = this.STCIn15 + parseFloat(vm.tax.spsMedInsu)
+      // 扣稅總額 MOCK book
+      this.STCIn14 = this.STCIn14 + parseFloat(vm.tax.slfBook)
+      this.STCIn15 = this.STCIn15 + parseFloat(vm.tax.spsBook)
+
+      // 扣稅總額 MOCK disease Expense
+      this.STCIn14 = this.STCIn14 + parseFloat(vm.tax.slfDiseaseExp)
+      this.STCIn15 = this.STCIn15 + parseFloat(vm.tax.spsDiseaseExp)
+
+      // 扣稅總額: 年金、強積金自願供款 => 分開評稅
+      var slfVolunMpf = parseFloat(vm.tax.slfVolunMpf) // onday_onday(7)
+      var spsVolunMpf = parseFloat(vm.tax.spsVolunMpf)
+      var sumVolunMpf = slfVolunMpf + spsVolunMpf
+      if (slfVolunMpf > 60000) {
+        slfVolunMpf = 60000
+      }
+      if (spsVolunMpf > 60000) {
+        spsVolunMpf = 60000
+      }
+      if (slfVolunMpf + spsVolunMpf > 120000) {
+        sumVolunMpf = 120000
+      }
+      this.STCIn14 = this.STCIn14 + parseFloat(slfVolunMpf)
+      this.STCIn15 = this.STCIn15 + parseFloat(spsVolunMpf)
 
       // TO-WORK!!! T3tag T4tag has maximum donation
       this.STCIn16 = parseFloat(vm.tax.slfDona) + parseFloat(vm.tax.spsDona) // STCIn16 = CDbl(vm.T3tag) + CDbl(vm.T4tag)
@@ -1620,7 +1694,12 @@ export default {
       if (this.STCIn2 > 0 || this.STCIn3 > 0) {
         this.STCIn16 = this.STCIn16 + parseFloat(vm.tax.slfLoan) + parseFloat(vm.tax.spsLoan)
       }
-      this.STCIn16 = this.STCIn16 + parseFloat(vm.tax.slfMedInsu) + parseFloat(vm.tax.spsMedInsu)
+      // this.STCIn16 = this.STCIn16 + parseFloat(vm.tax.slfMedInsu) + parseFloat(vm.tax.spsMedInsu)
+      this.STCIn16 = this.STCIn16 + parseFloat(vm.tax.slfBook) + parseFloat(vm.tax.spsBook) + parseFloat(vm.tax.slfMedInsu) + parseFloat(vm.tax.spsMedInsu)
+      // 扣稅總額: 年金、強積金自願供款 => 合併評稅
+      this.STCIn16 = this.STCIn16 + parseFloat(sumVolunMpf) // onday_onday(7)
+      // 扣稅總額 MOCK disease Expense
+      this.STCIn16 = this.STCIn16 + parseFloat(vm.tax.slfDiseaseExp) + parseFloat(vm.tax.spsDiseaseExp)
 
       this.STCIn17 = parseInt(vm.tax.resi_parent_5560, 10)
       this.STCIn18 = parseInt(vm.tax.non_resi_parent_5560, 10)
@@ -1649,6 +1728,9 @@ export default {
       STCOutNew[79] = this.spsERCE
       self_DISABLE_deduct = (vm.tax.self_disabled_DIS === true && this.STCIn2 > 0) ? 75000 : 0 // onday_onday(new)
       sps_DISABLE_deduct = (vm.tax.sps_disabled_DIS === true && vm.tax.martial_status === 'M' && this.STCIn3 > 0) ? 75000 : 0 // onday_onday(new)
+      // MOCK
+      self_iang_visa_deduct = (vm.tax.self_iang_visa === true && this.STCIn2 > 0) ? 75000 : 0
+      sps_iang_visa_deduct = (vm.tax.sps_iang_visa === true && vm.tax.martial_status === 'M' && this.STCIn3 > 0) ? 75000 : 0
       // console.log('self_DISABLE_deduct', self_DISABLE_deduct, vm.tax.self_disabled_DIS)
       // 供養父母的數目
       this.ADPNo = this.STCIn6
@@ -1744,13 +1826,16 @@ export default {
 
         // SUM
         STCOutNew[24] = STCOutNew[3] + STCOutNew[5] + STCOutNew[6] + STCOutNew[7] + STCOutNew[8] + STCOutNew[60] + STCOutNew[11] + STCOutNew[73]
-        STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct
+        // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct
+        // MOCK
+        STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + self_iang_visa_deduct
         STCOutNew[27] = this.netSelfI - STCOutNew[24]
         this.STCMainRV = 10
       } else { // === 'M'
-        // 需要分case本人收入===0 (22) 或 配偶收入===0 (24)
+        // wrong wrong wrong需要分case本人收入===0 (22) 或 配偶收入===0 (24)
+        // 需要分case本人收入===0 (24) 或 配偶收入===0 (22)
         // 有得過俾配偶，計nMin, child_count
-        if (this.STCIn3 === 0) { // taxtype === 22
+        if (this.STCIn3 === 0) { // taxtype === 24
           STCOutNew[0] = this.STCIn2
           STCOutNew[4] = this.AL_MARR + this.AAMarr
           STCOutNew[6] = this.CA[this.STCIn4]
@@ -1776,7 +1861,10 @@ export default {
             STCOutNew[11] = this.DIS_DA * this.STCIn19
           }
           STCOutNew[24] = STCOutNew[4] + STCOutNew[6] + STCOutNew[7] + STCOutNew[8] + STCOutNew[60] + STCOutNew[11] + STCOutNew[73]
-          STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+          // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+          // MOCK
+          STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + self_iang_visa_deduct
+
           STCOutNew[27] = this.netSelfI - STCOutNew[24]
           if (STCOutNew[27] < 0) {
             STCOutNew[27] = 0
@@ -1802,6 +1890,7 @@ export default {
           }
           this.STCMainRV = 22
         } else if (this.STCIn2 === 0) { // taxtype === 24
+          console.log('this.STCIn2 === 0')
           STCOutNew[1] = this.STCIn3
           STCOutNew[4] = this.AL_MARR + this.AAMarr
           STCOutNew[12] = this.CA[this.STCIn4]
@@ -1818,7 +1907,11 @@ export default {
           } else {
             STCOutNew[17] = this.DIS_DA * this.STCIn20
           }
+          // 這個是配偶的免稅額，沒有加傷殘這個
           STCOutNew[25] = STCOutNew[4] + STCOutNew[12] + STCOutNew[13] + STCOutNew[14] + STCOutNew[63] + STCOutNew[17] + STCOutNew[74]
+          // STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct
+          // MOCK
+          STCOutNew[25] = STCOutNew[25] + self_DISABLE_deduct + sps_DISABLE_deduct + self_iang_visa_deduct + sps_iang_visa_deduct
           STCOutNew[28] = this.netSpouseI - STCOutNew[25]
           if (STCOutNew[28] < 0) {
             STCOutNew[28] = 0
@@ -1915,7 +2008,9 @@ export default {
             STCOutNew[11] = this.DIS_DA * this.STCIn19
           }
           STCOutNew[24] = STCOutNew[3] + STCOutNew[6] + STCOutNew[7] + STCOutNew[8] + STCOutNew[60] + STCOutNew[11] + STCOutNew[73]
-          STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+          // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+          // MOCK
+          STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + self_iang_visa_deduct
           STCOutNew[12] = this.CA[(1 - this.nMin) * this.STCIn4]
           STCOutNew[13] = this.DBSA * (this.STCIn5 - this.oMin)
           STCOutNew[15] = (this.DPA + this.ADPA) * (this.STCIn6 - this.mMin)
@@ -1996,7 +2091,10 @@ export default {
             STCOutNew[23] = this.DIS_DA * (this.STCIn19 + this.STCIn20)
           }
           STCOutNew[26] = STCOutNew[4] + STCOutNew[18] + STCOutNew[19] + STCOutNew[20] + STCOutNew[66] + STCOutNew[23] + STCOutNew[75]
-          STCOutNew[26] = STCOutNew[26] + self_DISABLE_deduct + sps_DISABLE_deduct
+          // STCOutNew[26] = STCOutNew[26] + self_DISABLE_deduct + sps_DISABLE_deduct
+          // MOCK
+          STCOutNew[26] = STCOutNew[26] + self_DISABLE_deduct + sps_DISABLE_deduct + self_iang_visa_deduct + sps_iang_visa_deduct
+
           STCOutNew[29] = this.netJointI - STCOutNew[26]
           if (STCOutNew[29] < 0) STCOutNew[29] = 0
           // console.log('JJJJoin ', this.jointStdTP, STCOutNew[29], this.netJointI, this.STD_RATE / 100)
@@ -2016,10 +2114,16 @@ export default {
             }
             STCOutNew[17] = this.DIS_DA * ((1 - this.nMin) * (this.STCIn10 + this.STCIn22) + this.STCIn11 - this.odMin + this.STCIn13 - this.ldMin + this.STCIn12 - this.mdMin + this.STCIn20)
             STCOutNew[24] = STCOutNew[3] + STCOutNew[6] + STCOutNew[7] + STCOutNew[8] + STCOutNew[60] + STCOutNew[11] + STCOutNew[73]
-            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+            // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+            // MOCK
+            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + self_iang_visa_deduct
             STCOutNew[25] = STCOutNew[3] + STCOutNew[12] + STCOutNew[13] + STCOutNew[14] + STCOutNew[63] + STCOutNew[17] + STCOutNew[74]
+            // MOCK
+            STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
             STCOutNew[26] = STCOutNew[4] + STCOutNew[18] + STCOutNew[19] + STCOutNew[20] + STCOutNew[66] + STCOutNew[23] + STCOutNew[75]
-            STCOutNew[26] = STCOutNew[26] + self_DISABLE_deduct + sps_DISABLE_deduct
+            // STCOutNew[26] = STCOutNew[26] + self_DISABLE_deduct + sps_DISABLE_deduct
+            // MOCK
+            STCOutNew[26] = STCOutNew[26] + self_DISABLE_deduct + sps_DISABLE_deduct + self_iang_visa_deduct + sps_iang_visa_deduct
             STCOutNew[49] = STCOutNew[45] + STCOutNew[46] + STCOutNew[47] + STCOutNew[48] + this.STCIn19
             STCOutNew[54] = STCOutNew[50] + STCOutNew[51] + STCOutNew[52] + STCOutNew[53] + this.STCIn20
           } else {
@@ -2027,10 +2131,16 @@ export default {
             STCOutNew[17] = this.DIS_DA * this.STCIn20
             STCOutNew[23] = this.DIS_DA * (this.STCIn19 + this.STCIn20)
             STCOutNew[24] = STCOutNew[3] + STCOutNew[6] + STCOutNew[7] + STCOutNew[8] + STCOutNew[60] + STCOutNew[11] + STCOutNew[73]
-            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+            // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+            // MOCK
+            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + self_iang_visa_deduct
             STCOutNew[25] = STCOutNew[3] + STCOutNew[12] + STCOutNew[13] + STCOutNew[14] + STCOutNew[63] + STCOutNew[17] + STCOutNew[74]
+            // MOCK
+            STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
             STCOutNew[26] = STCOutNew[4] + STCOutNew[18] + STCOutNew[19] + STCOutNew[20] + STCOutNew[66] + STCOutNew[23] + STCOutNew[75]
-            STCOutNew[26] = STCOutNew[26] + self_DISABLE_deduct + sps_DISABLE_deduct
+            // STCOutNew[26] = STCOutNew[26] + self_DISABLE_deduct + sps_DISABLE_deduct
+            // MOCK
+            STCOutNew[26] = STCOutNew[26] + self_DISABLE_deduct + sps_DISABLE_deduct + self_iang_visa_deduct + sps_iang_visa_deduct
             STCOutNew[27] = this.netSelfI - STCOutNew[24]
             STCOutNew[28] = this.netSpouseI - STCOutNew[25]
             STCOutNew[29] = this.netJointI - STCOutNew[26]
@@ -2081,9 +2191,10 @@ export default {
             this.STCMainRV = 42
 
             STCOutNew[24] = STCOutNew[3]
-            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+            // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + self_iang_visa_deduct
             STCOutNew[25] = STCOutNew[3] + STCOutNew[12] + STCOutNew[13] + STCOutNew[14] + STCOutNew[63] + STCOutNew[17] + STCOutNew[74] + STCOutNew[6] + STCOutNew[7] + STCOutNew[8] + STCOutNew[60] + STCOutNew[11] + STCOutNew[73]
-
+            STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
             STCOutNew[27] = parseFloat(this.netSelfI) - parseFloat(STCOutNew[24]) + parseFloat(STCOutNew[78])
             if (STCOutNew[27] < 0) STCOutNew[27] = 0
             STCOutNew[28] = parseFloat(this.netSpouseI) - parseFloat(STCOutNew[25]) - parseFloat(STCOutNew[78])

@@ -641,7 +641,7 @@
         -->
 
         <modal name="new_budget" height="auto" :scrollable="true" :adaptive="true" :maxWidth="420">
-            <h3>18/19 （本課稅年度）</h3>
+            <h3>19/20 （本課稅年度）</h3>
             <p class="nb_pay" v-if="martial_status !== 'M'">你原要交：
                 <span class="pay_amt">{{ ('' + STCOut1[30]).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
             </p>
@@ -695,7 +695,7 @@
 
             <p><small>*退稅尚待有關法例通過</small></p>
 
-            <h3>19/20 （下個課稅年度）</h3>
+            <h3>20/21 （下個課稅年度）</h3>
             <p class="nb_pay" v-if="martial_status !== 'M'">預計你要交<sup>#</sup>：
                 <span class="pay_amt">{{ ('' + STCOut2[30]).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
             </p>

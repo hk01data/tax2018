@@ -37,7 +37,16 @@
                 <input id="spouse_mpf" type="number" min="0" max="999999999" v-model="spsMpf" />
                 </label>
             </div>
-
+<!-- MOCK 6.1 上限 fixed $18,000, like MPF ( 必须有入息 )-->
+            <div class="a_slide deduct">
+                <p class="item_title">{{ lang.byBook }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'book_info' }">&nbsp;</a></p>
+                <label for="self_book"><span class="label_text">{{ lang.self }}</span>
+                <input id="self_book" type="number" min="0" max="999999999" v-model="slfBook" />
+                </label>
+                <label v-if="martial_status === 'M'" for="spouse_mpf"><span class="label_text">{{ lang.spouse }}</span>
+                <input id="spouse_book" type="number" min="0" max="999999999" v-model="spsBook" />
+                </label>
+            </div>
             <div class="a_slide deduct">
                 <p class="item_title">{{ lang.eduexp }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'eduexp_info' }">&nbsp;</a></p>
                 <label for="self_eduexp"><span class="label_text">{{ lang.self }}</span>
@@ -93,13 +102,19 @@
 
         <h2 style="display: none;">Output</h2>
         <!--  onday_onday(10) -->
-        <taxNewYear v-bind:STCIn8='STCIn8' v-bind:martial_status='martial_status' v-bind:slfIncome='slfIncome' v-bind:spsIncome='spsIncome' v-bind:slfResi='slfResi' v-bind:spsResi='spsResi' v-bind:slfOE='slfOE' v-bind:spsOE='spsOE' v-bind:slfSEE='slfSEE' v-bind:spsSEE='spsSEE' v-bind:slfDona='slfDona' v-bind:spsDona='spsDona' v-bind:slfMpf='slfMpf' v-bind:spsMpf='spsMpf' v-bind:slfLoan='slfLoan' v-bind:spsLoan='spsLoan' v-bind:s_Elder_min='s_Elder_min' v-bind:s_Elder_max='s_Elder_max' v-bind:s_tooltip='s_tooltip' v-bind:slfElder='slfElder' v-bind:slfDisdep='slfDisdep' v-bind:slfERCE='slfERCE' v-bind:spsElder='spsElder' v-bind:spsDisdep='spsDisdep' v-bind:spsERCE='spsERCE' v-bind:s_bb_min='s_bb_min' v-bind:s_bb_max='s_bb_max' v-bind:NBbb='NBbb' v-bind:CAbb='CAbb' v-bind:single_parent='single_parent' v-bind:brosis_dep='brosis_dep' v-bind:resi_parent='resi_parent' v-bind:non_resi_parent='non_resi_parent' v-bind:resi_parent_5560='resi_parent_5560' v-bind:non_resi_parent_5560='non_resi_parent_5560' v-bind:NBbb_DIS='NBbb_DIS' v-bind:CAbb_DIS='CAbb_DIS' v-bind:brosis_dep_DIS='brosis_dep_DIS' v-bind:resi_parent_DIS='resi_parent_DIS' v-bind:non_resi_parent_DIS='non_resi_parent_DIS' v-bind:spouse_disabled_dependent_DIS='spouse_disabled_dependent_DIS' v-bind:STCMainRV='STCMainRV' v-bind:STCOut1='STCOut1'
+        <taxNewYear v-bind:STCIn8='STCIn8' v-bind:martial_status='martial_status' v-bind:slfIncome='slfIncome' v-bind:spsIncome='spsIncome' v-bind:slfResi='slfResi' v-bind:spsResi='spsResi' v-bind:slfOE='slfOE' v-bind:spsOE='spsOE' v-bind:slfSEE='slfSEE' v-bind:spsSEE='spsSEE' v-bind:slfDona='slfDona' v-bind:spsDona='spsDona' v-bind:spsMpf='spsMpf' v-bind:slfMpf='slfMpf' v-bind:slfBook='slfBook' v-bind:spsBook='spsBook' v-bind:slfLoan='slfLoan' v-bind:spsLoan='spsLoan' v-bind:s_Elder_min='s_Elder_min' v-bind:s_Elder_max='s_Elder_max' v-bind:s_tooltip='s_tooltip' v-bind:slfElder='slfElder' v-bind:slfDisdep='slfDisdep' v-bind:slfERCE='slfERCE' v-bind:spsElder='spsElder' v-bind:spsDisdep='spsDisdep' v-bind:spsERCE='spsERCE' v-bind:s_bb_min='s_bb_min' v-bind:s_bb_max='s_bb_max' v-bind:NBbb='NBbb' v-bind:CAbb='CAbb' v-bind:single_parent='single_parent' v-bind:brosis_dep='brosis_dep' v-bind:resi_parent='resi_parent' v-bind:non_resi_parent='non_resi_parent' v-bind:resi_parent_5560='resi_parent_5560' v-bind:non_resi_parent_5560='non_resi_parent_5560' v-bind:NBbb_DIS='NBbb_DIS' v-bind:CAbb_DIS='CAbb_DIS' v-bind:brosis_dep_DIS='brosis_dep_DIS' v-bind:resi_parent_DIS='resi_parent_DIS' v-bind:non_resi_parent_DIS='non_resi_parent_DIS' v-bind:spouse_disabled_dependent_DIS='spouse_disabled_dependent_DIS' v-bind:STCMainRV='STCMainRV' v-bind:STCOut1='STCOut1'
         v-bind:slfMedInsu='slfMedInsu'
         v-bind:spsMedInsu='spsMedInsu'
         v-bind:slfMedInsu_ppl='slfMedInsu_ppl'
         v-bind:spsMedInsu_ppl='spsMedInsu_ppl'
         v-bind:self_disabled_DIS='self_disabled_DIS'
         v-bind:sps_disabled_DIS='sps_disabled_DIS'
+        v-bind:self_iang_visa='self_iang_visa'
+        v-bind:sps_iang_visa='sps_iang_visa'
+        v-bind:slfDiseaseExp='slfDiseaseExp'
+        v-bind:spsDiseaseExp='spsDiseaseExp'
+        v-bind:slfVolunMpf='slfVolunMpf'
+        v-bind:spsVolunMpf='spsVolunMpf'
         v-bind:end='end' ></taxNewYear>
 
         <div class="additional new_add">
@@ -107,7 +122,54 @@
                 ⬇⬇⬇ 更多項目 ⬇⬇⬇
                 <!-- <img class="new_gif" src="static/img/new.gif" alt="new items"> -->
             </h2>
+            <!-- MOCK INAG visa -->
+            <div class="a_slide" v-bind:class="{ active: sh_elderly }">
+                <p class="sect_title">IANG visa 持有人免稅額<img class="new_gif" src="static/img/new.gif" alt="new items"></p>
+                <div class="cont">
 
+                    <label for="self_iang_visa">
+                        <span>你是否合持有 IANG visa？<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'self_iang_visa_info' }">&nbsp;</a></span>
+                        <div class="switch_cont">
+                            <span class="yn">否</span>
+                            <switches v-model="self_iang_visa" theme="bootstrap" color="primary"></switches>
+                            <span class="yn">是</span>
+                            <!-- <input id="self_disabled_DIS" type="number" v-model="self_disabled_DIS" /> <!- -  STCIn9 -->
+                        </div>
+                    </label>
+
+                    <label v-if="martial_status === 'M'" for="sps_iang_visa">
+                        <span>你配偶是否合持有 IANG visa？<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'sps_iang_visa_info' }">&nbsp;</a></span>
+                        <div class="switch_cont">
+                            <span class="yn">否</span>
+                            <switches v-model="sps_iang_visa" theme="bootstrap" color="primary"></switches>
+                            <span class="yn">是</span>
+                            <!-- <input id="sps_disabled_DIS" type="number" v-model="sps_disabled_DIS" /> <!- -  STCIn9 -->
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <!-- MOCK adding number type item and the amount have limitation -->
+            <div v-if="true" class="a_slide" v-bind:class="{ active: sh_elderly }">
+                <p class="sect_title">【武漢肺炎】防疫開支<img class="new_gif" src="static/img/new.gif" alt="new items"></p>
+                <div class="cont">
+                    <p class="item_title" v-if="martial_status === 'M'">{{ lang.self + '負責' }}</p>
+
+                    <label for="slfDiseaseExp">
+                        <span class="label_text">金額</span>
+                        <span v-if="martial_status === 'S'"><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'single_disease_expense_info' }">&nbsp;</a></span>
+                        <a v-else href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'slf_disease_expense_info' }">&nbsp;</a>
+                        <input id="slfDiseaseExp" type="number" min="0" max="999999999" v-model="slfDiseaseExp" />
+                    </label>
+                
+                    <div class="cont_sps" v-if="martial_status === 'M'">
+                        <p class="item_title" v-if="martial_status === 'M'">{{ lang.spouse + '負責' }}</p>
+                        <label for="spsDiseaseExp"><span class="label_text">金額</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'sps_disease_expense_info' }">&nbsp;</a>
+                        <input id="spsDiseaseExp" type="number" min="0" max="999999999" v-model="spsDiseaseExp" />
+                        </label>
+                    </div>
+
+                </div>
+            </div>
             <div class="a_slide" v-bind:class="{ active: sh_elderly }">
                 <p class="sect_title">傷殘人士免稅額</p>
                 <div class="cont">
@@ -133,17 +195,36 @@
                     </label>
                 </div>
             </div>
+            <div v-if="true" class="a_slide" v-bind:class="{ active: sh_elderly }">
+                <p class="sect_title">年金保費及強積金自願性供款</p>
+                <div class="cont">
+                    <p class="item_title" v-if="martial_status === 'M'">{{ lang.self + '負責' }}</p>
+
+                    <label for="slfVolunMpf"><span class="label_text">金額</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'volunMpf_info' }">&nbsp;</a>
+                    <input id="slfVolunMpf" type="number" min="0" max="999999999" v-model="slfVolunMpf" />
+                    </label>
+                
+                    <div class="cont_sps" v-if="martial_status === 'M'">
+                        <p class="item_title" v-if="martial_status === 'M'">{{ lang.spouse + '負責' }}</p>
+
+                        <label for="spsVolunMpf"><span class="label_text">金額</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'volunMpf_info2' }">&nbsp;</a>
+                        <input id="spsVolunMpf" type="number" min="0" max="999999999" v-model="spsVolunMpf" />
+                        </label>
+                    </div>
+
+                </div>
+            </div>
 
 
-            <div v-if="false" class="a_slide" v-bind:class="{ active: sh_elderly }">
-                <p class="sect_title">醫療保險開支</p>
+            <div v-if="true" class="a_slide" v-bind:class="{ active: sh_elderly }">
+                <p class="sect_title">合資格自願醫保計劃保單保費</p>
                 <div class="cont">
                     <p class="item_title" v-if="martial_status === 'M'">{{ lang.self + '負責' }}</p>
                     <label for="slfMedInsu_ppl"><span class="label_text lbl_large">你為多少人交醫療保險費？（包括自己）</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_info' }">&nbsp;</a>
                     <quantity v-bind:min="s_MedicInsu_min" v-bind:max="s_MedicInsu_max" v-model="slfMedInsu_ppl" v-on:drag-end=""></quantity>
                     </label>
 
-                    <label v-if="slfMedInsu_ppl > 0" for="slfMedInsu"><span class="label_text">每年醫療保險總開支</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_amt_info' }">&nbsp;</a>
+                    <label v-if="slfMedInsu_ppl > 0" for="slfMedInsu"><span class="label_text">每年醫療保險總開支</span>
                     <input id="slfMedInsu" type="number" min="0" max="999999999" v-model="slfMedInsu" />
                     </label>
                 
@@ -162,18 +243,79 @@
             </div>
 
             <div v-if="false" class="a_slide" v-bind:class="{ active: sh_elderly }">
-                <p class="sect_title">醫療保險開支<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_info' }">&nbsp;</a></p>
+                <p class="sect_title">合資格自願醫保計劃保單保費<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_info' }">&nbsp;</a></p>
                 <div class="cont">
 
-                    <label for="self_medic_insu"><span class="label_text">{{ lang.self }}</span>
-                    <input id="self_medic_insu" type="number" min="0" max="5000" v-model="slfMedInsu" />
+                    <label for="self_medic_insu"><span class="label_text lbl_large">{{ lang.self }}</span>
+                    <input id="self_medic_insu" type="number" min="0" max="8000" v-model="slfMedInsu" />
                     </label>
-                    <label v-if="martial_status === 'M'" for="spouse_medic_insu"><span class="label_text">{{ lang.spouse }}</span>
-                    <input id="spouse_medic_insu" type="number" min="0" max="5000" v-model="spsMedInsu" />
+                    <label v-if="martial_status === 'M'" for="spouse_medic_insu"><span class="label_text lbl_large">{{ lang.spouse }}</span>
+                    <input id="spouse_medic_insu" type="number" min="0" max="8000" v-model="spsMedInsu" />
                     </label>
                 </div>
             </div>
         </div>
+
+            <!-- <div v-if="true" class="a_slide" v-bind:class="{ active: sh_elderly }">
+                <p class="sect_title">年金保費及強積金自願性供款<sup>#</sup><img class="new_gif" src="static/img/new.gif" alt="new items"></p>
+                <div class="cont">
+                    <p class="item_title" v-if="martial_status === 'M'">{{ lang.self + '負責' }}</p>
+
+                    <label for="slfVolunMpf"><span class="label_text">金額</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'volunMpf_info' }">&nbsp;</a>
+                    <input id="slfVolunMpf" type="number" min="0" max="999999999" v-model="slfVolunMpf" />
+                    </label>
+                
+                    <div class="cont_sps" v-if="martial_status === 'M'">
+                        <p class="item_title" v-if="martial_status === 'M'">{{ lang.spouse + '負責' }}</p>
+
+                        <label for="spsVolunMpf"><span class="label_text">金額</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'volunMpf_info2' }">&nbsp;</a>
+                        <input id="spsVolunMpf" type="number" min="0" max="999999999" v-model="spsVolunMpf" />
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div v-if="true" class="a_slide" v-bind:class="{ active: sh_elderly }">
+                <p class="sect_title">合資格自願醫保計劃保單保費<img class="new_gif" src="static/img/new.gif" alt="new items"></p>
+                <div class="cont">
+                    <p class="item_title" v-if="martial_status === 'M'">{{ lang.self + '負責' }}</p>
+                    <label for="slfMedInsu_ppl"><span class="label_text lbl_large">你為多少人交醫療保險費？（包括自己）</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_info' }">&nbsp;</a>
+                    <quantity v-bind:min="s_MedicInsu_min" v-bind:max="s_MedicInsu_max" v-model="slfMedInsu_ppl" v-on:drag-end=""></quantity>
+                    </label>
+
+                    <label v-if="slfMedInsu_ppl > 0" for="slfMedInsu"><span class="label_text">每年醫療保險總開支</span>
+                    <input id="slfMedInsu" type="number" min="0" max="999999999" v-model="slfMedInsu" />
+                    </label>
+                
+                    <div class="cont_sps" v-if="martial_status === 'M'">
+                        <p class="item_title" v-if="martial_status === 'M'">{{ lang.spouse + '負責' }}</p>
+                        <label for="spsMedInsu_ppl"><span class="label_text lbl_large">你為多少人交醫療保險費？（包括自己）</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_info' }">&nbsp;</a>
+                        <quantity v-bind:min="s_MedicInsu_min" v-bind:max="s_MedicInsu_max" v-model="spsMedInsu_ppl"></quantity>
+                        </label>
+
+                        <label v-if="spsMedInsu_ppl > 0" for="spsMedInsu"><span class="label_text">每年醫療保險總開支</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_amt_info' }">&nbsp;</a>
+                        <input id="spsMedInsu" type="number" min="0" max="999999999" v-model="spsMedInsu" />
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div v-if="false" class="a_slide" v-bind:class="{ active: sh_elderly }">
+                <p class="sect_title">合資格自願醫保計劃保單保費<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_info' }">&nbsp;</a></p>
+                <div class="cont">
+
+                    <label for="self_medic_insu"><span class="label_text lbl_large">{{ lang.self }}</span>
+                    <input id="self_medic_insu" type="number" min="0" max="8000" v-model="slfMedInsu" />
+                    </label>
+                    <label v-if="martial_status === 'M'" for="spouse_medic_insu"><span class="label_text lbl_large">{{ lang.spouse }}</span>
+                    <input id="spouse_medic_insu" type="number" min="0" max="8000" v-model="spsMedInsu" />
+                    </label>
+                </div>
+            </div>
+        </div> -->
 
 
         <div class="additional">
@@ -320,6 +462,7 @@
         </div>
 
         <div class="footer">
+            <p># 2019/20年度新增兩個稅務扣減項目，分別是自願醫保保費，以及年金及強積金自願供款。當中年金及強積金自願供款扣減尚待立法會通過相關條例，該扣除上限為每人每年60,000元。</p>
             <p>本計稅機不會收集任何可追溯到用戶身分的資料，上述結果乃根據讀者輸入的資料計算，僅適合香港居民計算其應繳之薪俸稅或個人入息課稅稅款，結果或與實際數目有出入，僅供讀者作參考之用。詳情可參考<a href="https://www.ird.gov.hk/" target="_blank">稅務局網站</a>所載資料。</p>
             <p>資料來源：稅務局、18/19及19/20年度財政預算案</p>
         </div>
@@ -942,10 +1085,13 @@
         <p>上限$100,000<a href="http://www.gov.hk/tc/residents/taxes/salaries/allowances/deductions/selfeducation.htm" target="_blank">（詳情）</a></p>
     </div>
     <div class="tool_tips" id="donation_info">
-        <p><span v-if="martial_status !== 'M'">上限為入息35%</span><span v-if="martial_status === 'M'">上限為入息35%，你可把餘下的慈善捐款數額於配偶一方內輸入</span><a href="http://www.gov.hk/tc/residents/taxes/salaries/allowances/deductions/approveddonation.htm" target="_blank">（詳情）</a></p>
+        <p><span v-if="martial_status !== 'M'">下限$100, 上限為入息35%</span><span v-if="martial_status === 'M'">下限$100, 上限為入息35%，你可把餘下的慈善捐款數額於配偶一方內輸入</span><a href="http://www.gov.hk/tc/residents/taxes/salaries/allowances/deductions/approveddonation.htm" target="_blank">（詳情）</a></p>
     </div>
     <div class="tool_tips" id="mpf_info">
-        <p>課稅年度內的總供款；上限$18,000，另政府正研究延期年金產品的供款扣稅<a href="http://www.ird.gov.hk/chi/pdf/pam38c.pdf" target="_blank">（詳情）</a></p>
+        <p>課稅年度內的總供款；上限$18,000<a href="http://www.ird.gov.hk/chi/pdf/pam38c.pdf" target="_blank">（詳情）</a>。</p>
+    </div>
+    <div class="tool_tips" id="book_info">
+        <p>課稅年度內的總支出；上限$10,000<a href="http://www.ird.gov.hk/chi/pdf/pam38c.pdf" target="_blank">（詳情）</a>。</p>
     </div>
     <div class="tool_tips" id="homeloan_info">
         <p>只供業主作答；上限$100,000<a href="http://www.gov.hk/tc/residents/taxes/salaries/allowances/deductions/homeloan.htm" target="_blank">（詳情）</a></p>
@@ -954,7 +1100,7 @@
         <p>上限為入息10%<a href="http://www.gov.hk/tc/residents/taxes/salaries/salariestax/chargeable/residence.htm" target="_blank">（詳情）</a></p>
     </div>
     <div class="tool_tips" id="medic_insu_info">
-        <p>市民為自己或受養人購買合資格自願醫保產品可享扣稅，每年每名受保人扣減保費上限為$8,000；可扣稅的受養人數並無限制。措施料於19／20財政年度推出<a href="https://www.hk01.com/article/163824" target="_blank">（詳情）</a></p>
+        <p>合資格自願醫保計劃保單保費，每名受保人上限$8,000，<a href="https://www.ird.gov.hk/chi/ppr/archives/18103103.htm" target="_blank">（詳情）</a></p>
     </div>
     <div class="tool_tips" id="medic_insu_amt_info">
         <p>假設每份保單年供款低於$8,000<a href="https://www.budget.gov.hk/2018/chi/index.html" target="_blank">（詳情）</a></p>
@@ -967,7 +1113,7 @@
         <p>上限：4人</p>
     </div>
     <div class="tool_tips" id="eldresi_amt_info">
-        <p>每位受養人上限$100,000</p>
+        <p>每位受養人上限$120,000</p>
     </div>
     <div class="tool_tips" id="eldresi_amt_info_2">
         <p>每位受養人上限$100,000</p>
@@ -991,15 +1137,33 @@
         <p>上限：4人</p>
     </div>
     <div class="tool_tips" id="self_DIS_info">
-        <p>18／19預算案新增$75,000免稅額</p>
+        <p>18／19預算案新增$75,000免稅額(你需要有入息)</p>
     </div>
     <div class="tool_tips" id="sps_DIS_info">
-        <p>18／19預算案新增$75,000免稅額</p>
+        <p>18／19預算案新增$75,000免稅額(配偶需要有入息)</p>
     </div>
-
-    
-   
-    
+    <div class="tool_tips" id="sps_iang_visa_info">
+        <p>20／21預算案新增$75,000免稅額(配偶需要有入息)</p>
+    </div>
+    <div class="tool_tips" id="self_iang_visa_info">
+        <p>20／21預算案新增$75,000免稅額(你需要有入息)</p>
+    </div>
+    <!-- MOCK adding number type item and the amount have limitation -->
+    <div class="tool_tips" id="single_disease_expense_info">
+        <p>20／21預算案新增$6,000免稅額(你需要有入息)</p>
+    </div>
+    <div class="tool_tips" id="slf_disease_expense_info">
+        <p>20／21預算案新增$6,000免稅額(你需要有入息)；政府亦建議須繳稅的夫婦之間可分配防疫開支，以申請合共12,000元的扣除總額；</p>
+    </div>
+    <div class="tool_tips" id="sps_disease_expense_info">
+        <p>20／21預算案新增$6,000免稅額(配偶需要有入息)；政府亦建議須繳稅的夫婦之間可分配防疫開支，以申請合共12,000元的扣除總額；</p>
+    </div>
+    <div class="tool_tips" id="volunMpf_info">
+        <p>年金保費及強積金自願性供款，每名受保人上限$60,000；政府亦建議須繳稅的夫婦之間可分配延期年金保費的稅務扣除，以申請合共120,000元的扣除總額；</p>
+    </div>
+    <div class="tool_tips" id="volunMpf_info2">
+        <p>年金保費及強積金自願性供款，每名受保人上限$60,000；政府亦建議須繳稅的夫婦之間可分配延期年金保費的稅務扣除，以申請合共120,000元的扣除總額；</p>
+    </div>
   </div>
 </template>
 
