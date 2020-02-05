@@ -2154,7 +2154,7 @@ export default {
         // MOCK
         this.slfBook = 0
         this.slfDiseaseExp = 0
-        // this.slfLoan = 0
+        this.slfLoan = 0
         // ErrMsg('由於你沒有入息，因此你不能扣除居所貸款利息。')
       }
       if (this.spsNCI > 0) {
@@ -2171,7 +2171,7 @@ export default {
         this.spsMpf = 0
         // MOCK
         this.spsBook = 0
-        // this.spsLoan = 0
+        this.spsLoan = 0
         // ErrMsg('由於你們沒有入息，因此你們不能扣除居所貸款利息。')
       }
       this.STCIn2 = parseFloat(this.slfIncome) + parseFloat(this.slfResi)
