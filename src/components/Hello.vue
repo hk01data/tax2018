@@ -43,7 +43,7 @@
                 <label for="self_book"><span class="label_text">{{ lang.self }}</span>
                 <input id="self_book" type="number" min="0" max="999999999" v-model="slfBook" />
                 </label>
-                <label v-if="martial_status === 'M'" for="spouse_mpf"><span class="label_text">{{ lang.spouse }}</span>
+                <label v-if="martial_status === 'M'" for="spouse_book"><span class="label_text">{{ lang.spouse }}</span>
                 <input id="spouse_book" type="number" min="0" max="999999999" v-model="spsBook" />
                 </label>
             </div>

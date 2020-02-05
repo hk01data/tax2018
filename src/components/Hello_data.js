@@ -1195,6 +1195,7 @@ export default {
       // vm.ChkDD(7)
     },
     BOOKT12OnBlur () {
+      console.log('ui update')
       var vm = this
       var Income, obj, MustReset, ValueResidence
       MustReset = false
@@ -1202,7 +1203,7 @@ export default {
       if (Income === '*') {
         // ErrMsg('你輸入的數值不正確 !')
         MustReset = true
-        vm.spsBook = 0
+        // vm.spsBook = 0
         Income = 0
       } else if (Income === '+') {
         // ErrMsg('你不可輸入超過 9 位數字的數值 !')
