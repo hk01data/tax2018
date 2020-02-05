@@ -1026,7 +1026,9 @@ export default {
       if (IsNIL(vm.tax.slfIncome) && spsHasIncome) {
         if (NotNIL(vm.tax.slfDona) || NotNIL(vm.tax.slfERCE) || vm.tax.slfElder > 0 || vm.tax.slfDisdep > 0) {
           ClrTxt(vm.tax.slfDona)
+          console.log('vm.tax.slfDona')
           ClrTxt(vm.tax.slfERCE)
+          console.log('vm.tax.slfERCE')
           vm.tax.slfElder = 0
           vm.tax.slfDisdep = 0
           MsgID = 2.8
@@ -1040,12 +1042,17 @@ export default {
       if (IsNIL(vm.tax.slfIncome)) {
         if (NotNIL(vm.tax.slfDona) || NotNIL(vm.tax.slfSEE) || NotNIL(vm.tax.slfERCE) || NotNIL(vm.tax.slfMpf) || vm.tax.slfElder > 0 || vm.tax.slfDisdep > 0 || NotNIL(vm.tax.slfOE)) {
           ClrTxt(vm.tax.slfDona)
+          console.log('vm.tax.slfDona')
           ClrTxt(vm.tax.slfSEE)
+          console.log('vm.tax.slfSEE')
           ClrTxt(vm.tax.slfERCE)
+          console.log('vm.tax.slfERCE')
           vm.tax.slfElder = 0
           vm.tax.slfDisdep = 0
           ClrTxt(vm.tax.slfMpf)
+          console.log('vm.tax.slfMpf')
           ClrTxt(vm.tax.slfOE)
+          console.log('vm.tax.slfOE')
           MsgID = 2
           slfDDreseted = true
         }
@@ -1057,12 +1064,17 @@ export default {
       if (IsNIL(vm.tax.spsIncome)) {
         if (NotNIL(vm.tax.spsDona) || NotNIL(vm.tax.spsSEE) || NotNIL(vm.tax.spsERCE) || NotNIL(vm.tax.spsLoan) || vm.tax.spsElder > 0 || vm.tax.spsDisdep > 0 || NotNIL(vm.tax.spsOE)) {
           ClrTxt(vm.tax.spsDona)
+          console.log('vm.tax.spsDona')
           ClrTxt(vm.tax.spsSEE)
+          console.log('vm.tax.spsSEE')
           ClrTxt(vm.tax.spsERCE)
+          console.log('vm.tax.spsERCE')
           vm.tax.spsElder = 0
           vm.tax.spsDisdep = 0
           ClrTxt(vm.tax.spsLoan)
+          console.log('vm.tax.spsLoan')
           ClrTxt(vm.tax.spsOE)
+          console.log('vm.tax.spsOE')
           if (vm.tax.martial_status === 'S') { // Single ?
             MsgID = 4
           } else {
@@ -1205,7 +1217,7 @@ export default {
         } else {
           v1 = iv
         }
-        console.log('slfSEE', vm.tax.slfSEE, v1, iv, vm.LimD_Education)
+        // console.log('slfSEE', vm.tax.slfSEE, v1, iv, vm.LimD_Education)
         vm.tax.slfSEE = SetTxt(vm.tax.slfSEE, v1)
       }
       if (NotNIL(vm.tax.spsSEE)) {
@@ -1247,6 +1259,7 @@ export default {
       if (NotNIL(vm.tax.spsLoan)) {
         if (vm.tax.martial_status === 'S') { // Single ?
           MsgID = 4
+          console.log('vm.tax.spsLoan')
           ClrTxt(vm.tax.spsLoan)
         } else {
           iv = vm.FormatInput(vm.tax.spsLoan, 0, vm.LimD_HomeLoan)
@@ -1335,7 +1348,7 @@ export default {
           } else {
             vm.oT11 = v1
           }
-          console.log('slfMpf', vm.tax.slfMpf, v1, uv)
+          // console.log('slfMpf', vm.tax.slfMpf, v1, uv)
           vm.tax.slfMpf = SetTxt(vm.tax.slfMpf, v1)
         }
       }
@@ -1623,22 +1636,22 @@ export default {
       this.STCIn11 = isNaN(parseFloat(vm.tax.brosis_dep_DIS)) ? 0 : parseFloat(vm.tax.brosis_dep_DIS)
       this.STCIn12 = isNaN(parseFloat(vm.tax.resi_parent_DIS)) ? 0 : parseFloat(vm.tax.resi_parent_DIS)
       this.STCIn13 = isNaN(parseFloat(vm.tax.non_resi_parent_DIS)) ? 0 : parseFloat(vm.tax.non_resi_parent_DIS)
-      vm.tax.slfOE = isNaN(parseFloat(vm.tax.slfOE)) ? 0 : parseFloat(vm.tax.slfOE)
-      vm.tax.spsOE = isNaN(parseFloat(vm.tax.spsOE)) ? 0 : parseFloat(vm.tax.spsOE)
-      // if (vm.tax.slfOE > this.STCIn2) {
-      //   vm.tax.slfOE = this.STCIn2
-      // }
-      // if (vm.tax.spsOE > this.STCIn3) {
-      //   vm.tax.spsOE = this.STCIn3
-      // }
-      vm.tax.slfSEE = isNaN(parseFloat(vm.tax.slfSEE)) ? 0 : parseFloat(vm.tax.slfSEE)
-      // if (vm.tax.slfSEE > (this.STCIn2 - vm.tax.slfOE)) {
-      //   vm.tax.slfSEE = this.STCIn2 - vm.tax.slfOE
-      // }
-      vm.tax.spsSEE = isNaN(parseFloat(vm.tax.spsSEE)) ? 0 : parseFloat(vm.tax.spsSEE)
-      // if (vm.tax.spsSEE > (this.STCIn3 - vm.tax.spsOE)) {
-      //   vm.tax.spsSEE = this.STCIn3 - vm.tax.spsOE
-      // }
+      // vm.tax.slfOE = isNaN(parseFloat(vm.tax.slfOE)) ? 0 : parseFloat(vm.tax.slfOE)
+      // vm.tax.spsOE = isNaN(parseFloat(vm.tax.spsOE)) ? 0 : parseFloat(vm.tax.spsOE)
+      if (vm.tax.slfOE > this.STCIn2) {
+        vm.tax.slfOE = this.STCIn2
+      }
+      if (vm.tax.spsOE > this.STCIn3) {
+        vm.tax.spsOE = this.STCIn3
+      }
+      // vm.tax.slfSEE = isNaN(parseFloat(vm.tax.slfSEE)) ? 0 : parseFloat(vm.tax.slfSEE)
+      if (vm.tax.slfSEE > (this.STCIn2 - vm.tax.slfOE)) {
+        vm.tax.slfSEE = this.STCIn2 - vm.tax.slfOE
+      }
+      // vm.tax.spsSEE = isNaN(parseFloat(vm.tax.spsSEE)) ? 0 : parseFloat(vm.tax.spsSEE)
+      if (vm.tax.spsSEE > (this.STCIn3 - vm.tax.spsOE)) {
+        vm.tax.spsSEE = this.STCIn3 - vm.tax.spsOE
+      }
 
       if (vm.tax.slfOE + vm.tax.slfSEE > this.STCIn2) {
         vm.tax.slfOE = this.STCIn2 - vm.tax.slfSEE
@@ -1661,8 +1674,17 @@ export default {
       this.STCIn15 = this.STCIn15 + parseFloat(vm.tax.spsBook)
 
       // 扣稅總額 MOCK disease Expense
-      this.STCIn14 = this.STCIn14 + parseFloat(vm.tax.slfDiseaseExp)
-      this.STCIn15 = this.STCIn15 + parseFloat(vm.tax.spsDiseaseExp)
+      var slfDiseaseExp = parseFloat(vm.tax.slfDiseaseExp)
+      var spsDiseaseExp = parseFloat(vm.tax.spsDiseaseExp)
+      if (slfDiseaseExp > 6000) {
+        slfDiseaseExp = 6000
+      }
+      if (spsDiseaseExp > 6000) {
+        spsDiseaseExp = 6000
+      }
+      var sumDiseaseExp = slfDiseaseExp + spsDiseaseExp
+      this.STCIn14 = this.STCIn14 + parseFloat(slfDiseaseExp)
+      this.STCIn15 = this.STCIn15 + parseFloat(spsDiseaseExp)
 
       // 扣稅總額: 年金、強積金自願供款 => 分開評稅
       var slfVolunMpf = parseFloat(vm.tax.slfVolunMpf) // onday_onday(7)
@@ -1699,7 +1721,7 @@ export default {
       // 扣稅總額: 年金、強積金自願供款 => 合併評稅
       this.STCIn16 = this.STCIn16 + parseFloat(sumVolunMpf) // onday_onday(7)
       // 扣稅總額 MOCK disease Expense
-      this.STCIn16 = this.STCIn16 + parseFloat(vm.tax.slfDiseaseExp) + parseFloat(vm.tax.spsDiseaseExp)
+      this.STCIn16 = this.STCIn16 + parseFloat(sumDiseaseExp)
 
       this.STCIn17 = parseInt(vm.tax.resi_parent_5560, 10)
       this.STCIn18 = parseInt(vm.tax.non_resi_parent_5560, 10)

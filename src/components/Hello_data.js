@@ -664,9 +664,11 @@ export default {
       this.STCOut1_func(this.infin_update)
     },
     slfDiseaseExp: function (val) {
+      this.slfDiseaseOnBlur()
       this.STCOut1_func(this.infin_update)
     },
     spsDiseaseExp: function (val) {
+      this.spsDiseaseOnBlur()
       this.STCOut1_func(this.infin_update)
     }
   },
@@ -1147,7 +1149,7 @@ export default {
         Income = vm.LimD_MPF
       }
       vm.slfMpf = Income
-      vm.ChkDD(7)
+      // vm.ChkDD(7)
     },
     T12OnBlur () {
       var vm = this
@@ -1171,7 +1173,7 @@ export default {
         Income = vm.LimD_MPF
       }
       vm.spsMpf = Income
-      vm.ChkDD(8)
+      // vm.ChkDD(8)
     },
     BOOKT11OnBlur () {
       var vm = this
@@ -1190,19 +1192,14 @@ export default {
         Income = vm.LimD_BOOK
       }
       vm.slfBook = Income
-      vm.ChkDD(7)
+      // vm.ChkDD(7)
     },
     BOOKT12OnBlur () {
       var vm = this
       var Income, obj, MustReset, ValueResidence
       MustReset = false
       Income = vm.FormatInput(vm.spsBook, 0, vm.LimD_BOOK)
-      if (vm.martial_status === 'S' && Income !== '0') {
-        // ErrMsg('由於你並非已婚人士，因此你不能輸入配偶的入息。')
-        MustReset = true
-        // vm.spsMpf = 0
-        Income = 0
-      } else if (Income === '*') {
+      if (Income === '*') {
         // ErrMsg('你輸入的數值不正確 !')
         MustReset = true
         vm.spsBook = 0
@@ -1214,7 +1211,7 @@ export default {
         Income = vm.LimD_BOOK
       }
       vm.spsBook = Income
-      vm.ChkDD(8)
+      // vm.ChkDD(8)
     },
     Dona11OnBlur () {
       var vm = this
@@ -1423,6 +1420,59 @@ export default {
       vm.spsVolunMpf = Income
       vm.ChkDD(0)
     },
+    slfDiseaseOnBlur () {
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      var Limit = 60000
+
+      var slfDisease = parseFloat(vm.slfDiseaseExp)
+      console.log(`---slfDisease expense`, slfDisease)
+      // var uperLim = Math.floor(CDbl(vm.slfIncome) / 1000)
+
+      if (slfDisease > 60000) {
+        slfDisease = 60000
+      }
+      Income = vm.FormatInput(slfDisease, 0, 99999999)
+      if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        vm.slfDiseaseExp = 0
+        Income = 0
+      } else if (Income === '+') {
+        MustReset = true
+        vm.slfDiseaseExp = Limit
+        Income = Limit
+      }
+      console.log(Income)
+      vm.slfDiseaseExp = Income
+      vm.ChkDD(0)
+    },
+    spsDiseaseOnBlur () {
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      var Limit = 60000
+
+      var spsDisease = parseFloat(vm.spsDiseaseExp)
+      console.log(`---slfDisease expense`, spsDisease)
+
+      if (spsDisease > 60000) {
+        spsDisease = 60000
+      }
+      Income = vm.FormatInput(spsDisease, 0, 99999999)
+      if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        vm.spsDiseaseExp = 0
+        Income = 0
+      } else if (Income === '+') {
+        MustReset = true
+        vm.spsDiseaseExp = Limit
+        Income = Limit
+      }
+      console.log(Income)
+      vm.spsDiseaseExp = Income
+      vm.ChkDD(0)
+    },
     self_disabled_DISOnBlur () {
       //
     },
@@ -1440,9 +1490,13 @@ export default {
       if (IsNIL(vm.slfIncome) && spsHasIncome) {
         if (NotNIL(vm.slfDona) || NotNIL(vm.slfDona_restrict) || NotNIL(vm.slfERCE) || NotNIL(vm.slfERCE_forCompute) || vm.slfElder > 0 || vm.slfDisdep > 0) {
           ClrTxt(vm.slfDona)
+          console.log('ClrTxt(')
           ClrTxt(vm.slfDona_restrict)
+          console.log('ClrTxt(')
           ClrTxt(vm.slfERCE)
+          console.log('ClrTxt(')
           ClrTxt(vm.slfERCE_forCompute)
+          console.log('ClrTxt(')
           vm.slfElder = 0
           vm.slfDisdep = 0
           MsgID = 2.8
@@ -1456,16 +1510,24 @@ export default {
       if (IsNIL(vm.slfIncome)) {
         if (NotNIL(vm.slfDona) || NotNIL(vm.slfDona_restrict) || NotNIL(vm.slfSEE) || NotNIL(vm.slfERCE) || NotNIL(vm.slfERCE_forCompute) || NotNIL(vm.slfMpf) || vm.slfElder > 0 || vm.slfDisdep > 0 || NotNIL(vm.slfOE)) {
           ClrTxt(vm.slfDona)
+          console.log('ClrTxt(')
           ClrTxt(vm.slfDona_restrict)
+          console.log('ClrTxt(')
           ClrTxt(vm.slfSEE)
+          console.log('ClrTxt(')
           ClrTxt(vm.slfERCE)
+          console.log('ClrTxt(')
           ClrTxt(vm.slfERCE_forCompute)
+          console.log('ClrTxt(')
           vm.slfElder = 0
           vm.slfDisdep = 0
           ClrTxt(vm.slfMpf)
+          console.log('ClrTxt(')
           // MOCK BOOK
           ClrTxt(vm.slfBook)
+          console.log('ClrTxt(')
           ClrTxt(vm.slfOE)
+          console.log('ClrTxt(')
           MsgID = 2
           slfDDreseted = true
         }
@@ -1477,14 +1539,21 @@ export default {
       if (IsNIL(vm.spsIncome)) {
         if (NotNIL(vm.spsDona) || NotNIL(vm.spsDona_restrict) || NotNIL(vm.spsSEE) || NotNIL(vm.spsERCE) || NotNIL(vm.spsERCE_forCompute) || NotNIL(vm.spsLoan) || vm.spsElder > 0 || vm.spsDisdep > 0 || NotNIL(vm.spsOE)) {
           ClrTxt(vm.spsDona)
+          console.log('ClrTxt(')
           ClrTxt(vm.spsDona_restrict)
+          console.log('ClrTxt(')
           ClrTxt(vm.spsSEE)
+          console.log('ClrTxt(')
           ClrTxt(vm.spsERCE)
+          console.log('ClrTxt(')
           ClrTxt(vm.spsERCE_forCompute)
+          console.log('ClrTxt(')
           vm.spsElder = 0
           vm.spsDisdep = 0
           ClrTxt(vm.spsLoan)
+          console.log('ClrTxt(')
           ClrTxt(vm.spsOE)
+          console.log('ClrTxt(')
           if (vm.martial_status === 'S') { // Single ?
             MsgID = 4
           } else {
@@ -1672,6 +1741,7 @@ export default {
         if (vm.martial_status === 'S') { // Single ?
           MsgID = 4
           ClrTxt(vm.spsLoan)
+          console.log('ClrTxt(')
         } else {
           iv = vm.FormatInput(vm.spsLoan, 0, vm.LimD_HomeLoan)
           a = vm.FormatInput(vm.spsLoan, 0, 99999999999)
@@ -2083,6 +2153,7 @@ export default {
         this.slfMpf = 0
         // MOCK
         this.slfBook = 0
+        this.slfDiseaseExp = 0
         // this.slfLoan = 0
         // ErrMsg('由於你沒有入息，因此你不能扣除居所貸款利息。')
       }
