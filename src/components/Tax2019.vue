@@ -716,32 +716,32 @@
             </p>
 
             <p class="nb_save a1" v-if="martial_status !== 'M'" v-bind:class="{ less: STCOut2[30] - STCOut1[30] < 0 }">
-                <small>（較18/19年度少交） <span class="save_amt">{{ ('' + (STCOut2[30] - STCOut1[30])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
+                <small>（較19/20年度少交） <span class="save_amt">{{ ('' + (STCOut2[30] - STCOut1[30])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
                 <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br>
                 </small>
             </p>
             <p class="nb_save a2" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome === 0" v-bind:class="{ }">
-                <small>（較18/19年度少交） <span class="save_amt">0元</span>
+                <small>（較19/20年度少交） <span class="save_amt">0元</span>
                 <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br>
                 </small>
             </p>
             <p class="nb_save a3" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome !== 0" v-bind:class="{ }">
-                <small>（較18/19年度少交） <span class="save_amt">{{ ('' + (STCOut2[30] - STCOut1[30])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元（分開評稅）</span>
+                <small>（較19/20年度少交） <span class="save_amt">{{ ('' + (STCOut2[30] - STCOut1[30])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元（分開評稅）</span>
                 <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br>
                 </small>
             </p>
             <p class="nb_save a4" v-if="martial_status === 'M' && slfIncome === 0 && spsIncome !== 0" v-bind:class="{  }">
-                <small>（較18/19年度少交） <span class="save_amt">{{ ('' + (STCOut2[31] - STCOut1[31])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元（分開評稅）</span>
+                <small>（較19/20年度少交） <span class="save_amt">{{ ('' + (STCOut2[31] - STCOut1[31])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元（分開評稅）</span>
                 <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br>
                 </small>
             </p>
             <p class="nb_save a5" v-if="martial_status === 'M' && !only_one_income" v-bind:class="{ less: STCOut2[32] - STCOut1[32] < 0 }">
-                <small>（較18/19年度少交） <span class="save_amt">{{ ('' + (min_saved)).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
+                <small>（較19/20年度少交） <span class="save_amt">{{ ('' + (min_saved)).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
                 <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br>
                 </small>
             </p>
 
-            <p><small>#根據18/19年度資料及19/20財政預算案公布措施推算</small></p>
+            <p><small>#根據19/20年度資料及20/21財政預算案公布措施推算</small></p>
 
 
             <div v-if="show_changes" class="tax_changes">
@@ -749,9 +749,9 @@
                     <tbody>
                         <tr>
                             <td width="*">一齊睇睇慳咗喺邊：</td>
-                            <td width="20%">18/19年度</td>
-                            <td width="16">&nbsp;</td>
                             <td width="20%">19/20年度</td>
+                            <td width="16">&nbsp;</td>
+                            <td width="20%">20/21年度</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>

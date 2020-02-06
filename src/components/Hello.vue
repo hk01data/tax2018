@@ -1085,7 +1085,7 @@
         <p>上限$100,000<a href="http://www.gov.hk/tc/residents/taxes/salaries/allowances/deductions/selfeducation.htm" target="_blank">（詳情）</a></p>
     </div>
     <div class="tool_tips" id="donation_info">
-        <p><span v-if="martial_status !== 'M'">下限$100, 上限為入息35%</span><span v-if="martial_status === 'M'">下限$100, 上限為入息35%，你可把餘下的慈善捐款數額於配偶一方內輸入</span><a href="http://www.gov.hk/tc/residents/taxes/salaries/allowances/deductions/approveddonation.htm" target="_blank">（詳情）</a></p>
+        <p><span v-if="martial_status !== 'M'">下限為100元，上限為入息的35%</span><span v-if="martial_status === 'M'">下限為100元，上限為入息的35%，你可把餘下的慈善捐款數額於配偶一方內輸入</span><a href="http://www.gov.hk/tc/residents/taxes/salaries/allowances/deductions/approveddonation.htm" target="_blank">（詳情）</a></p>
     </div>
     <div class="tool_tips" id="mpf_info">
         <p>課稅年度內的總供款；上限$18,000<a href="http://www.ird.gov.hk/chi/pdf/pam38c.pdf" target="_blank">（詳情）</a>。</p>

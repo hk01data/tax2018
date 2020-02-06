@@ -613,9 +613,17 @@ export default {
       this.STCOut1_func(this.infin_update)
     },
     slfERCE: function (val) {
+      if (val === 0 || val === '0' || isNaN(val)) {
+        this.slfERCE_forCompute = 0
+      }
+      this.SLFERCE11OnBlur()
       this.STCOut1_func(this.infin_update)
     },
     spsERCE: function (val) {
+      if (val === 0 || val === '0' || isNaN(val)) {
+        this.spsERCE_forCompute = 0
+      }
+      this.SPSERCE12OnBlur()
       this.STCOut1_func(this.infin_update)
     },
     spouse_disabled_dependent_DIS: function (val) {
@@ -1212,6 +1220,44 @@ export default {
         Income = vm.LimD_BOOK
       }
       vm.spsBook = Income
+      // vm.ChkDD(8)
+    },
+    SLFERCE11OnBlur () {
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      MustReset = false
+      Income = vm.FormatInput(vm.slfERCE, 0, vm.LimD_Elderly)
+      if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        // vm.slfMpf = 0
+        Income = 0
+      } else if (Income === '+') {
+        // ErrMsg('你不可輸入超過 9 位數字的數值 !')
+        MustReset = true
+        vm.slfERCE = vm.LimD_Elderly
+        Income = vm.LimD_Elderly
+      }
+      vm.slfERCE = Income
+      // vm.ChkDD(7)
+    },
+    SPSERCE12OnBlur () {
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      MustReset = false
+      Income = vm.FormatInput(vm.spsERCE, 0, vm.LimD_Elderly)
+      if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        // vm.spsBook = 0
+        Income = 0
+      } else if (Income === '+') {
+        // ErrMsg('你不可輸入超過 9 位數字的數值 !')
+        MustReset = true
+        vm.spsERCE = vm.LimD_Elderly
+        Income = vm.LimD_Elderly
+      }
+      vm.spsERCE = Income
       // vm.ChkDD(8)
     },
     Dona11OnBlur () {
