@@ -1644,22 +1644,22 @@ export default {
       this.STCIn11 = isNaN(parseFloat(vm.tax.brosis_dep_DIS)) ? 0 : parseFloat(vm.tax.brosis_dep_DIS)
       this.STCIn12 = isNaN(parseFloat(vm.tax.resi_parent_DIS)) ? 0 : parseFloat(vm.tax.resi_parent_DIS)
       this.STCIn13 = isNaN(parseFloat(vm.tax.non_resi_parent_DIS)) ? 0 : parseFloat(vm.tax.non_resi_parent_DIS)
-      // vm.tax.slfOE = isNaN(parseFloat(vm.tax.slfOE)) ? 0 : parseFloat(vm.tax.slfOE)
-      // vm.tax.spsOE = isNaN(parseFloat(vm.tax.spsOE)) ? 0 : parseFloat(vm.tax.spsOE)
-      if (vm.tax.slfOE > this.STCIn2) {
-        vm.tax.slfOE = this.STCIn2
-      }
-      if (vm.tax.spsOE > this.STCIn3) {
-        vm.tax.spsOE = this.STCIn3
-      }
-      // vm.tax.slfSEE = isNaN(parseFloat(vm.tax.slfSEE)) ? 0 : parseFloat(vm.tax.slfSEE)
-      if (vm.tax.slfSEE > (this.STCIn2 - vm.tax.slfOE)) {
-        vm.tax.slfSEE = this.STCIn2 - vm.tax.slfOE
-      }
-      // vm.tax.spsSEE = isNaN(parseFloat(vm.tax.spsSEE)) ? 0 : parseFloat(vm.tax.spsSEE)
-      if (vm.tax.spsSEE > (this.STCIn3 - vm.tax.spsOE)) {
-        vm.tax.spsSEE = this.STCIn3 - vm.tax.spsOE
-      }
+      vm.tax.slfOE = isNaN(parseFloat(vm.tax.slfOE)) ? 0 : parseFloat(vm.tax.slfOE)
+      vm.tax.spsOE = isNaN(parseFloat(vm.tax.spsOE)) ? 0 : parseFloat(vm.tax.spsOE)
+      // if (vm.tax.slfOE > this.STCIn2) {
+      //   vm.tax.slfOE = this.STCIn2
+      // }
+      // if (vm.tax.spsOE > this.STCIn3) {
+      //   vm.tax.spsOE = this.STCIn3
+      // }
+      vm.tax.slfSEE = isNaN(parseFloat(vm.tax.slfSEE)) ? 0 : parseFloat(vm.tax.slfSEE)
+      // if (vm.tax.slfSEE > (this.STCIn2 - vm.tax.slfOE)) {
+      //   vm.tax.slfSEE = this.STCIn2 - vm.tax.slfOE
+      // }
+      vm.tax.spsSEE = isNaN(parseFloat(vm.tax.spsSEE)) ? 0 : parseFloat(vm.tax.spsSEE)
+      // if (vm.tax.spsSEE > (this.STCIn3 - vm.tax.spsOE)) {
+      //   vm.tax.spsSEE = this.STCIn3 - vm.tax.spsOE
+      // }
 
       if (vm.tax.slfOE + vm.tax.slfSEE > this.STCIn2) {
         vm.tax.slfOE = this.STCIn2 - vm.tax.slfSEE
