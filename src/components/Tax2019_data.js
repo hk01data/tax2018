@@ -2040,7 +2040,7 @@ export default {
           STCOutNew[24] = STCOutNew[3] + STCOutNew[6] + STCOutNew[7] + STCOutNew[8] + STCOutNew[60] + STCOutNew[11] + STCOutNew[73]
           // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
           // MOCK
-          STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + self_iang_visa_deduct
+          STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct + self_iang_visa_deduct + sps_iang_visa_deduct
           STCOutNew[12] = this.CA[(1 - this.nMin) * this.STCIn4]
           STCOutNew[13] = this.DBSA * (this.STCIn5 - this.oMin)
           STCOutNew[15] = (this.DPA + this.ADPA) * (this.STCIn6 - this.mMin)
@@ -2146,10 +2146,10 @@ export default {
             STCOutNew[24] = STCOutNew[3] + STCOutNew[6] + STCOutNew[7] + STCOutNew[8] + STCOutNew[60] + STCOutNew[11] + STCOutNew[73]
             // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
             // MOCK
-            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + self_iang_visa_deduct
+            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct + self_iang_visa_deduct + sps_iang_visa_deduct
             STCOutNew[25] = STCOutNew[3] + STCOutNew[12] + STCOutNew[13] + STCOutNew[14] + STCOutNew[63] + STCOutNew[17] + STCOutNew[74]
             // MOCK
-            STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
+            // STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
             STCOutNew[26] = STCOutNew[4] + STCOutNew[18] + STCOutNew[19] + STCOutNew[20] + STCOutNew[66] + STCOutNew[23] + STCOutNew[75]
             // STCOutNew[26] = STCOutNew[26] + self_DISABLE_deduct + sps_DISABLE_deduct
             // MOCK
@@ -2163,10 +2163,10 @@ export default {
             STCOutNew[24] = STCOutNew[3] + STCOutNew[6] + STCOutNew[7] + STCOutNew[8] + STCOutNew[60] + STCOutNew[11] + STCOutNew[73]
             // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
             // MOCK
-            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + self_iang_visa_deduct
+            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct + self_iang_visa_deduct + sps_iang_visa_deduct
             STCOutNew[25] = STCOutNew[3] + STCOutNew[12] + STCOutNew[13] + STCOutNew[14] + STCOutNew[63] + STCOutNew[17] + STCOutNew[74]
             // MOCK
-            STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
+            // STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
             STCOutNew[26] = STCOutNew[4] + STCOutNew[18] + STCOutNew[19] + STCOutNew[20] + STCOutNew[66] + STCOutNew[23] + STCOutNew[75]
             // STCOutNew[26] = STCOutNew[26] + self_DISABLE_deduct + sps_DISABLE_deduct
             // MOCK
@@ -2222,9 +2222,9 @@ export default {
 
             STCOutNew[24] = STCOutNew[3]
             // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
-            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + self_iang_visa_deduct
+            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct + self_iang_visa_deduct + sps_iang_visa_deduct
             STCOutNew[25] = STCOutNew[3] + STCOutNew[12] + STCOutNew[13] + STCOutNew[14] + STCOutNew[63] + STCOutNew[17] + STCOutNew[74] + STCOutNew[6] + STCOutNew[7] + STCOutNew[8] + STCOutNew[60] + STCOutNew[11] + STCOutNew[73]
-            STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
+            // STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
             STCOutNew[27] = parseFloat(this.netSelfI) - parseFloat(STCOutNew[24]) + parseFloat(STCOutNew[78])
             if (STCOutNew[27] < 0) STCOutNew[27] = 0
             STCOutNew[28] = parseFloat(this.netSpouseI) - parseFloat(STCOutNew[25]) - parseFloat(STCOutNew[78])

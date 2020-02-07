@@ -2630,8 +2630,8 @@ export default {
             STCOut[11] = this.DIS_DA * this.STCIn19
           }
           STCOut[24] = STCOut[3] + STCOut[6] + STCOut[7] + STCOut[8] + STCOut[60] + STCOut[11] + STCOut[73]
-          // STCOut[24] = STCOut[24] + self_DISABLE_deduct + sps_DISABLE_deduct
-          STCOut[24] = STCOut[24] + self_DISABLE_deduct
+          STCOut[24] = STCOut[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+          // STCOut[24] = STCOut[24] + self_DISABLE_deduct
           STCOut[12] = this.CA[(1 - this.nMin) * this.STCIn4]
           STCOut[13] = this.DBSA * (this.STCIn5 - this.oMin)
           STCOut[15] = (this.DPA + this.ADPA) * (this.STCIn6 - this.mMin)
@@ -2731,11 +2731,11 @@ export default {
             }
             STCOut[17] = this.DIS_DA * ((1 - this.nMin) * (this.STCIn10 + this.STCIn22) + this.STCIn11 - this.odMin + this.STCIn13 - this.ldMin + this.STCIn12 - this.mdMin + this.STCIn20)
             STCOut[24] = STCOut[3] + STCOut[6] + STCOut[7] + STCOut[8] + STCOut[60] + STCOut[11] + STCOut[73]
-            // STCOut[24] = STCOut[24] + self_DISABLE_deduct + sps_DISABLE_deduct
-            STCOut[24] = STCOut[24] + self_DISABLE_deduct
+            STCOut[24] = STCOut[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+            // STCOut[24] = STCOut[24] + self_DISABLE_deduct
             STCOut[25] = STCOut[3] + STCOut[12] + STCOut[13] + STCOut[14] + STCOut[63] + STCOut[17] + STCOut[74]
             // modification add in disbalbed 7500
-            STCOut[25] = STCOut[25] + sps_DISABLE_deduct
+            // STCOut[25] = STCOut[25] + sps_DISABLE_deduct
             STCOut[26] = STCOut[4] + STCOut[18] + STCOut[19] + STCOut[20] + STCOut[66] + STCOut[23] + STCOut[75]
             STCOut[26] = STCOut[26] + self_DISABLE_deduct + sps_DISABLE_deduct
             STCOut[49] = STCOut[45] + STCOut[46] + STCOut[47] + STCOut[48] + this.STCIn19
@@ -2745,11 +2745,11 @@ export default {
             STCOut[17] = this.DIS_DA * this.STCIn20
             STCOut[23] = this.DIS_DA * (this.STCIn19 + this.STCIn20)
             STCOut[24] = STCOut[3] + STCOut[6] + STCOut[7] + STCOut[8] + STCOut[60] + STCOut[11] + STCOut[73]
-            // STCOut[24] = STCOut[24] + self_DISABLE_deduct + sps_DISABLE_deduct
-            STCOut[24] = STCOut[24] + self_DISABLE_deduct
+            STCOut[24] = STCOut[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+            // STCOut[24] = STCOut[24] + self_DISABLE_deduct
             STCOut[25] = STCOut[3] + STCOut[12] + STCOut[13] + STCOut[14] + STCOut[63] + STCOut[17] + STCOut[74]
             // modification add in disbalbed 7500
-            STCOut[25] = STCOut[25] + sps_DISABLE_deduct
+            // STCOut[25] = STCOut[25] + sps_DISABLE_deduct
             STCOut[26] = STCOut[4] + STCOut[18] + STCOut[19] + STCOut[20] + STCOut[66] + STCOut[23] + STCOut[75]
             STCOut[26] = STCOut[26] + self_DISABLE_deduct + sps_DISABLE_deduct
             STCOut[27] = this.netSelfI - STCOut[24]
@@ -2802,11 +2802,11 @@ export default {
             this.STCMainRV = 42
 
             STCOut[24] = STCOut[3]
-            // STCOut[24] = STCOut[24] + self_DISABLE_deduct + sps_DISABLE_deduct
-            STCOut[24] = STCOut[24] + self_DISABLE_deduct
+            STCOut[24] = STCOut[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+            // STCOut[24] = STCOut[24] + self_DISABLE_deduct
             STCOut[25] = STCOut[3] + STCOut[12] + STCOut[13] + STCOut[14] + STCOut[63] + STCOut[17] + STCOut[74] + STCOut[6] + STCOut[7] + STCOut[8] + STCOut[60] + STCOut[11] + STCOut[73]
             // modification add in disbalbed 7500
-            STCOut[25] = STCOut[25] + sps_DISABLE_deduct
+            // STCOut[25] = STCOut[25] + sps_DISABLE_deduct
             STCOut[27] = parseFloat(this.netSelfI) - parseFloat(STCOut[24]) + parseFloat(STCOut[78])
             if (STCOut[27] < 0) STCOut[27] = 0
             STCOut[28] = parseFloat(this.netSpouseI) - parseFloat(STCOut[25]) - parseFloat(STCOut[78])
