@@ -569,46 +569,46 @@ export default {
         this.AAL_MARR = 0 // PAAL_MARR
         this.SPA = 132000 // PSPA
         this.CA[0] = 0
-        // this.CA[1] = 120000 * 1 // MOCK 100000
-        // this.CA[2] = 120000 * 2 // MOCK 200000
-        // this.CA[3] = 120000 * 3 // MOCK 300000
-        // this.CA[4] = 120000 * 4 // MOCK 400000
-        // this.CA[5] = 120000 * 5 // MOCK 500000
-        // this.CA[6] = 120000 * 6 // MOCK 600000
-        // this.CA[7] = 120000 * 7 // MOCK 700000
-        // this.CA[8] = 120000 * 8 // MOCK 800000
-        // this.CA[9] = 120000 * 9 // MOCK 900000
-        // // PCHILDNB_AL1  to PCHILDNB_AL9
-        // this.NBCA[0] = 0
-        // this.NBCA[1] = 120000 * 1 // MOCK 100000
-        // this.NBCA[2] = 120000 * 2 // MOCK 200000
-        // this.NBCA[3] = 120000 * 3 // MOCK 300000
-        // this.NBCA[4] = 120000 * 4 // MOCK 400000
-        // this.NBCA[5] = 120000 * 5 // MOCK 500000
-        // this.NBCA[6] = 120000 * 6 // MOCK 600000
-        // this.NBCA[7] = 120000 * 7 // MOCK 700000
-        // this.NBCA[8] = 120000 * 8 // MOCK 800000
-        // this.NBCA[9] = 120000 * 9 // MOCK 900000
-        this.CA[1] = 150000 * 1 // MOCK 100000
-        this.CA[2] = 150000 * 2 // MOCK 200000
-        this.CA[3] = 150000 * 3 // MOCK 300000
-        this.CA[4] = 150000 * 4 // MOCK 400000
-        this.CA[5] = 150000 * 5 // MOCK 500000
-        this.CA[6] = 150000 * 6 // MOCK 600000
-        this.CA[7] = 150000 * 7 // MOCK 700000
-        this.CA[8] = 150000 * 8 // MOCK 800000
-        this.CA[9] = 150000 * 9 // MOCK 900000
+        this.CA[1] = 120000 * 1 // MOCK 100000
+        this.CA[2] = 120000 * 2 // MOCK 200000
+        this.CA[3] = 120000 * 3 // MOCK 300000
+        this.CA[4] = 120000 * 4 // MOCK 400000
+        this.CA[5] = 120000 * 5 // MOCK 500000
+        this.CA[6] = 120000 * 6 // MOCK 600000
+        this.CA[7] = 120000 * 7 // MOCK 700000
+        this.CA[8] = 120000 * 8 // MOCK 800000
+        this.CA[9] = 120000 * 9 // MOCK 900000
         // PCHILDNB_AL1  to PCHILDNB_AL9
         this.NBCA[0] = 0
-        this.NBCA[1] = 150000 * 1 // MOCK 100000
-        this.NBCA[2] = 150000 * 2 // MOCK 200000
-        this.NBCA[3] = 150000 * 3 // MOCK 300000
-        this.NBCA[4] = 150000 * 4 // MOCK 400000
-        this.NBCA[5] = 150000 * 5 // MOCK 500000
-        this.NBCA[6] = 150000 * 6 // MOCK 600000
-        this.NBCA[7] = 150000 * 7 // MOCK 700000
-        this.NBCA[8] = 150000 * 8 // MOCK 800000
-        this.NBCA[9] = 150000 * 9 // MOCK 900000
+        this.NBCA[1] = 120000 * 1 // MOCK 100000
+        this.NBCA[2] = 120000 * 2 // MOCK 200000
+        this.NBCA[3] = 120000 * 3 // MOCK 300000
+        this.NBCA[4] = 120000 * 4 // MOCK 400000
+        this.NBCA[5] = 120000 * 5 // MOCK 500000
+        this.NBCA[6] = 120000 * 6 // MOCK 600000
+        this.NBCA[7] = 120000 * 7 // MOCK 700000
+        this.NBCA[8] = 120000 * 8 // MOCK 800000
+        this.NBCA[9] = 120000 * 9 // MOCK 900000
+        // this.CA[1] = 150000 * 1 // MOCK 100000
+        // this.CA[2] = 150000 * 2 // MOCK 200000
+        // this.CA[3] = 150000 * 3 // MOCK 300000
+        // this.CA[4] = 150000 * 4 // MOCK 400000
+        // this.CA[5] = 150000 * 5 // MOCK 500000
+        // this.CA[6] = 150000 * 6 // MOCK 600000
+        // this.CA[7] = 150000 * 7 // MOCK 700000
+        // this.CA[8] = 150000 * 8 // MOCK 800000
+        // this.CA[9] = 150000 * 9 // MOCK 900000
+        // // PCHILDNB_AL1  to PCHILDNB_AL9
+        // this.NBCA[0] = 0
+        // this.NBCA[1] = 150000 * 1 // MOCK 100000
+        // this.NBCA[2] = 150000 * 2 // MOCK 200000
+        // this.NBCA[3] = 150000 * 3 // MOCK 300000
+        // this.NBCA[4] = 150000 * 4 // MOCK 400000
+        // this.NBCA[5] = 150000 * 5 // MOCK 500000
+        // this.NBCA[6] = 150000 * 6 // MOCK 600000
+        // this.NBCA[7] = 150000 * 7 // MOCK 700000
+        // this.NBCA[8] = 150000 * 8 // MOCK 800000
+        // this.NBCA[9] = 150000 * 9 // MOCK 900000
         this.DBSA = 37500 // PDBSA
         // this.DPA = 50000 // PDPAAMT 46000
         // this.ADPA = 50000 // PADPAAMT 46000
@@ -2040,7 +2040,8 @@ export default {
           STCOutNew[24] = STCOutNew[3] + STCOutNew[6] + STCOutNew[7] + STCOutNew[8] + STCOutNew[60] + STCOutNew[11] + STCOutNew[73]
           // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
           // MOCK
-          STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct + self_iang_visa_deduct + sps_iang_visa_deduct
+          // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct + self_iang_visa_deduct + sps_iang_visa_deduct
+          STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + self_iang_visa_deduct
           STCOutNew[12] = this.CA[(1 - this.nMin) * this.STCIn4]
           STCOutNew[13] = this.DBSA * (this.STCIn5 - this.oMin)
           STCOutNew[15] = (this.DPA + this.ADPA) * (this.STCIn6 - this.mMin)
@@ -2056,6 +2057,8 @@ export default {
             STCOutNew[17] = this.DIS_DA * this.STCIn20
           }
           STCOutNew[25] = STCOutNew[3] + STCOutNew[12] + STCOutNew[13] + STCOutNew[14] + STCOutNew[63] + STCOutNew[17] + STCOutNew[74]
+          // MOCK
+          STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
           STCOutNew[27] = this.netSelfI - STCOutNew[24]
           if (STCOutNew[27] < 0) STCOutNew[27] = 0
           STCOutNew[28] = this.netSpouseI - STCOutNew[25]
@@ -2147,9 +2150,10 @@ export default {
             // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
             // MOCK
             STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct + self_iang_visa_deduct + sps_iang_visa_deduct
+            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + self_iang_visa_deduct
             STCOutNew[25] = STCOutNew[3] + STCOutNew[12] + STCOutNew[13] + STCOutNew[14] + STCOutNew[63] + STCOutNew[17] + STCOutNew[74]
             // MOCK
-            // STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
+            STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
             STCOutNew[26] = STCOutNew[4] + STCOutNew[18] + STCOutNew[19] + STCOutNew[20] + STCOutNew[66] + STCOutNew[23] + STCOutNew[75]
             // STCOutNew[26] = STCOutNew[26] + self_DISABLE_deduct + sps_DISABLE_deduct
             // MOCK
@@ -2163,10 +2167,11 @@ export default {
             STCOutNew[24] = STCOutNew[3] + STCOutNew[6] + STCOutNew[7] + STCOutNew[8] + STCOutNew[60] + STCOutNew[11] + STCOutNew[73]
             // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
             // MOCK
-            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct + self_iang_visa_deduct + sps_iang_visa_deduct
+            // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct + self_iang_visa_deduct + sps_iang_visa_deduct
+            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + self_iang_visa_deduct
             STCOutNew[25] = STCOutNew[3] + STCOutNew[12] + STCOutNew[13] + STCOutNew[14] + STCOutNew[63] + STCOutNew[17] + STCOutNew[74]
             // MOCK
-            // STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
+            STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
             STCOutNew[26] = STCOutNew[4] + STCOutNew[18] + STCOutNew[19] + STCOutNew[20] + STCOutNew[66] + STCOutNew[23] + STCOutNew[75]
             // STCOutNew[26] = STCOutNew[26] + self_DISABLE_deduct + sps_DISABLE_deduct
             // MOCK
@@ -2222,9 +2227,10 @@ export default {
 
             STCOutNew[24] = STCOutNew[3]
             // STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct
-            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + sps_DISABLE_deduct + self_iang_visa_deduct + sps_iang_visa_deduct
+            STCOutNew[24] = STCOutNew[24] + self_DISABLE_deduct + self_iang_visa_deduct
             STCOutNew[25] = STCOutNew[3] + STCOutNew[12] + STCOutNew[13] + STCOutNew[14] + STCOutNew[63] + STCOutNew[17] + STCOutNew[74] + STCOutNew[6] + STCOutNew[7] + STCOutNew[8] + STCOutNew[60] + STCOutNew[11] + STCOutNew[73]
-            // STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
+            // MOCK
+            STCOutNew[25] = STCOutNew[25] + sps_DISABLE_deduct + sps_iang_visa_deduct
             STCOutNew[27] = parseFloat(this.netSelfI) - parseFloat(STCOutNew[24]) + parseFloat(STCOutNew[78])
             if (STCOutNew[27] < 0) STCOutNew[27] = 0
             STCOutNew[28] = parseFloat(this.netSpouseI) - parseFloat(STCOutNew[25]) - parseFloat(STCOutNew[78])
