@@ -36,6 +36,31 @@ npm test
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 
+## Update for new Budget
+
+"STCOut1" is a prop of "taxNewYear" component passing to Tax*thisyear*_data.js as "STCOutNew" from `Hello_data.js`.
+
+
+"STCOut1" (in `Hello_data.js`) (in Tax*thisyear*_data.js) is old pay.
+
+"STCOutNew" is copied the user input from "STCOut1".
+
+"STCOut2" is next year pay, please see therate: get_rate(), using "STCOutNew" input to calculate new year pay.
+
+1. Update 
+    - migrate get_rate() from Tax*lastyear*_data.js --> `Hello_data.js`
+    - edit get_rate () { year = 'xxxx-yyyy'
+    - edit this.AssessYear === 'xxxx-yyyy'
+    - edit get_deduction () { var YrValue = 'xxxx-yyyy'
+
+2. The latest Tax policy mentioned in Budget, input to Tax*thisyear*_data.js
+
+    - clone Tax*lastyear*_data.js to Tax*thisyear*_data.js
+    - edit Tax*thisyear*_data.js on-day
+    - edit get_rate () { year = 'xxxx-yyyy'
+    - edit this.AssessYear === 'xxxx-yyyy'
+    - edit get_deduction () { var YrValue = 'xxxx-yyyy'
+
 
 
 ## Reference:
