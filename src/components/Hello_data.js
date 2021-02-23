@@ -1,5 +1,6 @@
+// Current Year and Last year
 import vueSlider from 'vue-slider-component'
-import TaxNewYear from '@/components/Tax2019.vue'
+import TaxNewYear from '@/components/Tax2021.vue'
 import Slick from 'vue-slick'
 import Switches from 'vue-switches'
 
@@ -365,7 +366,7 @@ export default {
       slfOE_CAP: 0,
       spsOE_CAP: 0,
 
-      AssessYear: '2018-2019',
+      AssessYear: '2020-2021',
       AL_SING: 0,
       AAL_SING: 0,
       AL_MARR: 0,
@@ -715,12 +716,12 @@ export default {
       return parseFloat(num).toFixed(2)
     },
     get_rate () {
-      var year = '2018-2019'
+      var year = '2020-2021'
       this.YrEnd = year.split('-')[1]
       var i
       var ok = false
       // // //
-      if (this.AssessYear === '2018-2019') {
+      if (this.AssessYear === '2020-2021') {
         this.AL_SING = 132000 // PAL_SING
         this.AAL_SING = 0 // PAAL_SING
         this.AL_MARR = 264000 // PAL_MARR
@@ -848,16 +849,16 @@ export default {
       return true
     },
     get_deduction () {
-      var YrValue = '2018-2019'
+      var YrValue = '2019-2020'
       // parent.LSPYrEnd = YrValue
       // // //
-      if (YrValue === '2018-2019') {
+      if (YrValue === '2019-2020') {
         this.LimD_DonaLL = 100
         this.LimD_DonaUL = 35
         this.LimD_Education = 100000
         this.LimD_HomeLoan = 100000
         this.LimD_Elderly = 100000 // 100000 MOCK 92000
-        this.LimD_Elderly_new = 100000 // this.LimD_Elderly MOCK 120000
+        // this.LimD_Elderly_new = 100000 // this.LimD_Elderly MOCK 120000
         // this.LimD_Elderly_new = 120000 // this.LimD_Elderly MOCK 120000
         this.LimD_MPF = 18000
         // 上限 fixed $18,000 ike MPF ( 必须有入息 )
@@ -899,7 +900,7 @@ export default {
       if (parseInt(vm.CAbb_DIS, 10) > parseInt(vm.CAbb, 10)) {
         vm.CAbb_DIS = parseInt(vm.CAbb, 10)
       }
-      if (vm.AssessYear === '2018-2019') {
+      if (vm.AssessYear === '2019-2020') {
         if (parseInt(vm.CAbb, 10) + parseInt(vm.NBbb, 10) > 9) {
           // ErrMsgDDA2()
           // setTimeout(function () {
@@ -2043,7 +2044,7 @@ export default {
     }, // End ChkDD
     D1OnChange () {
       var vm = this
-      var YrValue = '2018-2019'
+      var YrValue = '2019-2020'
       // YrValue = dF.D1.options[dF.D1.selectedIndex].value
       vm.YrEnd = parseInt(rightStr(YrValue, 4), 10)
       if (vm.YrEnd < 1995) { // before 94/95
@@ -2465,7 +2466,6 @@ export default {
         STCOut[27] = this.netSelfI - STCOut[24]
         this.STCMainRV = 10
       } else { // === 'M'
-        // wrong 需要分case本人收入===0 (22) 或 配偶收入===0 (24)
         // 需要分case本人收入===0 (24) 或 配偶收入===0 (22)
         // 有得過俾配偶，計nMin, child_count
         if (this.STCIn3 === 0) { // taxtype === 22
