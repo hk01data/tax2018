@@ -3,22 +3,22 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import VueAnalytics from 'vue-analytics'
+// import VueAnalytics from 'vue-analytics'
 import Tooltip from 'vue-directive-tooltip'
 import VModal from 'vue-js-modal'
 
-Vue.use(VueAnalytics, {
-  id: ['UA-112679299-1', 'UA-70981149-1'],
-  checkDuplicatedScript: true,
-  autoTracking: {
-    pageviewOnLoad: false,
-    page: true
-  },
-  ready () {
-    // here Google Analaytics is ready to track!
-    window.G.vm.$ga.page('/?tax2018_V2')
-  }
-})
+// Vue.use(VueAnalytics, {
+//   id: ['UA-112679299-1', 'UA-70981149-1'],
+//   checkDuplicatedScript: true,
+//   autoTracking: {
+//     pageviewOnLoad: false,
+//     page: true
+//   },
+//   ready () {
+//     // here Google Analaytics is ready to track!
+//     // window.G.vm.$ga.page('/?tax2019_V2')
+//   }
+// })
 
 Vue.use(Tooltip, {
   placement: 'bottom.end'

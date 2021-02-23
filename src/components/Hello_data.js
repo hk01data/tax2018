@@ -1,5 +1,6 @@
+// Current Year and Last year
 import vueSlider from 'vue-slider-component'
-import Tax2018 from '@/components/Tax2018.vue'
+import TaxNewYear from '@/components/Tax2021.vue'
 import Slick from 'vue-slick'
 import Switches from 'vue-switches'
 
@@ -163,7 +164,7 @@ export default {
   name: 'hello',
   components: {
     vueSlider,
-    Tax2018,
+    TaxNewYear,
     Slick,
     Switches
   },
@@ -218,16 +219,24 @@ export default {
       spsSEE: 0,
       slfDona: 0,
       spsDona: 0,
+      // donation must no less than 100
+      slfDona_restrict: 0,
+      spsDona_restrict: 0,
       slfMpf: 0,
       spsMpf: 0,
+      // 上限 fixed $18,000, like MPF ( 必须有入息 )
+      // slfBook: 0,
+      // spsBook: 0,
       slfLoan: 0,
       spsLoan: 0,
       slfElder: 0, // 0,
       slfDisdep: 0, // 0,
       slfERCE: 0,
+      slfERCE_forCompute: 0,
       spsElder: 0, // 1,
       spsDisdep: 0, // 1,
       spsERCE: 0, // 5000,
+      spsERCE_forCompute: 0,
       slfRebateAmt: 0,
 
       NBbb: 0, // 1,
@@ -252,6 +261,12 @@ export default {
       spsMedInsu_ppl: 0,
       self_disabled_DIS: false,
       sps_disabled_DIS: false,
+      // self_iang_visa: false, // MOCK
+      // sps_iang_visa: false,
+      // slfDiseaseExp: 0, // MOCK
+      // spsDiseaseExp: 0, // MOCK
+      slfVolunMpf: 0,
+      spsVolunMpf: 0,
 
       STCIn21: 0, // 1,
       STCIn4: 0, // 1,
@@ -335,7 +350,7 @@ export default {
       slfMinNCI1: undefined,
       slfMinStd: undefined,
       slfMinStd1: undefined,
-      slfNCI: undefined,
+      slfNCI: 800000,
       slfNCItmp: undefined,
       slfStd: undefined,
       slfStdTP: 0,
@@ -351,7 +366,7 @@ export default {
       slfOE_CAP: 0,
       spsOE_CAP: 0,
 
-      AssessYear: '2017-2018',
+      AssessYear: '2020-2021',
       AL_SING: 0,
       AAL_SING: 0,
       AL_MARR: 0,
@@ -463,11 +478,15 @@ export default {
         self_mpf: '本人-MPF',
         spouse_mpf: '配偶-MPF',
 
+        byBook: '購買考試書籍支出',
+        byBook_self: '個人-購買考試書籍支出',
+        byBook_sps: '配偶-購買考試書籍支出',
+
         homeloan: '居所貸款利息',
         self_homeloan: '本人-居所貸款利息',
         spouse_homeloan: '配偶-居所貸款利息',
 
-        elderly: '在安老院居住的受養人數', // '在安老院居住的受養人數目',
+        elderly: '在安老院居住的受養人數(收入需大於0)', // '在安老院居住的受養人數目',
         disabledep: '當中符合傷殘受養人免稅額人數', // '傷殘受養人免稅額資格的受養人數目',
         eldresi_amt: '支付給安老院的總開支', // '支付給安老院的開支款額',
 
@@ -527,6 +546,10 @@ export default {
     },
     slfIncome: function (val) {
       var vm = this
+      // const TABKEY = 9;
+      // if (e.keyCode === TABKEY) {
+      //   let pos = vm.selectionStart
+      // }
       this.T1OnBlur()
       // this.T13OnBlur()
       this.STCOut1_func(this.infin_update)
@@ -558,10 +581,26 @@ export default {
       this.T12OnBlur()
       this.STCOut1_func(this.infin_update)
     },
+    // slfBook: function (val) {
+    //   this.BOOKT11OnBlur()
+    //   this.STCOut1_func(this.infin_update)
+    // },
+    // spsBook: function (val) {
+    //   this.BOOKT12OnBlur()
+    //   this.STCOut1_func(this.infin_update)
+    // },
     slfDona: function (val) {
+      if (val === 0 || isNaN(val)) {
+        this.slfDona_restrict = 0
+      }
+      // this.Dona11OnBlur()
       this.STCOut1_func(this.infin_update)
     },
     spsDona: function (val) {
+      if (val === 0 || isNaN(val)) {
+        this.spsDona_restrict = 0
+      }
+      // this.Dona12OnBlur()
       this.STCOut1_func(this.infin_update)
     },
     slfSEE: function (val) {
@@ -579,9 +618,17 @@ export default {
       this.STCOut1_func(this.infin_update)
     },
     slfERCE: function (val) {
+      if (val === 0 || val === '0' || isNaN(val)) {
+        this.slfERCE_forCompute = 0
+      }
+      this.SLFERCE11OnBlur()
       this.STCOut1_func(this.infin_update)
     },
     spsERCE: function (val) {
+      if (val === 0 || val === '0' || isNaN(val)) {
+        this.spsERCE_forCompute = 0
+      }
+      this.SPSERCE12OnBlur()
       this.STCOut1_func(this.infin_update)
     },
     spouse_disabled_dependent_DIS: function (val) {
@@ -609,12 +656,34 @@ export default {
       this.spsMedInsuOnBlur()
       this.STCOut1_func(this.infin_update)
     },
+    slfVolunMpf: function (val) {
+      this.slfVolunMpfOnBlur()
+      this.STCOut1_func(this.infin_update)
+    },
+    spsVolunMpf: function (val) {
+      this.spsVolunMpfOnBlur()
+      this.STCOut1_func(this.infin_update)
+    },
     self_disabled_DIS: function (val) {
       this.STCOut1_func(this.infin_update)
     },
     sps_disabled_DIS: function (val) {
       this.STCOut1_func(this.infin_update)
     }
+    // self_iang_visa: function (val) {
+    //   this.STCOut1_func(this.infin_update)
+    // },
+    // sps_iang_visa: function (val) {
+    //   this.STCOut1_func(this.infin_update)
+    // }
+    // slfDiseaseExp: function (val) {
+    //   this.slfDiseaseOnBlur()
+    //   this.STCOut1_func(this.infin_update)
+    // },
+    // spsDiseaseExp: function (val) {
+    //   this.spsDiseaseOnBlur()
+    //   this.STCOut1_func(this.infin_update)
+    // }
   },
   methods: {
     toggleClass (var_name) {
@@ -627,7 +696,7 @@ export default {
       inputs['saved_pay'] = saved_pay
       var inputs_str = JSON.stringify(inputs)
       // console.log('GA: ', 'record_V1', 'martial-' + this.martial_status, inputs_str, 1)
-      this.$ga.event('record_V1', 'martial-' + this.martial_status, inputs_str, 1)
+      // this.$ga.event('record_V1', 'martial-' + this.martial_status, inputs_str, 1)
     },
     slick_afterchange () {
       var vm = this
@@ -647,50 +716,50 @@ export default {
       return parseFloat(num).toFixed(2)
     },
     get_rate () {
-      var year = '2017-2018'
+      var year = '2020-2021'
       this.YrEnd = year.split('-')[1]
       var i
       var ok = false
       // // //
-      if (this.AssessYear === '2017-2018') {
+      if (this.AssessYear === '2020-2021') {
         this.AL_SING = 132000 // PAL_SING
         this.AAL_SING = 0 // PAAL_SING
         this.AL_MARR = 264000 // PAL_MARR
         this.AAL_MARR = 0 // PAAL_MARR
         this.SPA = 132000 // PSPA
         this.CA[0] = 0
-        this.CA[1] = 100000
-        this.CA[2] = 200000
-        this.CA[3] = 300000
-        this.CA[4] = 400000
-        this.CA[5] = 500000
-        this.CA[6] = 600000
-        this.CA[7] = 700000
-        this.CA[8] = 800000
-        this.CA[9] = 900000
+        this.CA[1] = 120000 * 1 // MOCK 100000
+        this.CA[2] = 120000 * 2 // MOCK 200000
+        this.CA[3] = 120000 * 3 // MOCK 300000
+        this.CA[4] = 120000 * 4 // MOCK 400000
+        this.CA[5] = 120000 * 5 // MOCK 500000
+        this.CA[6] = 120000 * 6 // MOCK 600000
+        this.CA[7] = 120000 * 7 // MOCK 700000
+        this.CA[8] = 120000 * 8 // MOCK 800000
+        this.CA[9] = 120000 * 9 // MOCK 900000
         // PCHILDNB_AL1  to PCHILDNB_AL9
         this.NBCA[0] = 0
-        this.NBCA[1] = 100000
-        this.NBCA[2] = 200000
-        this.NBCA[3] = 300000
-        this.NBCA[4] = 400000
-        this.NBCA[5] = 500000
-        this.NBCA[6] = 600000
-        this.NBCA[7] = 700000
-        this.NBCA[8] = 800000
-        this.NBCA[9] = 900000
+        this.NBCA[1] = 120000 * 1 // MOCK 100000
+        this.NBCA[2] = 120000 * 2 // MOCK 200000
+        this.NBCA[3] = 120000 * 3 // MOCK 300000
+        this.NBCA[4] = 120000 * 4 // MOCK 400000
+        this.NBCA[5] = 120000 * 5 // MOCK 500000
+        this.NBCA[6] = 120000 * 6 // MOCK 600000
+        this.NBCA[7] = 120000 * 7 // MOCK 700000
+        this.NBCA[8] = 120000 * 8 // MOCK 800000
+        this.NBCA[9] = 120000 * 9 // MOCK 900000
         this.DBSA = 37500 // PDBSA
-        this.DPA = 46000 // PDPAAMT
-        this.ADPA = 46000 // PADPAAMT
+        this.DPA = 50000 // PDPAAMT 46000
+        this.ADPA = 50000 // PADPAAMT 46000
         this.DIS_DA = 75000 // PDDA
-        this.SDPGPA = 23000 // PSDPGPA
-        this.SADPGPA = 23000 // PSADPGPA
+        this.SDPGPA = 25000 // PSDPGPA 23000
+        this.SADPGPA = 25000 // PSADPGPA 23000
         this.VAPRP_RATE = 10
         this.TAX_RANGE[0] = 0
-        this.TAX_RANGE[1] = 45000
-        this.TAX_RANGE[2] = 45000
-        this.TAX_RANGE[3] = 45000
-        this.TAX_RANGE[4] = 0
+        this.TAX_RANGE[1] = 50000 // MOCK 45000
+        this.TAX_RANGE[2] = 50000 // MOCK 45000
+        this.TAX_RANGE[3] = 50000 // MOCK 45000
+        this.TAX_RANGE[4] = 50000
         this.TAX_RANGE[5] = 0
         this.TAX_RANGE[6] = 0
         this.TAX_RANGE[7] = 0
@@ -703,10 +772,10 @@ export default {
         this.TAX_RANGE[14] = 0
         this.TAX_RANGE[15] = 0
         this.TAX_RATE[0] = 0
-        this.TAX_RATE[1] = 2
-        this.TAX_RATE[2] = 7
-        this.TAX_RATE[3] = 12
-        this.TAX_RATE[4] = 0
+        this.TAX_RATE[1] = 2 // MOCK 2
+        this.TAX_RATE[2] = 6 // MOCK 7
+        this.TAX_RATE[3] = 10 // MOCK 12
+        this.TAX_RATE[4] = 14
         this.TAX_RATE[5] = 0
         this.TAX_RATE[6] = 0
         this.TAX_RATE[7] = 0
@@ -720,10 +789,10 @@ export default {
         this.TAX_RATE[15] = 0
         this.TAX_RATE_R = 17
         this.TAX[0] = 0
-        this.TAX[1] = 900
-        this.TAX[2] = 4050
-        this.TAX[3] = 9450
-        this.TAX[4] = 0
+        this.TAX[1] = 1000 // MOCK 900
+        this.TAX[2] = 4000 // MOCK 4050
+        this.TAX[3] = 9000 // MOCK 9450
+        this.TAX[4] = 16000
         this.TAX[5] = 0
         this.TAX[6] = 0
         this.TAX[7] = 0
@@ -780,17 +849,20 @@ export default {
       return true
     },
     get_deduction () {
-      var YrValue = '2017-2018'
+      var YrValue = '2019-2020'
       // parent.LSPYrEnd = YrValue
       // // //
-      if (YrValue === '2017-2018') {
+      if (YrValue === '2019-2020') {
         this.LimD_DonaLL = 100
         this.LimD_DonaUL = 35
         this.LimD_Education = 100000
         this.LimD_HomeLoan = 100000
-        this.LimD_Elderly = 92000 // MOCK 92000
-        this.LimD_Elderly_new = 100000 // MOCK 92000
+        this.LimD_Elderly = 100000 // 100000 MOCK 92000
+        // this.LimD_Elderly_new = 100000 // this.LimD_Elderly MOCK 120000
+        // this.LimD_Elderly_new = 120000 // this.LimD_Elderly MOCK 120000
         this.LimD_MPF = 18000
+        // 上限 fixed $18,000 ike MPF ( 必须有入息 )
+        // this.LimD_BOOK = 10000
         this.LimD_rate_MPF = 5
         this.LimP_rate_VAPRP = 10
         return true
@@ -799,7 +871,7 @@ export default {
     },
     IsNumber (Istr) {
       var AllowChars, i
-      AllowChars = '0123456789,'
+      AllowChars = '0123456789,.'
       for (i = 0; i < Istr.length; i++) {
         if (AllowChars.indexOf(Istr.charAt(i)) === -1) {
           return false
@@ -828,7 +900,7 @@ export default {
       if (parseInt(vm.CAbb_DIS, 10) > parseInt(vm.CAbb, 10)) {
         vm.CAbb_DIS = parseInt(vm.CAbb, 10)
       }
-      if (vm.AssessYear === '2017-2018') {
+      if (vm.AssessYear === '2019-2020') {
         if (parseInt(vm.CAbb, 10) + parseInt(vm.NBbb, 10) > 9) {
           // ErrMsgDDA2()
           // setTimeout(function () {
@@ -851,7 +923,7 @@ export default {
     },
     D3aOnChange () {
       var vm = this
-      console.log('qq', parseInt(vm.NBbb_DIS, 10) > parseInt(vm.NBbb, 10))
+      // console.log('qq', parseInt(vm.NBbb_DIS, 10) > parseInt(vm.NBbb, 10))
       if (parseInt(vm.NBbb_DIS, 10) > parseInt(vm.NBbb, 10)) {
         vm.NBbb_DIS = parseInt(vm.NBbb, 10)
       }
@@ -947,6 +1019,7 @@ export default {
       }
     },
     T1OnBlur () {
+      console.log('complete income type in')
       var vm = this
       var Income, ValueResidence, MustReset
       MustReset = false
@@ -1091,7 +1164,7 @@ export default {
         Income = vm.LimD_MPF
       }
       vm.slfMpf = Income
-      vm.ChkDD(7)
+      // vm.ChkDD(7)
     },
     T12OnBlur () {
       var vm = this
@@ -1115,6 +1188,126 @@ export default {
         Income = vm.LimD_MPF
       }
       vm.spsMpf = Income
+      // vm.ChkDD(8)
+    },
+    // BOOKT11OnBlur () {
+    //   var vm = this
+    //   var Income, obj, MustReset, ValueResidence
+    //   MustReset = false
+    //   Income = vm.FormatInput(vm.slfBook, 0, vm.LimD_BOOK)
+    //   if (Income === '*') {
+    //     // ErrMsg('你輸入的數值不正確 !')
+    //     MustReset = true
+    //     // vm.slfMpf = 0
+    //     Income = 0
+    //   } else if (Income === '+') {
+    //     // ErrMsg('你不可輸入超過 9 位數字的數值 !')
+    //     MustReset = true
+    //     vm.slfBook = vm.LimD_BOOK
+    //     Income = vm.LimD_BOOK
+    //   }
+    //   vm.slfBook = Income
+    //   // vm.ChkDD(7)
+    // },
+    // BOOKT12OnBlur () {
+    //   console.log('ui update')
+    //   var vm = this
+    //   var Income, obj, MustReset, ValueResidence
+    //   MustReset = false
+    //   Income = vm.FormatInput(vm.spsBook, 0, vm.LimD_BOOK)
+    //   if (Income === '*') {
+    //     // ErrMsg('你輸入的數值不正確 !')
+    //     MustReset = true
+    //     // vm.spsBook = 0
+    //     Income = 0
+    //   } else if (Income === '+') {
+    //     // ErrMsg('你不可輸入超過 9 位數字的數值 !')
+    //     MustReset = true
+    //     vm.spsBook = vm.LimD_BOOK
+    //     Income = vm.LimD_BOOK
+    //   }
+    //   vm.spsBook = Income
+    //   // vm.ChkDD(8)
+    // },
+    SLFERCE11OnBlur () {
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      MustReset = false
+      Income = vm.FormatInput(vm.slfERCE, 0, vm.LimD_Elderly)
+      if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        // vm.slfMpf = 0
+        Income = 0
+      } else if (Income === '+') {
+        // ErrMsg('你不可輸入超過 9 位數字的數值 !')
+        MustReset = true
+        vm.slfERCE = vm.LimD_Elderly
+        Income = vm.LimD_Elderly
+      }
+      vm.slfERCE = Income
+      // vm.ChkDD(7)
+    },
+    SPSERCE12OnBlur () {
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      MustReset = false
+      Income = vm.FormatInput(vm.spsERCE, 0, vm.LimD_Elderly)
+      if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        // vm.spsBook = 0
+        Income = 0
+      } else if (Income === '+') {
+        // ErrMsg('你不可輸入超過 9 位數字的數值 !')
+        MustReset = true
+        vm.spsERCE = vm.LimD_Elderly
+        Income = vm.LimD_Elderly
+      }
+      vm.spsERCE = Income
+      // vm.ChkDD(8)
+    },
+    Dona11OnBlur () {
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      MustReset = false
+      Income = vm.FormatInput(vm.slfDona, 0, Math.floor(vm.LimD_DonaUL * (CDbl(vm.slfIncome) + CDbl(vm.slfResi) - CDbl(vm.slfOE)) / 100))
+      if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        // vm.slfMpf = 0
+        Income = 0
+      } else if (Income === '+') {
+        // ErrMsg('你不可輸入超過 9 位數字的數值 !')
+        MustReset = true
+        vm.slfDona = Math.floor(vm.LimD_DonaUL * (CDbl(vm.slfIncome) + CDbl(vm.slfResi) - CDbl(vm.slfOE)) / 100)
+        Income = Math.floor(vm.LimD_DonaUL * (CDbl(vm.slfIncome) + CDbl(vm.slfResi) - CDbl(vm.slfOE)) / 100)
+      }
+      vm.slfDona = Income
+      vm.ChkDD(7)
+    },
+    Dona12OnBlur () {
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      MustReset = false
+      Income = vm.FormatInput(vm.spsDona, 0, Math.floor(vm.LimD_DonaUL * (CDbl(vm.spsIncome) + CDbl(vm.spsResi) - CDbl(vm.spsOE)) / 100))
+      if (vm.martial_status === 'S' && Income !== '0') {
+        // ErrMsg('由於你並非已婚人士，因此你不能輸入配偶的入息。')
+        MustReset = true
+        // vm.spsMpf = 0
+        Income = 0
+      } else if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        // vm.spsBook = 0
+        Income = 0
+      } else if (Income === '+') {
+        // ErrMsg('你不可輸入超過 9 位數字的數值 !')
+        MustReset = true
+        vm.spsDona = Math.floor(vm.LimD_DonaUL * (CDbl(vm.spsIncome) + CDbl(vm.spsResi) - CDbl(vm.spsOE)) / 100)
+        Income = Math.floor(vm.LimD_DonaUL * (CDbl(vm.spsIncome) + CDbl(vm.spsResi) - CDbl(vm.spsOE)) / 100)
+      }
+      vm.spsDona = Income
       vm.ChkDD(8)
     },
     T13OnBlur () {
@@ -1210,6 +1403,130 @@ export default {
       vm.spsMedInsu = Income
       vm.ChkDD(0)
     },
+    slfVolunMpfOnBlur () { // onday_onday(7)
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      var Limit = 60000
+
+      var slfVolunMpf = parseFloat(vm.slfVolunMpf)
+      var spsVolunMpf = parseFloat(vm.spsVolunMpf)
+      console.log(`---`, slfVolunMpf + spsVolunMpf)
+
+      // if (vm.martial_status === 'M') { // Married ?
+      //   if (slfVolunMpf + spsVolunMpf > Limit * 2) {
+      //     slfVolunMpf = Limit * 2 - spsVolunMpf
+      //     spsVolunMpf = spsVolunMpf + 0
+      //   } else {
+      //     slfVolunMpf = slfVolunMpf + 0
+      //   }
+      // } else {
+      if (slfVolunMpf > 60000) {
+        slfVolunMpf = 60000
+      }
+      // }
+      Income = vm.FormatInput(slfVolunMpf, 0, 99999999)
+      if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        vm.slfVolunMpf = 0
+        Income = 0
+      } else if (Income === '+') {
+        MustReset = true
+        vm.slfVolunMpf = Limit
+        Income = Limit
+      }
+      console.log(Income)
+      vm.slfVolunMpf = Income
+      vm.ChkDD(0)
+    },
+    spsVolunMpfOnBlur () { // onday_onday(7)
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      var Limit = 60000
+
+      var slfVolunMpf = parseFloat(vm.slfVolunMpf)
+      var spsVolunMpf = parseFloat(vm.spsVolunMpf)
+
+      // if (vm.martial_status === 'M') { // Married ?
+      //   if (slfVolunMpf + spsVolunMpf > Limit * 2) {
+      //     spsVolunMpf = Limit * 2 - slfVolunMpf
+      //     slfVolunMpf = slfVolunMpf + 0
+      //   } else {
+      //     spsVolunMpf = spsVolunMpf + 0
+      //   }
+      // } else {
+      if (spsVolunMpf > 60000) {
+        spsVolunMpf = 60000
+      }
+      // }
+      Income = vm.FormatInput(spsVolunMpf, 0, 99999999)
+      if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        vm.spsVolunMpf = 0
+        Income = 0
+      } else if (Income === '+') {
+        MustReset = true
+        vm.spsVolunMpf = Limit
+        Income = Limit
+      }
+      console.log(Income)
+      vm.spsVolunMpf = Income
+      vm.ChkDD(0)
+    },
+    // slfDiseaseOnBlur () {
+    //   var vm = this
+    //   var Income, obj, MustReset, ValueResidence
+    //   var Limit = 60000
+
+    //   var slfDisease = parseFloat(vm.slfDiseaseExp)
+    //   console.log(`---slfDisease expense`, slfDisease)
+    //   // var uperLim = Math.floor(CDbl(vm.slfIncome) / 1000)
+
+    //   if (slfDisease > 60000) {
+    //     slfDisease = 60000
+    //   }
+    //   Income = vm.FormatInput(slfDisease, 0, 99999999)
+    //   if (Income === '*') {
+    //     // ErrMsg('你輸入的數值不正確 !')
+    //     MustReset = true
+    //     vm.slfDiseaseExp = 0
+    //     Income = 0
+    //   } else if (Income === '+') {
+    //     MustReset = true
+    //     vm.slfDiseaseExp = Limit
+    //     Income = Limit
+    //   }
+    //   console.log(Income)
+    //   vm.slfDiseaseExp = Income
+    //   vm.ChkDD(0)
+    // },
+    // spsDiseaseOnBlur () {
+    //   var vm = this
+    //   var Income, obj, MustReset, ValueResidence
+    //   var Limit = 60000
+
+    //   var spsDisease = parseFloat(vm.spsDiseaseExp)
+    //   console.log(`---slfDisease expense`, spsDisease)
+
+    //   if (spsDisease > 60000) {
+    //     spsDisease = 60000
+    //   }
+    //   Income = vm.FormatInput(spsDisease, 0, 99999999)
+    //   if (Income === '*') {
+    //     // ErrMsg('你輸入的數值不正確 !')
+    //     MustReset = true
+    //     vm.spsDiseaseExp = 0
+    //     Income = 0
+    //   } else if (Income === '+') {
+    //     MustReset = true
+    //     vm.spsDiseaseExp = Limit
+    //     Income = Limit
+    //   }
+    //   console.log(Income)
+    //   vm.spsDiseaseExp = Income
+    //   vm.ChkDD(0)
+    // },
     self_disabled_DISOnBlur () {
       //
     },
@@ -1225,9 +1542,15 @@ export default {
       spsDDreseted = false
       // console.log('ChkDDa', spsHasIncome)
       if (IsNIL(vm.slfIncome) && spsHasIncome) {
-        if (NotNIL(vm.slfDona) || NotNIL(vm.slfERCE) || vm.slfElder > 0 || vm.slfDisdep > 0) {
+        if (NotNIL(vm.slfDona) || NotNIL(vm.slfDona_restrict) || NotNIL(vm.slfERCE) || NotNIL(vm.slfERCE_forCompute) || vm.slfElder > 0 || vm.slfDisdep > 0) {
           ClrTxt(vm.slfDona)
+          console.log('ClrTxt(')
+          ClrTxt(vm.slfDona_restrict)
+          console.log('ClrTxt(')
           ClrTxt(vm.slfERCE)
+          console.log('ClrTxt(')
+          ClrTxt(vm.slfERCE_forCompute)
+          console.log('ClrTxt(')
           vm.slfElder = 0
           vm.slfDisdep = 0
           MsgID = 2.8
@@ -1239,14 +1562,26 @@ export default {
         vm.T11tag = '0'
       }
       if (IsNIL(vm.slfIncome)) {
-        if (NotNIL(vm.slfDona) || NotNIL(vm.slfSEE) || NotNIL(vm.slfERCE) || NotNIL(vm.slfMpf) || vm.slfElder > 0 || vm.slfDisdep > 0 || NotNIL(vm.slfOE)) {
+        if (NotNIL(vm.slfDona) || NotNIL(vm.slfDona_restrict) || NotNIL(vm.slfSEE) || NotNIL(vm.slfERCE) || NotNIL(vm.slfERCE_forCompute) || NotNIL(vm.slfMpf) || vm.slfElder > 0 || vm.slfDisdep > 0 || NotNIL(vm.slfOE)) {
           ClrTxt(vm.slfDona)
+          // console.log('ClrTxt(')
+          ClrTxt(vm.slfDona_restrict)
+          // console.log('ClrTxt(')
           ClrTxt(vm.slfSEE)
+          // console.log('ClrTxt(')
           ClrTxt(vm.slfERCE)
+          // console.log('ClrTxt(')
+          ClrTxt(vm.slfERCE_forCompute)
+          // console.log('ClrTxt(')
           vm.slfElder = 0
           vm.slfDisdep = 0
           ClrTxt(vm.slfMpf)
+          // console.log('ClrTxt(')
+          // MOCK BOOK
+          // ClrTxt(vm.slfBook)
+          // console.log('ClrTxt(')
           ClrTxt(vm.slfOE)
+          // console.log('ClrTxt(')
           MsgID = 2
           slfDDreseted = true
         }
@@ -1256,14 +1591,23 @@ export default {
         vm.T11tag = '0'
       }
       if (IsNIL(vm.spsIncome)) {
-        if (NotNIL(vm.spsDona) || NotNIL(vm.spsSEE) || NotNIL(vm.spsERCE) || NotNIL(vm.spsLoan) || vm.spsElder > 0 || vm.spsDisdep > 0 || NotNIL(vm.spsOE)) {
+        if (NotNIL(vm.spsDona) || NotNIL(vm.spsDona_restrict) || NotNIL(vm.spsSEE) || NotNIL(vm.spsERCE) || NotNIL(vm.spsERCE_forCompute) || NotNIL(vm.spsLoan) || vm.spsElder > 0 || vm.spsDisdep > 0 || NotNIL(vm.spsOE)) {
           ClrTxt(vm.spsDona)
+          // console.log('ClrTxt(')
+          ClrTxt(vm.spsDona_restrict)
+          // console.log('ClrTxt(')
           ClrTxt(vm.spsSEE)
+          // console.log('ClrTxt(')
           ClrTxt(vm.spsERCE)
+          // console.log('ClrTxt(')
+          ClrTxt(vm.spsERCE_forCompute)
+          // console.log('ClrTxt(')
           vm.spsElder = 0
           vm.spsDisdep = 0
           ClrTxt(vm.spsLoan)
+          // console.log('ClrTxt(')
           ClrTxt(vm.spsOE)
+          // console.log('ClrTxt(')
           if (vm.martial_status === 'S') { // Single ?
             MsgID = 4
           } else {
@@ -1293,6 +1637,7 @@ export default {
           if (iv === '*') {
             MsgID = 1
           } else if (iv === '-') {
+            vm.slfDona_restrict = SetTxt(vm.slfDona_restrict, 0)
             MsgID = 5
             b = a
           } else {
@@ -1319,8 +1664,10 @@ export default {
           }
           if (parseFloat(vm.slfDona) < lv) {
             // NOP: wait for input larger
+            vm.slfDona_restrict = SetTxt(vm.slfDona_restrict, 0)
           } else {
             vm.slfDona = SetTxt(vm.slfDona, v1)
+            vm.slfDona_restrict = SetTxt(vm.slfDona_restrict, v1)
           }
           if (vm.T3tag === v1) {
             slfACDChanged = false
@@ -1348,6 +1695,7 @@ export default {
           if (iv === '*') {
             MsgID = 1
           } else if (iv === '-') {
+            vm.spsDona_restrict = SetTxt(vm.spsDona_restrict, 0)
             MsgID = 5
             b = a
           } else {
@@ -1373,9 +1721,11 @@ export default {
             vm.oT4 = v1
           }
           if (parseFloat(vm.spsDona) < lv) {
+            vm.spsDona_restrict = SetTxt(vm.spsDona_restrict, 0)
             // NOP: wait for input larger
           } else {
             vm.spsDona = SetTxt(vm.spsDona, v1)
+            vm.spsDona_restrict = SetTxt(vm.spsDona_restrict, v1)
           }
           if (vm.T4tag === v1) {
             spsACDChanged = false
@@ -1445,6 +1795,7 @@ export default {
         if (vm.martial_status === 'S') { // Single ?
           MsgID = 4
           ClrTxt(vm.spsLoan)
+          console.log('ClrTxt(')
         } else {
           iv = vm.FormatInput(vm.spsLoan, 0, vm.LimD_HomeLoan)
           a = vm.FormatInput(vm.spsLoan, 0, 99999999999)
@@ -1467,15 +1818,19 @@ export default {
       if (NotNIL(vm.slfERCE)) {
         iv = vm.FormatInput(vm.slfERCE, 0, vm.LimD_Elderly * vm.slfElder)
         var iv2 = vm.FormatInput(vm.slfERCE, 0, vm.LimD_Elderly_new * vm.slfElder)
-        var v2
+        if (iv === '+') {
+          vm.slfERCE_forCompute = vm.LimD_Elderly * vm.slfElder
+        } else {
+          vm.slfERCE_forCompute = iv
+        }
         a = vm.FormatInput(vm.slfERCE, 0, 99999999999)
         v1 = '0'
-        if (vm.YrEnd < 1999 && iv !== '0') {
+        if (vm.YrEnd < 1999 && iv2 !== '0') {
           MsgID = 3
           b = 1999
-        } else if (iv === '*') {
+        } else if (iv2 === '*') {
           MsgID = 1
-        } else if (iv === '+') {
+        } else if (iv2 === '+') {
           MsgID = 9
           b = a
           v1 = FormatMoney(vm.LimD_Elderly_new * vm.slfElder)
@@ -1487,14 +1842,19 @@ export default {
       if (NotNIL(vm.spsERCE)) {
         iv = vm.FormatInput(vm.spsERCE, 0, vm.LimD_Elderly * vm.spsElder)
         iv2 = vm.FormatInput(vm.spsERCE, 0, vm.LimD_Elderly_new * vm.spsElder)
+        if (iv === '+') {
+          vm.spsERCE_forCompute = vm.LimD_Elderly * vm.spsElder
+        } else {
+          vm.spsERCE_forCompute = iv
+        }
         a = vm.FormatInput(vm.spsERCE, 0, 99999999999)
         v1 = '0'
-        if (vm.YrEnd < 1999 && iv !== '0') {
+        if (vm.YrEnd < 1999 && iv2 !== '0') {
           MsgID = 3
           b = 1999
-        } else if (iv === '*') {
+        } else if (iv2 === '*') {
           MsgID = 1
-        } else if (iv === '+') {
+        } else if (iv2 === '+') {
           MsgID = 9
           b = a
           v1 = FormatMoney(vm.LimD_Elderly_new * vm.spsElder)
@@ -1684,7 +2044,7 @@ export default {
     }, // End ChkDD
     D1OnChange () {
       var vm = this
-      var YrValue = '2017-2018'
+      var YrValue = '2019-2020'
       // YrValue = dF.D1.options[dF.D1.selectedIndex].value
       vm.YrEnd = parseInt(rightStr(YrValue, 4), 10)
       if (vm.YrEnd < 1995) { // before 94/95
@@ -1760,17 +2120,24 @@ export default {
       vm.slfSEE = 0
       vm.spsSEE = 0
       vm.slfDona = 0
+      vm.slfDona_restrict = 0
       vm.spsDona = 0
+      vm.spsDona_restrict = 0
       vm.slfMpf = 0
       vm.spsMpf = 0
+      // MOCK
+      // vm.slfBook = 0
+      // vm.spsBook = 0
       vm.slfLoan = 0
       vm.spsLoan = 0
       vm.slfElder = 0
       vm.slfDisdep = 0
       vm.slfERCE = 0
+      vm.slfERCE_forCompute = 0
       vm.spsElder = 0
       vm.spsDisdep = 0
       vm.spsERCE = 0
+      vm.spsERCE_forCompute = 0
       vm.slfRebateAmt = 0
       vm.NBbb = 0
       vm.CAbb = 0
@@ -1793,6 +2160,10 @@ export default {
       vm.spsMedInsu_ppl = 0
       vm.self_disabled_DIS = false
       vm.sps_disabled_DIS = false
+      // vm.self_iang_visa = false
+      // vm.sps_iang_visa = false
+      // vm.slfDiseaseExp = 0
+      // vm.spsDiseaseExp = 0
     },
     STCOut1_func () {
       // console.log('loop_count', this.infin_update)
@@ -1804,6 +2175,11 @@ export default {
       // }
       var tmp = 0
       var i = 0
+      var self_DISABLE_deduct // onday_onday(new in 2018)
+      var sps_DISABLE_deduct // onday_onday(new in 2018)
+      // // MOCK
+      // var self_iang_visa_deduct
+      // var sps_iang_visa_deduct
       this.STCIn8 = false // 1: 有供養傷殘, 0: 沒有供養傷殘
 
       // INIT
@@ -1825,9 +2201,14 @@ export default {
         this.slfSEE = 0
         this.slfOE = 0
         this.slfDona = 0
+        this.slfDona_restrict = 0
         this.slfERCE = 0
+        this.slfERCE_forCompute = 0
         this.slfMpf = 0
-        // this.slfLoan = 0
+        // MOCK
+        // this.slfBook = 0
+        this.slfDiseaseExp = 0
+        this.slfLoan = 0
         // ErrMsg('由於你沒有入息，因此你不能扣除居所貸款利息。')
       }
       if (this.spsNCI > 0) {
@@ -1838,9 +2219,13 @@ export default {
         this.spsSEE = 0
         this.spsOE = 0
         this.spsDona = 0
+        this.spsDona_restrict = 0
         this.spsERCE = 0
+        this.spsERCE_forCompute = 0
         this.spsMpf = 0
-        // this.spsLoan = 0
+        // MOCK
+        // this.spsBook = 0
+        this.spsLoan = 0
         // ErrMsg('由於你們沒有入息，因此你們不能扣除居所貸款利息。')
       }
       this.STCIn2 = parseFloat(this.slfIncome) + parseFloat(this.slfResi)
@@ -1904,17 +2289,39 @@ export default {
       }
 
       this.slfDona = parseFloat(this.slfDona)
+      this.slfDona_restrict = parseFloat(this.slfDona_restrict) < 100 || isNaN(parseFloat(this.slfDona_restrict)) ? 0 : parseFloat(this.slfDona_restrict)
       this.spsDona = parseFloat(this.spsDona)
+      this.spsDona_restrict = parseFloat(this.spsDona_restrict) < 100 || isNaN(parseFloat(this.spsDona_restrict)) ? 0 : parseFloat(this.spsDona_restrict)
 
       // 扣稅總額
-      this.STCIn14 = parseFloat(this.slfDona) + parseFloat(this.slfERCE) + parseFloat(this.slfMpf) + parseFloat(this.slfSEE) + parseFloat(this.slfOE)
-      this.STCIn15 = parseFloat(this.spsDona) + parseFloat(this.spsERCE) + parseFloat(this.spsMpf) + parseFloat(this.spsSEE) + parseFloat(this.spsOE)
+      this.STCIn14 = parseFloat(this.slfDona_restrict) + parseFloat(this.slfERCE_forCompute) + parseFloat(this.slfMpf) + parseFloat(this.slfSEE) + parseFloat(this.slfOE)
+      this.STCIn15 = parseFloat(this.spsDona_restrict) + parseFloat(this.spsERCE_forCompute) + parseFloat(this.spsMpf) + parseFloat(this.spsSEE) + parseFloat(this.spsOE)
+
+      // 扣稅總額 onday_onday(5)
+      this.STCIn14 = this.STCIn14 + parseFloat(this.slfMedInsu)
+      this.STCIn15 = this.STCIn15 + parseFloat(this.spsMedInsu)
+
+      // 扣稅總額: 年金、強積金自願供款 => 分開評稅
+      var slfVolunMpf = parseFloat(this.slfVolunMpf) // onday_onday(7)
+      var spsVolunMpf = parseFloat(this.spsVolunMpf)
+      var sumVolunMpf = slfVolunMpf + spsVolunMpf
+      if (slfVolunMpf > 60000) {
+        slfVolunMpf = 60000
+      }
+      if (spsVolunMpf > 60000) {
+        spsVolunMpf = 60000
+      }
+      if (slfVolunMpf + spsVolunMpf > 120000) {
+        sumVolunMpf = 120000
+      }
+      this.STCIn14 = this.STCIn14 + parseFloat(slfVolunMpf)
+      this.STCIn15 = this.STCIn15 + parseFloat(spsVolunMpf)
 
       // TO-WORK!!! T3tag T4tag has maximum donation
-      this.STCIn16 = parseFloat(this.slfDona) + parseFloat(this.spsDona) // STCIn16 = CDbl(vm.T3tag) + CDbl(vm.T4tag)
+      this.STCIn16 = parseFloat(this.slfDona_restrict) + parseFloat(this.spsDona_restrict) // STCIn16 = CDbl(vm.T3tag) + CDbl(vm.T4tag)
       this.jntOE = parseFloat(this.slfOE) + parseFloat(this.spsOE)
       this.jntSEE = parseFloat(this.slfSEE) + parseFloat(this.spsSEE)
-      this.STCIn16 = this.STCIn16 + parseFloat(this.slfERCE) + parseFloat(this.slfMpf) + parseFloat(this.spsERCE) + parseFloat(this.spsMpf) + parseFloat(this.jntOE) + parseFloat(this.jntSEE)
+      this.STCIn16 = this.STCIn16 + parseFloat(this.slfERCE_forCompute) + parseFloat(this.slfMpf) + parseFloat(this.spsERCE_forCompute) + parseFloat(this.spsMpf) + parseFloat(this.jntOE) + parseFloat(this.jntSEE)
       if (this.STCIn2 > 0) {
         this.STCIn14 = this.STCIn14 + parseFloat(this.slfLoan)
       }
@@ -1924,10 +2331,14 @@ export default {
       if (this.STCIn2 > 0 || this.STCIn3 > 0) {
         this.STCIn16 = this.STCIn16 + parseFloat(this.slfLoan) + parseFloat(this.spsLoan)
       }
+      this.STCIn16 = this.STCIn16 + parseFloat(this.slfMedInsu) + parseFloat(this.spsMedInsu)
+      // 扣稅總額: 年金、強積金自願供款 => 合併評稅
+      this.STCIn16 = this.STCIn16 + parseFloat(sumVolunMpf) // onday_onday(7)
+
       this.STCIn17 = parseInt(this.resi_parent_5560, 10)
       this.STCIn18 = parseInt(this.non_resi_parent_5560, 10)
-      this.STCIn19 = (parseFloat(this.slfERCE) > 0) ? parseFloat(this.slfDisdep) : 0
-      this.STCIn20 = (parseFloat(this.spsERCE) > 0) ? parseFloat(this.spsDisdep) : 0
+      this.STCIn19 = (parseFloat(this.slfERCE_forCompute) > 0) ? parseFloat(this.slfDisdep) : 0
+      this.STCIn20 = (parseFloat(this.spsERCE_forCompute) > 0) ? parseFloat(this.spsDisdep) : 0
       this.STCIn21 = parseInt(this.NBbb, 10)
       this.STCIn22 = parseInt(this.CAbb_DIS, 10)
       // this.STCIn23 = (parseInt(this.single_parent, 10) === 1)
@@ -1948,8 +2359,15 @@ export default {
       STCOut[58] = this.STCIn15
       STCOut[59] = this.STCIn16
       STCOut[75] = this.CA[this.STCIn21] + this.NBCA[this.STCIn21]
-      STCOut[78] = (this.slfERCE > this.LimD_Elderly * this.slfElder) ? this.LimD_Elderly * this.slfElder : this.slfERCE
-      STCOut[79] = (this.spsERCE > this.LimD_Elderly * this.slfElder) ? this.LimD_Elderly * this.slfElder : this.spsERCE
+      STCOut[78] = (this.slfERCE_forCompute > this.LimD_Elderly * this.slfElder) ? this.LimD_Elderly * this.slfElder : this.slfERCE_forCompute
+      STCOut[79] = (this.spsERCE_forCompute > this.LimD_Elderly * this.slfElder) ? this.LimD_Elderly * this.slfElder : this.spsERCE_forCompute
+      self_DISABLE_deduct = (this.self_disabled_DIS === true && this.STCIn2 > 0) ? 75000 : 0 // onday_onday(new)
+      sps_DISABLE_deduct = (this.sps_disabled_DIS === true && this.martial_status === 'M' && this.STCIn3 > 0) ? 75000 : 0 // onday_onday(new)
+      // // MOCK
+      // self_iang_visa_deduct = (this.self_iang_visa === true && this.STCIn2 > 0) ? 75000 : 0
+      // sps_iang_visa_deduct = (this.self_iang_visa === true && this.martial_status === 'M' && this.STCIn3 > 0) ? 75000 : 0
+
+      // console.log('self_DISABLE_deduct', self_DISABLE_deduct, this.self_disabled_DIS)
 
       // 供養父母的數目
       this.ADPNo = this.STCIn6
@@ -2026,7 +2444,7 @@ export default {
         STCOut[74] = this.CA[this.STCIn21] + this.NBCA[this.STCIn21]
         STCOut[76] = this.STCIn21
         STCOut[77] = this.STCIn21
-        STCOut[78] = this.slfERCE
+        STCOut[78] = this.slfERCE_forCompute
 
         if (this.STCIn8) {
           STCOut[11] = this.DIS_DA * (this.STCIn10 + this.STCIn11 + this.STCIn12 + this.STCIn13 + this.STCIn19 + this.STCIn22)
@@ -2044,10 +2462,11 @@ export default {
 
         // SUM
         STCOut[24] = STCOut[3] + STCOut[5] + STCOut[6] + STCOut[7] + STCOut[8] + STCOut[60] + STCOut[11] + STCOut[73]
+        STCOut[24] = STCOut[24] + self_DISABLE_deduct // onday_onday(new in 2018)
         STCOut[27] = this.netSelfI - STCOut[24]
         this.STCMainRV = 10
       } else { // === 'M'
-        // 需要分case本人收入===0 (22) 或 配偶收入===0 (24)
+        // 需要分case本人收入===0 (24) 或 配偶收入===0 (22)
         // 有得過俾配偶，計nMin, child_count
         if (this.STCIn3 === 0) { // taxtype === 22
           STCOut[0] = this.STCIn2
@@ -2075,6 +2494,8 @@ export default {
             STCOut[11] = this.DIS_DA * this.STCIn19
           }
           STCOut[24] = STCOut[4] + STCOut[6] + STCOut[7] + STCOut[8] + STCOut[60] + STCOut[11] + STCOut[73]
+          // STCOut[24] = STCOut[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+          STCOut[24] = STCOut[24] + self_DISABLE_deduct
           STCOut[27] = this.netSelfI - STCOut[24]
           if (STCOut[27] < 0) {
             STCOut[27] = 0
@@ -2099,7 +2520,7 @@ export default {
             STCOut[49] = this.STCIn19
           }
           this.STCMainRV = 22
-        } else if (this.STCIn2 === 0) { // taxtype === 24
+        } else if (this.STCIn2 === 0) { // 本人收入===0 (24) taxtype === 24
           STCOut[1] = this.STCIn3
           STCOut[4] = this.AL_MARR + this.AAMarr
           STCOut[12] = this.CA[this.STCIn4]
@@ -2116,7 +2537,10 @@ export default {
           } else {
             STCOut[17] = this.DIS_DA * this.STCIn20
           }
+          // 這個是配偶的免稅額，沒有加傷殘這個
           STCOut[25] = STCOut[4] + STCOut[12] + STCOut[13] + STCOut[14] + STCOut[63] + STCOut[17] + STCOut[74]
+          STCOut[25] = STCOut[25] + sps_DISABLE_deduct
+
           STCOut[28] = this.netSpouseI - STCOut[25]
           if (STCOut[28] < 0) {
             STCOut[28] = 0
@@ -2213,6 +2637,8 @@ export default {
             STCOut[11] = this.DIS_DA * this.STCIn19
           }
           STCOut[24] = STCOut[3] + STCOut[6] + STCOut[7] + STCOut[8] + STCOut[60] + STCOut[11] + STCOut[73]
+          // STCOut[24] = STCOut[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+          STCOut[24] = STCOut[24] + self_DISABLE_deduct
           STCOut[12] = this.CA[(1 - this.nMin) * this.STCIn4]
           STCOut[13] = this.DBSA * (this.STCIn5 - this.oMin)
           STCOut[15] = (this.DPA + this.ADPA) * (this.STCIn6 - this.mMin)
@@ -2228,6 +2654,7 @@ export default {
             STCOut[17] = this.DIS_DA * this.STCIn20
           }
           STCOut[25] = STCOut[3] + STCOut[12] + STCOut[13] + STCOut[14] + STCOut[63] + STCOut[17] + STCOut[74]
+          STCOut[25] = STCOut[25] + sps_DISABLE_deduct
           STCOut[27] = this.netSelfI - STCOut[24]
           if (STCOut[27] < 0) STCOut[27] = 0
           STCOut[28] = this.netSpouseI - STCOut[25]
@@ -2293,6 +2720,7 @@ export default {
             STCOut[23] = this.DIS_DA * (this.STCIn19 + this.STCIn20)
           }
           STCOut[26] = STCOut[4] + STCOut[18] + STCOut[19] + STCOut[20] + STCOut[66] + STCOut[23] + STCOut[75]
+          STCOut[26] = STCOut[26] + self_DISABLE_deduct + sps_DISABLE_deduct
           STCOut[29] = this.netJointI - STCOut[26]
           if (STCOut[29] < 0) STCOut[29] = 0
           STCOut[33] = Math.floor(this.CompTP(this.jointStdTP, STCOut[29]))
@@ -2300,7 +2728,7 @@ export default {
 
           if (this.STCIn8) {
             // 有供養傷殘
-            // console.log('有供養傷殘: ', this.STCIn2, STCOut[3], STCOut[57])
+            console.log('有供養傷殘: ', this.STCIn2, STCOut[3], STCOut[57])
             if ((this.STCIn9 === true) && ((this.STCIn2 - STCOut[3] - STCOut[57]) > 0)) {
               STCOut[23] = this.DIS_DA * (1 + this.STCIn10 + this.STCIn11 + this.STCIn12 + this.STCIn13 + this.STCIn19 + this.STCIn20 + this.STCIn22)
               STCOut[55] = true
@@ -2311,8 +2739,13 @@ export default {
             }
             STCOut[17] = this.DIS_DA * ((1 - this.nMin) * (this.STCIn10 + this.STCIn22) + this.STCIn11 - this.odMin + this.STCIn13 - this.ldMin + this.STCIn12 - this.mdMin + this.STCIn20)
             STCOut[24] = STCOut[3] + STCOut[6] + STCOut[7] + STCOut[8] + STCOut[60] + STCOut[11] + STCOut[73]
+            // STCOut[24] = STCOut[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+            STCOut[24] = STCOut[24] + self_DISABLE_deduct
             STCOut[25] = STCOut[3] + STCOut[12] + STCOut[13] + STCOut[14] + STCOut[63] + STCOut[17] + STCOut[74]
+            // modification add in disbalbed 7500
+            STCOut[25] = STCOut[25] + sps_DISABLE_deduct
             STCOut[26] = STCOut[4] + STCOut[18] + STCOut[19] + STCOut[20] + STCOut[66] + STCOut[23] + STCOut[75]
+            STCOut[26] = STCOut[26] + self_DISABLE_deduct + sps_DISABLE_deduct
             STCOut[49] = STCOut[45] + STCOut[46] + STCOut[47] + STCOut[48] + this.STCIn19
             STCOut[54] = STCOut[50] + STCOut[51] + STCOut[52] + STCOut[53] + this.STCIn20
           } else {
@@ -2320,8 +2753,13 @@ export default {
             STCOut[17] = this.DIS_DA * this.STCIn20
             STCOut[23] = this.DIS_DA * (this.STCIn19 + this.STCIn20)
             STCOut[24] = STCOut[3] + STCOut[6] + STCOut[7] + STCOut[8] + STCOut[60] + STCOut[11] + STCOut[73]
+            // STCOut[24] = STCOut[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+            STCOut[24] = STCOut[24] + self_DISABLE_deduct
             STCOut[25] = STCOut[3] + STCOut[12] + STCOut[13] + STCOut[14] + STCOut[63] + STCOut[17] + STCOut[74]
+            // modification add in disbalbed 7500
+            STCOut[25] = STCOut[25] + sps_DISABLE_deduct
             STCOut[26] = STCOut[4] + STCOut[18] + STCOut[19] + STCOut[20] + STCOut[66] + STCOut[23] + STCOut[75]
+            STCOut[26] = STCOut[26] + self_DISABLE_deduct + sps_DISABLE_deduct
             STCOut[27] = this.netSelfI - STCOut[24]
             STCOut[28] = this.netSpouseI - STCOut[25]
             STCOut[29] = this.netJointI - STCOut[26]
@@ -2372,8 +2810,11 @@ export default {
             this.STCMainRV = 42
 
             STCOut[24] = STCOut[3]
+            // STCOut[24] = STCOut[24] + self_DISABLE_deduct + sps_DISABLE_deduct
+            STCOut[24] = STCOut[24] + self_DISABLE_deduct
             STCOut[25] = STCOut[3] + STCOut[12] + STCOut[13] + STCOut[14] + STCOut[63] + STCOut[17] + STCOut[74] + STCOut[6] + STCOut[7] + STCOut[8] + STCOut[60] + STCOut[11] + STCOut[73]
-
+            // modification add in disbalbed 7500
+            STCOut[25] = STCOut[25] + sps_DISABLE_deduct
             STCOut[27] = parseFloat(this.netSelfI) - parseFloat(STCOut[24]) + parseFloat(STCOut[78])
             if (STCOut[27] < 0) STCOut[27] = 0
             STCOut[28] = parseFloat(this.netSpouseI) - parseFloat(STCOut[25]) - parseFloat(STCOut[78])
@@ -2929,18 +3370,21 @@ export default {
         '#spouse_oe': this.spsOE,
         '#self_eduexp': this.slfSEE,
         '#spouse_eduexp': this.spsSEE,
-        '#self_donation': this.slfDona,
-        '#spouse_donation': this.spsDona,
+        '#self_donation': this.slfDona_restrict,
+        '#spouse_donation': this.spsDona_restrict,
         '#self_mpf': this.slfMpf,
         '#spouse_mpf': this.spsMpf,
+        // MOCK
+        // '#self_book': this.slfBook,
+        // '#spouse_book': this.spsBook,
         '#self_homeloan': this.slfLoan,
         '#spouse_homeloan': this.spsLoan,
         '#self_elderly': this.slfElder,
         '#self_disabledep': this.slfDisdep,
-        '#self_eldresi_amt': this.slfERCE,
+        '#self_eldresi_amt': this.slfERCE_forCompute,
         '#spouse_elderly': this.spsElder,
         '#spouse_disabledep': this.spsDisdep,
-        '#spouse_eldresi_amt': this.spsERCE,
+        '#spouse_eldresi_amt': this.spsERCE_forCompute,
         '#NBbb': this.NBbb,
         '#CAbb': this.CAbb,
         '#single_parent': this.single_parent,
@@ -2959,6 +3403,11 @@ export default {
         '#spouse_medic_insu': this.spsMedInsu,
         '#self_disabled_DIS': this.self_disabled_DIS,
         '#sps_disabled_DIS': this.sps_disabled_DIS
+        // Mock
+        // '#self_iang_visa': this.self_iang_visa,
+        // '#sps_iang_visa': this.sps_iang_visa,
+        // '#slfDiseaseExp': this.slfDiseaseExp,
+        // '#spsDiseaseExp': this.spsDiseaseExp
       }
     }
   },

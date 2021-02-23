@@ -36,7 +36,7 @@ function trimStr (s) {
     j--
   }
   if (i <= j) {
-    return s1.substring(i, j - i + 1)
+    return s1.substring(i, j - i + 1).replace('-', '')
   } else {
     return ''
   }
@@ -135,7 +135,10 @@ function IsNumber (Istr) {
 
 function IsNIL (obj) {
   var AllowChars, i, ov
-  AllowChars = '0 '
+  AllowChars = '0 .'
+  if (!obj) {
+    return true
+  }
   ov = obj.toString() // .value
   for (i = 0; i < ov.length; i++) {
     if (AllowChars.indexOf(ov.charAt(i)) === -1) {
@@ -498,7 +501,7 @@ export default {
         //   }
         // }
       }
-      vm.$parent.GA(have_to_pay, saved_pay)
+      // vm.$parent.GA(have_to_pay, saved_pay)
       vm.toggleClass('sh_result')
       vm.$parent.$modal.show('new_budget')
     },

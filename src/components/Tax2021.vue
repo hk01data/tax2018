@@ -59,7 +59,7 @@
                     <tr>
                         <td width="46%" v-if="STCMainRV !== 24 && STCMainRV !== 22 && STCMainRV !== 10">&nbsp;&nbsp;&nbsp;&nbsp;基 本 / 已 婚 人 士</td>
                         <td width="46%" v-if="STCMainRV === 24 || STCMainRV === 22">&nbsp;&nbsp;&nbsp;&nbsp;已 婚 人 士</td>
-                        <td width="46%" v-if="STCMainRV === 10">&nbsp;&nbsp;&nbsp;&nbsp;基 本</td>                  
+                        <td width="46%" v-if="STCMainRV === 10">&nbsp;&nbsp;&nbsp;&nbsp;基 本</td>
                         <td width="18%" v-if="STCMainRV !== 24 && STCMainRV !== 22">
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tbody>
@@ -152,9 +152,9 @@
                         <!-- cell right -->
                         <td width="18%" align="right" class="formulated" data-taxtype="{}">{{ STCOut2[18] }}</td>
                     </tr>
-        
-        
-        
+
+
+
                     <!-- Multi Column + 3row -->
                     <tr v-if="(STCOut2[77] > 0 || STCOut2[76] > 0) && (STCMainRV === 30 || STCMainRV === 40 || STCMainRV === 42 || STCMainRV === 45)">
                         <td width='46%'>&nbsp;&nbsp;&nbsp;&nbsp;子 女</td>
@@ -224,7 +224,7 @@
                         </td>
                         <td width="18%" align="right" class="formulated" data-taxtype="{}">{{ STCOut2[18] }}</td>
                     </tr>
-        
+
                     <!-- Single Column -->
                     <tr v-if="STCMainRV === 24 || STCMainRV == 22 || STCMainRV == 10">
                         <td width='80%'>&nbsp;&nbsp;&nbsp;&nbsp;供 養 兄 弟 / 姊 妹</td>
@@ -267,8 +267,8 @@
                         <!-- cell right -->
                         <td width="18%" align="right" class="formulated" data-taxtype="{}">{{ STCOut2[19] }}</td>
                     </tr>
-        
-        
+
+
                     <!-- Single Column -->
                     <tr v-if="STCMainRV === 24 || STCMainRV === 22 || STCMainRV === 10">
                         <td width='80%'>&nbsp;&nbsp;&nbsp;&nbsp;供 養 父 母 / 祖 父 母 或 外 祖 父 母</td>
@@ -284,7 +284,7 @@
                         <td width='20%' v-if="STCMainRV !== 24" align='right'>{{ STCOut2[8] }}</td>
                         <td width='20%' v-if="STCMainRV === 24" align='right'>{{ STCOut2[14] }}</td>
                     </tr>
-        
+
                     <!-- Multi Column -->
                     <tr v-if="STCMainRV !== 24 && STCMainRV !== 22 && STCMainRV !== 10">
                         <td width="46%">&nbsp;&nbsp;&nbsp;&nbsp;全 年 與 你 同 住 的<br>&nbsp;&nbsp;&nbsp;&nbsp;受 養 父 母 / 祖 父 母 或<br>&nbsp;&nbsp;&nbsp;&nbsp;外 祖 父 母</td>
@@ -427,15 +427,15 @@
                         </td>
                         <td width="18%" align="right" class="formulated" data-taxtype="{}">{{ STCOut2[22] }}</td>
                     </tr>
-        
+
                     <!-- Single Column -->
                     <tr v-if="STCMainRV === 24 || STCMainRV == 22 || STCMainRV == 10">
                         <td width='80%'>&nbsp;&nbsp;&nbsp;&nbsp;傷 殘 受 養 人</td>
                         <td width='20%' v-if="STCMainRV !== 24" align='right'>{{ STCOut2[11] }}</td>
                         <td width='20%' v-if="STCMainRV === 24" align='right'>##{{ STCOut2[17] }}</td>
                     </tr>
-        
-        
+
+
                     <!-- Multi Column -->
                     <tr v-if="STCMainRV === 30 || STCMainRV == 40 || STCMainRV == 42 || STCMainRV == 45">
                         <td width="46%">&nbsp;&nbsp;&nbsp;&nbsp;傷 殘 受 養 人</td>
@@ -474,8 +474,8 @@
                         <!-- cell right -->
                         <td width="18%" align="right" class="formulated" data-taxtype="{}">{{ STCOut2[23] }}</td>
                     </tr>
-        
-                    
+
+
                     <tr v-if="STCMainRV === 24">
                         <td width='80%'>總 免 稅 額</td>
                         <td width='20%' align='right' class="formulated">{{ STCOut2[25] }}</td>
@@ -594,13 +594,13 @@
                     </tr>
                 </tbody>
             </table>
-          
+
     <div class="tax_result">
         <div class="result_cont">
         </div>
 
         <div class="tax t2018">
-            <button class="result_butn" v-on:click="pop_up()" v-bind:class="{ hide: sh_result }">計吓要交幾多稅！</button>
+            <button class="result_butn" v-on:click="pop_up()" v-bind:class="{ hideX: sh_result }">計吓要交幾多稅！</button>
             <div v-if="false" class="saved" v-bind:class="{ hide: !sh_result }">
                 <p v-if="martial_status !== 'M'">要交幾多稅：${{ ('' + STCOut2[30]).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</p>
                 <p v-if="martial_status === 'M' && spsIncome === 0 && slfIncome === 0">要交幾多稅：$0</p>
@@ -619,6 +619,7 @@
             </div>
         </div>
 
+        <!-- debug purpose
         <div v-if="false" class="tax difference">
             <p class="diff_title">較去年少交</p>
             <p class="diff_value" v-if="martial_status !== 'M'" v-bind:class="{ less: STCOut2[30] - STCOut1[30] < 0 }">
@@ -637,9 +638,10 @@
                 <span class="big_save">{{ ('' + (min_saved)).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</span>元
             </p>
         </div>
-      
+        -->
+
         <modal name="new_budget" height="auto" :scrollable="true" :adaptive="true" :maxWidth="420">
-            <h3>17/18 （本課稅年度）</h3>
+            <h3>20/21 （本課稅年度）</h3>
             <p class="nb_pay" v-if="martial_status !== 'M'">你原要交：
                 <span class="pay_amt">{{ ('' + STCOut1[30]).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
             </p>
@@ -660,40 +662,40 @@
             </p>
 
             <p class="nb_save a1" v-if="martial_status !== 'M'" v-bind:class="{ less: STCOut2[30] - STCOut1[30] < 0 }">
-                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[30]) * 0.75 > 30000 ? 30000 : (STCOut1[30]) * 0.75).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
+                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[30]) * 1 > 20000 ? 20000 : (STCOut1[30]) * 1).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
             </p>
             <p class="nb_save a2" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome === 0" v-bind:class="{ }">
                 <span>獲退稅<sup>*</sup>： <span class="rebate_quota">{{ 0 }}元</span></span>
             </p>
             <p class="nb_save a3" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome !== 0" v-bind:class="{ }">
-                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[30]) * 0.75 > 30000 ? 30000 : (STCOut1[30]) * 0.75).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
+                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[30]) * 1 > 20000 ? 20000 : (STCOut1[30]) * 1).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
             </p>
             <p class="nb_save a4" v-if="martial_status === 'M' && slfIncome === 0 && spsIncome !== 0" v-bind:class="{  }">
-                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[31]) * 0.75 > 30000 ? 30000 : (STCOut1[31]) * 0.75).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
+                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[31]) * 1 > 20000 ? 20000 : (STCOut1[31]) * 1).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
             </p>
             <p class="nb_save a5" v-if="martial_status === 'M' && !only_one_income" v-bind:class="{ less: STCOut2[32] - STCOut1[32] < 0 }">
-                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((last_pay) * 0.75 > 30000 ? 30000 : (last_pay) * 0.75).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
+                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((last_pay) * 1 > 20000 ? 20000 : (last_pay) * 1).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
             </p>
 
             <p class="nb_result a1" v-if="martial_status !== 'M'" v-bind:class="{ less: STCOut2[30] - STCOut1[30] < 0 }">
-                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[30] - 0.4 - ((STCOut1[30]) * 0.75 > 30000 ? 30000 : (STCOut1[30]) * 0.75)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
+                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[30] - 0.4 - ((STCOut1[30]) * 1 > 20000 ? 20000 : (STCOut1[30]) * 1)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
             <p class="nb_result a2" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome === 0" v-bind:class="{ }">
                 <span>實際應繳： <span class="rebate_result">{{ 0 }}元</span></span>
             </p>
             <p class="nb_result a3" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome !== 0" v-bind:class="{ }">
-                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[30] - 0.4 - ((STCOut1[30]) * 0.75 > 30000 ? 30000 : (STCOut1[30]) * 0.75)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
+                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[30] - 0.4 - ((STCOut1[30]) * 1 > 20000 ? 20000 : (STCOut1[30]) * 1)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
             <p class="nb_result a4" v-if="martial_status === 'M' && slfIncome === 0 && spsIncome !== 0" v-bind:class="{  }">
-                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[31] - 0.4 - ((STCOut1[31]) * 0.75 > 30000 ? 30000 : (STCOut1[31]) * 0.75)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
+                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[31] - 0.4 - ((STCOut1[31]) * 1 > 20000 ? 20000 : (STCOut1[31]) * 1)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
             <p class="nb_result a5" v-if="martial_status === 'M' && !only_one_income" v-bind:class="{ less: STCOut2[32] - STCOut1[32] < 0 }">
-                <span>實際應繳： <span class="rebate_result">{{ (last_pay - 0.4 - ((last_pay) * 0.75 > 30000 ? 30000 : (last_pay) * 0.75)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
+                <span>實際應繳： <span class="rebate_result">{{ (last_pay - 0.4 - ((last_pay) * 1 > 20000 ? 20000 : (last_pay) * 1)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
 
             <p><small>*退稅尚待有關法例通過</small></p>
 
-            <h3>18/19 （下個課稅年度）</h3>
+            <h3>21/22 （下個課稅年度）</h3>
             <p class="nb_pay" v-if="martial_status !== 'M'">預計你要交<sup>#</sup>：
                 <span class="pay_amt">{{ ('' + STCOut2[30]).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
             </p>
@@ -713,43 +715,43 @@
                 <span class="pay_amt">{{ ('' + STCOut2[33]).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>（合併評稅）
             </p>
 
-            <p class="nb_save a1" v-if="martial_status !== 'M'" v-bind:class="{ less: STCOut2[30] - STCOut1[30] < 0 }">
-                <small>（較17/18年度少交） <span class="save_amt">{{ ('' + (STCOut2[30] - STCOut1[30])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
-                <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br>
+            <p class="nb_save a1" v-if="false" v-bind:class="{ less: STCOut2[30] - STCOut1[30] < 0 }">
+                <small>（較20/21年度少交） <span class="save_amt">{{ ('' + (STCOut2[30] - STCOut1[30])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
+                <!-- <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br> -->
                 </small>
             </p>
-            <p class="nb_save a2" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome === 0" v-bind:class="{ }">
-                <small>（較17/18年度少交） <span class="save_amt">0元</span>
-                <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br>
+            <p class="nb_save a2" v-if="false" v-bind:class="{ }">
+                <small>（較20/21年度少交） <span class="save_amt">0元</span>
+                <!-- <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br> -->
                 </small>
             </p>
-            <p class="nb_save a3" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome !== 0" v-bind:class="{ }">
-                <small>（較17/18年度少交） <span class="save_amt">{{ ('' + (STCOut2[30] - STCOut1[30])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元（分開評稅）</span>
-                <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br>
+            <p class="nb_save a3" v-if="false">
+                <small>（較20/21年度少交） <span class="save_amt">{{ ('' + (STCOut2[30] - STCOut1[30])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元（分開評稅）</span>
+                <!-- <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br> -->
                 </small>
             </p>
-            <p class="nb_save a4" v-if="martial_status === 'M' && slfIncome === 0 && spsIncome !== 0" v-bind:class="{  }">
-                <small>（較17/18年度少交） <span class="save_amt">{{ ('' + (STCOut2[31] - STCOut1[31])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元（分開評稅）</span>
-                <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br>
+            <p class="nb_save a4" v-if="false">
+                <small>（較20/21年度少交） <span class="save_amt">{{ ('' + (STCOut2[31] - STCOut1[31])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元（分開評稅）</span>
+                <!-- <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br> -->
                 </small>
             </p>
-            <p class="nb_save a5" v-if="martial_status === 'M' && !only_one_income" v-bind:class="{ less: STCOut2[32] - STCOut1[32] < 0 }">
-                <small>（較17/18年度少交） <span class="save_amt">{{ ('' + (min_saved)).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
-                <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br>
+            <p class="nb_save a5" v-if="false">
+                <small>（較20/21年度少交） <span class="save_amt">{{ ('' + (min_saved)).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
+                <!-- <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br> -->
                 </small>
             </p>
 
-            <p><small>#根據17/18年度資料及18/19財政預算案公布措施推算</small></p>
+            <p><small>#根據20/21年度資料及21/22財政預算案公布措施推算</small></p>
 
-            
-            <div v-if="show_changes" class="tax_changes">
+
+            <div v-if="false" class="tax_changes">
                 <table class="new_budget" cellspacing="0" cellpadding="0" dir="ltr" border="0">
                     <tbody>
                         <tr>
                             <td width="*">一齊睇睇慳咗喺邊：</td>
-                            <td width="20%">17/18年度</td>
+                            <td width="20%">20/21年度</td>
                             <td width="16">&nbsp;</td>
-                            <td width="20%">18/19年度</td>
+                            <td width="20%">21/22年度</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -759,13 +761,13 @@
                         </tr>
                         <tr>
                             <td>邊際稅階</td>
-                            <td>$45,000</td>
+                            <td>$50,000</td>
                             <td>→</td>
                             <td>$50,000</td>
                         </tr>
                         <tr>
                             <td>邊際稅率</td>
-                            <td>2%、7%、12%、17%</td>
+                            <td>2%、6%、10%、14%、17%</td>
                             <td>&nbsp;</td>
                             <td>2%、6%、10%、14%、17%</td>
                         </tr>
@@ -776,13 +778,13 @@
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
-                            <td>傷殘人士免稅額<img class="new_gif" src="static/img/new.gif" alt="new items"></td>
-                            <td>&nbsp;</td>
+                            <td>傷殘人士免稅額</td>
+                            <td>$75,000</td>
                             <td>&nbsp;</td>
                             <td>$75,000</td>
                         </tr>
                         <tr v-if="false">
-                            <td>醫療保險開支扣稅<img class="new_gif" src="static/img/new.gif" alt="new items"></td>
+                            <td>醫療保險開支扣稅</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>每人上限$8,000</td>
@@ -795,25 +797,25 @@
                         </tr>
                         <tr>
                             <td>供養60歲或以上的直系長輩免稅額</td>
-                            <td>$46,000</td>
+                            <td>$50,000</td>
                             <td>→</td>
                             <td>$50,000</td>
                         </tr>
                         <tr>
                             <td>供養55至59歲的直系長輩免稅額</td>
-                            <td>$23,000</td>
+                            <td>$25,000</td>
                             <td>→</td>
                             <td>$25,000</td>
                         </tr>
                         <tr>
                             <td>子女基本及額外免稅額</td>
-                            <td>$100,000</td>
+                            <td>$120,000</td>
                             <td>→</td>
                             <td>$120,000</td>
                         </tr>
                         <tr>
                             <td>長者住宿照顧開支</td>
-                            <td>$92,000</td>
+                            <td>$100,000</td>
                             <td>→</td>
                             <td>$100,000</td>
                         </tr>
@@ -821,15 +823,15 @@
                 </table>
             </div>
         </modal>
-    
+
     </div>
 
     </div>
 </template>
 
 <script>
-import * as aliasTax2018 from './Tax2018_data'
-export default aliasTax2018
+import * as aliasTaxNewYear from './Tax2021_data'
+export default aliasTaxNewYear
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
