@@ -224,8 +224,8 @@ export default {
       slfMpf: 0,
       spsMpf: 0,
       // 上限 fixed $18,000, like MPF ( 必须有入息 )
-      slfBook: 0,
-      spsBook: 0,
+      // slfBook: 0,
+      // spsBook: 0,
       slfLoan: 0,
       spsLoan: 0,
       slfElder: 0, // 0,
@@ -260,10 +260,10 @@ export default {
       spsMedInsu_ppl: 0,
       self_disabled_DIS: false,
       sps_disabled_DIS: false,
-      self_iang_visa: false, // MOCK
-      sps_iang_visa: false,
-      slfDiseaseExp: 0, // MOCK
-      spsDiseaseExp: 0, // MOCK
+      // self_iang_visa: false, // MOCK
+      // sps_iang_visa: false,
+      // slfDiseaseExp: 0, // MOCK
+      // spsDiseaseExp: 0, // MOCK
       slfVolunMpf: 0,
       spsVolunMpf: 0,
 
@@ -545,6 +545,10 @@ export default {
     },
     slfIncome: function (val) {
       var vm = this
+      // const TABKEY = 9;
+      // if (e.keyCode === TABKEY) {
+      //   let pos = vm.selectionStart
+      // }
       this.T1OnBlur()
       // this.T13OnBlur()
       this.STCOut1_func(this.infin_update)
@@ -576,14 +580,14 @@ export default {
       this.T12OnBlur()
       this.STCOut1_func(this.infin_update)
     },
-    slfBook: function (val) {
-      this.BOOKT11OnBlur()
-      this.STCOut1_func(this.infin_update)
-    },
-    spsBook: function (val) {
-      this.BOOKT12OnBlur()
-      this.STCOut1_func(this.infin_update)
-    },
+    // slfBook: function (val) {
+    //   this.BOOKT11OnBlur()
+    //   this.STCOut1_func(this.infin_update)
+    // },
+    // spsBook: function (val) {
+    //   this.BOOKT12OnBlur()
+    //   this.STCOut1_func(this.infin_update)
+    // },
     slfDona: function (val) {
       if (val === 0 || isNaN(val)) {
         this.slfDona_restrict = 0
@@ -664,21 +668,21 @@ export default {
     },
     sps_disabled_DIS: function (val) {
       this.STCOut1_func(this.infin_update)
-    },
-    self_iang_visa: function (val) {
-      this.STCOut1_func(this.infin_update)
-    },
-    sps_iang_visa: function (val) {
-      this.STCOut1_func(this.infin_update)
-    },
-    slfDiseaseExp: function (val) {
-      this.slfDiseaseOnBlur()
-      this.STCOut1_func(this.infin_update)
-    },
-    spsDiseaseExp: function (val) {
-      this.spsDiseaseOnBlur()
-      this.STCOut1_func(this.infin_update)
     }
+    // self_iang_visa: function (val) {
+    //   this.STCOut1_func(this.infin_update)
+    // },
+    // sps_iang_visa: function (val) {
+    //   this.STCOut1_func(this.infin_update)
+    // }
+    // slfDiseaseExp: function (val) {
+    //   this.slfDiseaseOnBlur()
+    //   this.STCOut1_func(this.infin_update)
+    // },
+    // spsDiseaseExp: function (val) {
+    //   this.spsDiseaseOnBlur()
+    //   this.STCOut1_func(this.infin_update)
+    // }
   },
   methods: {
     toggleClass (var_name) {
@@ -853,10 +857,11 @@ export default {
         this.LimD_Education = 100000
         this.LimD_HomeLoan = 100000
         this.LimD_Elderly = 100000 // 100000 MOCK 92000
-        this.LimD_Elderly_new = 120000 // this.LimD_Elderly MOCK 120000
+        this.LimD_Elderly_new = 100000 // this.LimD_Elderly MOCK 120000
+        // this.LimD_Elderly_new = 120000 // this.LimD_Elderly MOCK 120000
         this.LimD_MPF = 18000
         // 上限 fixed $18,000 ike MPF ( 必须有入息 )
-        this.LimD_BOOK = 10000
+        // this.LimD_BOOK = 10000
         this.LimD_rate_MPF = 5
         this.LimP_rate_VAPRP = 10
         return true
@@ -917,7 +922,7 @@ export default {
     },
     D3aOnChange () {
       var vm = this
-      console.log('qq', parseInt(vm.NBbb_DIS, 10) > parseInt(vm.NBbb, 10))
+      // console.log('qq', parseInt(vm.NBbb_DIS, 10) > parseInt(vm.NBbb, 10))
       if (parseInt(vm.NBbb_DIS, 10) > parseInt(vm.NBbb, 10)) {
         vm.NBbb_DIS = parseInt(vm.NBbb, 10)
       }
@@ -1013,6 +1018,7 @@ export default {
       }
     },
     T1OnBlur () {
+      console.log('complete income type in')
       var vm = this
       var Income, ValueResidence, MustReset
       MustReset = false
@@ -1183,45 +1189,45 @@ export default {
       vm.spsMpf = Income
       // vm.ChkDD(8)
     },
-    BOOKT11OnBlur () {
-      var vm = this
-      var Income, obj, MustReset, ValueResidence
-      MustReset = false
-      Income = vm.FormatInput(vm.slfBook, 0, vm.LimD_BOOK)
-      if (Income === '*') {
-        // ErrMsg('你輸入的數值不正確 !')
-        MustReset = true
-        // vm.slfMpf = 0
-        Income = 0
-      } else if (Income === '+') {
-        // ErrMsg('你不可輸入超過 9 位數字的數值 !')
-        MustReset = true
-        vm.slfBook = vm.LimD_BOOK
-        Income = vm.LimD_BOOK
-      }
-      vm.slfBook = Income
-      // vm.ChkDD(7)
-    },
-    BOOKT12OnBlur () {
-      console.log('ui update')
-      var vm = this
-      var Income, obj, MustReset, ValueResidence
-      MustReset = false
-      Income = vm.FormatInput(vm.spsBook, 0, vm.LimD_BOOK)
-      if (Income === '*') {
-        // ErrMsg('你輸入的數值不正確 !')
-        MustReset = true
-        // vm.spsBook = 0
-        Income = 0
-      } else if (Income === '+') {
-        // ErrMsg('你不可輸入超過 9 位數字的數值 !')
-        MustReset = true
-        vm.spsBook = vm.LimD_BOOK
-        Income = vm.LimD_BOOK
-      }
-      vm.spsBook = Income
-      // vm.ChkDD(8)
-    },
+    // BOOKT11OnBlur () {
+    //   var vm = this
+    //   var Income, obj, MustReset, ValueResidence
+    //   MustReset = false
+    //   Income = vm.FormatInput(vm.slfBook, 0, vm.LimD_BOOK)
+    //   if (Income === '*') {
+    //     // ErrMsg('你輸入的數值不正確 !')
+    //     MustReset = true
+    //     // vm.slfMpf = 0
+    //     Income = 0
+    //   } else if (Income === '+') {
+    //     // ErrMsg('你不可輸入超過 9 位數字的數值 !')
+    //     MustReset = true
+    //     vm.slfBook = vm.LimD_BOOK
+    //     Income = vm.LimD_BOOK
+    //   }
+    //   vm.slfBook = Income
+    //   // vm.ChkDD(7)
+    // },
+    // BOOKT12OnBlur () {
+    //   console.log('ui update')
+    //   var vm = this
+    //   var Income, obj, MustReset, ValueResidence
+    //   MustReset = false
+    //   Income = vm.FormatInput(vm.spsBook, 0, vm.LimD_BOOK)
+    //   if (Income === '*') {
+    //     // ErrMsg('你輸入的數值不正確 !')
+    //     MustReset = true
+    //     // vm.spsBook = 0
+    //     Income = 0
+    //   } else if (Income === '+') {
+    //     // ErrMsg('你不可輸入超過 9 位數字的數值 !')
+    //     MustReset = true
+    //     vm.spsBook = vm.LimD_BOOK
+    //     Income = vm.LimD_BOOK
+    //   }
+    //   vm.spsBook = Income
+    //   // vm.ChkDD(8)
+    // },
     SLFERCE11OnBlur () {
       var vm = this
       var Income, obj, MustReset, ValueResidence
@@ -1467,59 +1473,59 @@ export default {
       vm.spsVolunMpf = Income
       vm.ChkDD(0)
     },
-    slfDiseaseOnBlur () {
-      var vm = this
-      var Income, obj, MustReset, ValueResidence
-      var Limit = 60000
+    // slfDiseaseOnBlur () {
+    //   var vm = this
+    //   var Income, obj, MustReset, ValueResidence
+    //   var Limit = 60000
 
-      var slfDisease = parseFloat(vm.slfDiseaseExp)
-      console.log(`---slfDisease expense`, slfDisease)
-      // var uperLim = Math.floor(CDbl(vm.slfIncome) / 1000)
+    //   var slfDisease = parseFloat(vm.slfDiseaseExp)
+    //   console.log(`---slfDisease expense`, slfDisease)
+    //   // var uperLim = Math.floor(CDbl(vm.slfIncome) / 1000)
 
-      if (slfDisease > 60000) {
-        slfDisease = 60000
-      }
-      Income = vm.FormatInput(slfDisease, 0, 99999999)
-      if (Income === '*') {
-        // ErrMsg('你輸入的數值不正確 !')
-        MustReset = true
-        vm.slfDiseaseExp = 0
-        Income = 0
-      } else if (Income === '+') {
-        MustReset = true
-        vm.slfDiseaseExp = Limit
-        Income = Limit
-      }
-      console.log(Income)
-      vm.slfDiseaseExp = Income
-      vm.ChkDD(0)
-    },
-    spsDiseaseOnBlur () {
-      var vm = this
-      var Income, obj, MustReset, ValueResidence
-      var Limit = 60000
+    //   if (slfDisease > 60000) {
+    //     slfDisease = 60000
+    //   }
+    //   Income = vm.FormatInput(slfDisease, 0, 99999999)
+    //   if (Income === '*') {
+    //     // ErrMsg('你輸入的數值不正確 !')
+    //     MustReset = true
+    //     vm.slfDiseaseExp = 0
+    //     Income = 0
+    //   } else if (Income === '+') {
+    //     MustReset = true
+    //     vm.slfDiseaseExp = Limit
+    //     Income = Limit
+    //   }
+    //   console.log(Income)
+    //   vm.slfDiseaseExp = Income
+    //   vm.ChkDD(0)
+    // },
+    // spsDiseaseOnBlur () {
+    //   var vm = this
+    //   var Income, obj, MustReset, ValueResidence
+    //   var Limit = 60000
 
-      var spsDisease = parseFloat(vm.spsDiseaseExp)
-      console.log(`---slfDisease expense`, spsDisease)
+    //   var spsDisease = parseFloat(vm.spsDiseaseExp)
+    //   console.log(`---slfDisease expense`, spsDisease)
 
-      if (spsDisease > 60000) {
-        spsDisease = 60000
-      }
-      Income = vm.FormatInput(spsDisease, 0, 99999999)
-      if (Income === '*') {
-        // ErrMsg('你輸入的數值不正確 !')
-        MustReset = true
-        vm.spsDiseaseExp = 0
-        Income = 0
-      } else if (Income === '+') {
-        MustReset = true
-        vm.spsDiseaseExp = Limit
-        Income = Limit
-      }
-      console.log(Income)
-      vm.spsDiseaseExp = Income
-      vm.ChkDD(0)
-    },
+    //   if (spsDisease > 60000) {
+    //     spsDisease = 60000
+    //   }
+    //   Income = vm.FormatInput(spsDisease, 0, 99999999)
+    //   if (Income === '*') {
+    //     // ErrMsg('你輸入的數值不正確 !')
+    //     MustReset = true
+    //     vm.spsDiseaseExp = 0
+    //     Income = 0
+    //   } else if (Income === '+') {
+    //     MustReset = true
+    //     vm.spsDiseaseExp = Limit
+    //     Income = Limit
+    //   }
+    //   console.log(Income)
+    //   vm.spsDiseaseExp = Income
+    //   vm.ChkDD(0)
+    // },
     self_disabled_DISOnBlur () {
       //
     },
@@ -1557,24 +1563,24 @@ export default {
       if (IsNIL(vm.slfIncome)) {
         if (NotNIL(vm.slfDona) || NotNIL(vm.slfDona_restrict) || NotNIL(vm.slfSEE) || NotNIL(vm.slfERCE) || NotNIL(vm.slfERCE_forCompute) || NotNIL(vm.slfMpf) || vm.slfElder > 0 || vm.slfDisdep > 0 || NotNIL(vm.slfOE)) {
           ClrTxt(vm.slfDona)
-          console.log('ClrTxt(')
+          // console.log('ClrTxt(')
           ClrTxt(vm.slfDona_restrict)
-          console.log('ClrTxt(')
+          // console.log('ClrTxt(')
           ClrTxt(vm.slfSEE)
-          console.log('ClrTxt(')
+          // console.log('ClrTxt(')
           ClrTxt(vm.slfERCE)
-          console.log('ClrTxt(')
+          // console.log('ClrTxt(')
           ClrTxt(vm.slfERCE_forCompute)
-          console.log('ClrTxt(')
+          // console.log('ClrTxt(')
           vm.slfElder = 0
           vm.slfDisdep = 0
           ClrTxt(vm.slfMpf)
-          console.log('ClrTxt(')
+          // console.log('ClrTxt(')
           // MOCK BOOK
-          ClrTxt(vm.slfBook)
-          console.log('ClrTxt(')
+          // ClrTxt(vm.slfBook)
+          // console.log('ClrTxt(')
           ClrTxt(vm.slfOE)
-          console.log('ClrTxt(')
+          // console.log('ClrTxt(')
           MsgID = 2
           slfDDreseted = true
         }
@@ -1586,21 +1592,21 @@ export default {
       if (IsNIL(vm.spsIncome)) {
         if (NotNIL(vm.spsDona) || NotNIL(vm.spsDona_restrict) || NotNIL(vm.spsSEE) || NotNIL(vm.spsERCE) || NotNIL(vm.spsERCE_forCompute) || NotNIL(vm.spsLoan) || vm.spsElder > 0 || vm.spsDisdep > 0 || NotNIL(vm.spsOE)) {
           ClrTxt(vm.spsDona)
-          console.log('ClrTxt(')
+          // console.log('ClrTxt(')
           ClrTxt(vm.spsDona_restrict)
-          console.log('ClrTxt(')
+          // console.log('ClrTxt(')
           ClrTxt(vm.spsSEE)
-          console.log('ClrTxt(')
+          // console.log('ClrTxt(')
           ClrTxt(vm.spsERCE)
-          console.log('ClrTxt(')
+          // console.log('ClrTxt(')
           ClrTxt(vm.spsERCE_forCompute)
-          console.log('ClrTxt(')
+          // console.log('ClrTxt(')
           vm.spsElder = 0
           vm.spsDisdep = 0
           ClrTxt(vm.spsLoan)
-          console.log('ClrTxt(')
+          // console.log('ClrTxt(')
           ClrTxt(vm.spsOE)
-          console.log('ClrTxt(')
+          // console.log('ClrTxt(')
           if (vm.martial_status === 'S') { // Single ?
             MsgID = 4
           } else {
@@ -2119,8 +2125,8 @@ export default {
       vm.slfMpf = 0
       vm.spsMpf = 0
       // MOCK
-      vm.slfBook = 0
-      vm.spsBook = 0
+      // vm.slfBook = 0
+      // vm.spsBook = 0
       vm.slfLoan = 0
       vm.spsLoan = 0
       vm.slfElder = 0
@@ -2153,10 +2159,10 @@ export default {
       vm.spsMedInsu_ppl = 0
       vm.self_disabled_DIS = false
       vm.sps_disabled_DIS = false
-      vm.self_iang_visa = false
-      vm.sps_iang_visa = false
-      vm.slfDiseaseExp = 0
-      vm.spsDiseaseExp = 0
+      // vm.self_iang_visa = false
+      // vm.sps_iang_visa = false
+      // vm.slfDiseaseExp = 0
+      // vm.spsDiseaseExp = 0
     },
     STCOut1_func () {
       // console.log('loop_count', this.infin_update)
@@ -2199,7 +2205,7 @@ export default {
         this.slfERCE_forCompute = 0
         this.slfMpf = 0
         // MOCK
-        this.slfBook = 0
+        // this.slfBook = 0
         this.slfDiseaseExp = 0
         this.slfLoan = 0
         // ErrMsg('由於你沒有入息，因此你不能扣除居所貸款利息。')
@@ -2217,7 +2223,7 @@ export default {
         this.spsERCE_forCompute = 0
         this.spsMpf = 0
         // MOCK
-        this.spsBook = 0
+        // this.spsBook = 0
         this.spsLoan = 0
         // ErrMsg('由於你們沒有入息，因此你們不能扣除居所貸款利息。')
       }
@@ -2459,7 +2465,8 @@ export default {
         STCOut[27] = this.netSelfI - STCOut[24]
         this.STCMainRV = 10
       } else { // === 'M'
-        // 需要分case本人收入===0 (22) 或 配偶收入===0 (24)
+        // wrong 需要分case本人收入===0 (22) 或 配偶收入===0 (24)
+        // 需要分case本人收入===0 (24) 或 配偶收入===0 (22)
         // 有得過俾配偶，計nMin, child_count
         if (this.STCIn3 === 0) { // taxtype === 22
           STCOut[0] = this.STCIn2
@@ -2513,7 +2520,7 @@ export default {
             STCOut[49] = this.STCIn19
           }
           this.STCMainRV = 22
-        } else if (this.STCIn2 === 0) { // taxtype === 24
+        } else if (this.STCIn2 === 0) { // 本人收入===0 (24) taxtype === 24
           STCOut[1] = this.STCIn3
           STCOut[4] = this.AL_MARR + this.AAMarr
           STCOut[12] = this.CA[this.STCIn4]
@@ -2721,7 +2728,7 @@ export default {
 
           if (this.STCIn8) {
             // 有供養傷殘
-            // console.log('有供養傷殘: ', this.STCIn2, STCOut[3], STCOut[57])
+            console.log('有供養傷殘: ', this.STCIn2, STCOut[3], STCOut[57])
             if ((this.STCIn9 === true) && ((this.STCIn2 - STCOut[3] - STCOut[57]) > 0)) {
               STCOut[23] = this.DIS_DA * (1 + this.STCIn10 + this.STCIn11 + this.STCIn12 + this.STCIn13 + this.STCIn19 + this.STCIn20 + this.STCIn22)
               STCOut[55] = true
@@ -3368,8 +3375,8 @@ export default {
         '#self_mpf': this.slfMpf,
         '#spouse_mpf': this.spsMpf,
         // MOCK
-        '#self_book': this.slfBook,
-        '#spouse_book': this.spsBook,
+        // '#self_book': this.slfBook,
+        // '#spouse_book': this.spsBook,
         '#self_homeloan': this.slfLoan,
         '#spouse_homeloan': this.spsLoan,
         '#self_elderly': this.slfElder,
@@ -3395,12 +3402,12 @@ export default {
         '#self_medic_insu': this.slfMedInsu, // onday_onday(11)
         '#spouse_medic_insu': this.spsMedInsu,
         '#self_disabled_DIS': this.self_disabled_DIS,
-        '#sps_disabled_DIS': this.sps_disabled_DIS,
+        '#sps_disabled_DIS': this.sps_disabled_DIS
         // Mock
-        '#self_iang_visa': this.self_iang_visa,
-        '#sps_iang_visa': this.sps_iang_visa,
-        '#slfDiseaseExp': this.slfDiseaseExp,
-        '#spsDiseaseExp': this.spsDiseaseExp
+        // '#self_iang_visa': this.self_iang_visa,
+        // '#sps_iang_visa': this.sps_iang_visa,
+        // '#slfDiseaseExp': this.slfDiseaseExp,
+        // '#spsDiseaseExp': this.spsDiseaseExp
       }
     }
   },

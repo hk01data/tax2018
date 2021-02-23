@@ -21,24 +21,24 @@
             <div class="a_slide">
                 <p class="item_title">{{ lang.income }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'income_info' }">&nbsp;</a></p>
                 <label for="self_income"><span class="label_text">{{ lang.self }}</span>
-                <input id="self_income" type="number" min="0" max="999999999" v-model="slfIncome" tabindex="100" />
+                <input id="self_income" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="slfIncome" tabindex="100" />
                 </label>
                 <label v-if="martial_status === 'M'" for="spouse_income"><span class="label_text">{{ lang.spouse }}</span>
-                <input id="spouse_income" type="number" min="0" max="999999999" v-model="spsIncome" />
+                <input id="spouse_income" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="spsIncome" />
                 </label>
             </div>
             
             <div class="a_slide deduct">
                 <p class="item_title">{{ lang.mpf }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'mpf_info' }">&nbsp;</a></p>
                 <label for="self_mpf"><span class="label_text">{{ lang.self }}</span>
-                <input id="self_mpf" type="number" min="0" max="999999999" v-model="slfMpf" />
+                <input id="self_mpf" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="slfMpf" />
                 </label>
                 <label v-if="martial_status === 'M'" for="spouse_mpf"><span class="label_text">{{ lang.spouse }}</span>
-                <input id="spouse_mpf" type="number" min="0" max="999999999" v-model="spsMpf" />
+                <input id="spouse_mpf" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="spsMpf" />
                 </label>
             </div>
 <!-- MOCK 6.1 上限 fixed $18,000, like MPF ( 必须有入息 )-->
-            <div class="a_slide deduct">
+            <!-- <div class="a_slide deduct">
                 <p class="item_title">{{ lang.byBook }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'book_info' }">&nbsp;</a></p>
                 <label for="self_book"><span class="label_text">{{ lang.self }}</span>
                 <input id="self_book" type="number" min="0" max="999999999" v-model="slfBook" />
@@ -46,54 +46,54 @@
                 <label v-if="martial_status === 'M'" for="spouse_book"><span class="label_text">{{ lang.spouse }}</span>
                 <input id="spouse_book" type="number" min="0" max="999999999" v-model="spsBook" />
                 </label>
-            </div>
+            </div> -->
             <div class="a_slide deduct">
                 <p class="item_title">{{ lang.eduexp }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'eduexp_info' }">&nbsp;</a></p>
                 <label for="self_eduexp"><span class="label_text">{{ lang.self }}</span>
-                <input id="self_eduexp" type="number" min="0" max="999999999" v-model="slfSEE" />
+                <input id="self_eduexp" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="slfSEE" />
                 </label>
                 <label v-if="martial_status === 'M'" for="spouse_eduexp"><span class="label_text">{{ lang.spouse }}</span>
-                <input id="spouse_eduexp" type="number" min="0" max="999999999" v-model="spsSEE" />
+                <input id="spouse_eduexp" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="spsSEE" />
                 </label>
             </div>
 
             <div class="a_slide deduct">
                 <p class="item_title">{{ lang.donation }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'donation_info' }">&nbsp;</a></p>
                 <label for="self_donation"><span class="label_text">{{ lang.self }}</span>
-                <input id="self_donation" type="number" min="0" max="999999999" v-model="slfDona" />
+                <input id="self_donation" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="slfDona" />
                 </label>
                 <label v-if="martial_status === 'M'" for="spouse_donation"><span class="label_text">{{ lang.spouse }}</span>
-                <input id="spouse_donation" type="number" min="0" max="999999999" v-model="spsDona" />
+                <input id="spouse_donation" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="spsDona" />
                 </label>
             </div>
 
             <div class="a_slide deduct">
                 <p class="item_title">{{ lang.homeloan }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'homeloan_info' }">&nbsp;</a></p>
                 <label for="self_homeloan"><span class="label_text">{{ lang.self }}</span>
-                <input id="self_homeloan" type="number" min="0" max="999999999" v-model="slfLoan" />
+                <input id="self_homeloan" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="slfLoan" />
                 </label>
                 <label v-if="martial_status === 'M'" for="spouse_homeloan"><span class="label_text">{{ lang.spouse }}</span>
-                <input id="spouse_homeloan" type="number" min="0" max="999999999" v-model="spsLoan" />
+                <input id="spouse_homeloan" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="spsLoan" />
                 </label>
             </div>
 
             <div class="a_slide">
                 <p class="item_title">{{ lang.residence }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'residence_info' }">&nbsp;</a></p>
                 <label for="self_residence"><span class="label_text">{{ lang.self }}</span>
-                <input id="self_residence" type="number" min="0" max="999999999" v-model="slfResi" />
+                <input id="self_residence" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="slfResi" />
                 </label>
                 <label v-if="martial_status === 'M'" for="spouse_residence"><span class="label_text">{{ lang.spouse }}</span>
-                <input id="spouse_residence" type="number" min="0" max="999999999" v-model="spsResi" />
+                <input id="spouse_residence" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="spsResi" />
                 </label>
             </div>
 
             <div class="a_slide deduct">
                 <p class="item_title">{{ lang.oe }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'oe_info' }">&nbsp;</a></p>
                 <label for="self_oe"><span class="label_text">{{ lang.self }}</span>
-                <input id="self_oe" type="number" min="0" max="999999999" v-model="slfOE" />
+                <input id="self_oe" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="slfOE" />
                 </label>
                 <label v-if="martial_status === 'M'" for="spouse_oe"><span class="label_text">{{ lang.spouse }}</span>
-                <input id="spouse_oe" type="number" min="0" max="999999999" v-model="spsOE" />
+                <input id="spouse_oe" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="spsOE" />
                 </label>
             </div>
             
@@ -102,17 +102,13 @@
 
         <h2 style="display: none;">Output</h2>
         <!--  onday_onday(10) -->
-        <taxNewYear v-bind:STCIn8='STCIn8' v-bind:martial_status='martial_status' v-bind:slfIncome='slfIncome' v-bind:spsIncome='spsIncome' v-bind:slfResi='slfResi' v-bind:spsResi='spsResi' v-bind:slfOE='slfOE' v-bind:spsOE='spsOE' v-bind:slfSEE='slfSEE' v-bind:spsSEE='spsSEE' v-bind:slfDona='slfDona' v-bind:spsDona='spsDona' v-bind:spsMpf='spsMpf' v-bind:slfMpf='slfMpf' v-bind:slfBook='slfBook' v-bind:spsBook='spsBook' v-bind:slfLoan='slfLoan' v-bind:spsLoan='spsLoan' v-bind:s_Elder_min='s_Elder_min' v-bind:s_Elder_max='s_Elder_max' v-bind:s_tooltip='s_tooltip' v-bind:slfElder='slfElder' v-bind:slfDisdep='slfDisdep' v-bind:slfERCE='slfERCE' v-bind:spsElder='spsElder' v-bind:spsDisdep='spsDisdep' v-bind:spsERCE='spsERCE' v-bind:s_bb_min='s_bb_min' v-bind:s_bb_max='s_bb_max' v-bind:NBbb='NBbb' v-bind:CAbb='CAbb' v-bind:single_parent='single_parent' v-bind:brosis_dep='brosis_dep' v-bind:resi_parent='resi_parent' v-bind:non_resi_parent='non_resi_parent' v-bind:resi_parent_5560='resi_parent_5560' v-bind:non_resi_parent_5560='non_resi_parent_5560' v-bind:NBbb_DIS='NBbb_DIS' v-bind:CAbb_DIS='CAbb_DIS' v-bind:brosis_dep_DIS='brosis_dep_DIS' v-bind:resi_parent_DIS='resi_parent_DIS' v-bind:non_resi_parent_DIS='non_resi_parent_DIS' v-bind:spouse_disabled_dependent_DIS='spouse_disabled_dependent_DIS' v-bind:STCMainRV='STCMainRV' v-bind:STCOut1='STCOut1'
+        <taxNewYear v-bind:STCIn8='STCIn8' v-bind:martial_status='martial_status' v-bind:slfIncome='slfIncome' v-bind:spsIncome='spsIncome' v-bind:slfResi='slfResi' v-bind:spsResi='spsResi' v-bind:slfOE='slfOE' v-bind:spsOE='spsOE' v-bind:slfSEE='slfSEE' v-bind:spsSEE='spsSEE' v-bind:slfDona='slfDona' v-bind:spsDona='spsDona' v-bind:spsMpf='spsMpf' v-bind:slfMpf='slfMpf' v-bind:slfLoan='slfLoan' v-bind:spsLoan='spsLoan' v-bind:s_Elder_min='s_Elder_min' v-bind:s_Elder_max='s_Elder_max' v-bind:s_tooltip='s_tooltip' v-bind:slfElder='slfElder' v-bind:slfDisdep='slfDisdep' v-bind:slfERCE='slfERCE' v-bind:spsElder='spsElder' v-bind:spsDisdep='spsDisdep' v-bind:spsERCE='spsERCE' v-bind:s_bb_min='s_bb_min' v-bind:s_bb_max='s_bb_max' v-bind:NBbb='NBbb' v-bind:CAbb='CAbb' v-bind:single_parent='single_parent' v-bind:brosis_dep='brosis_dep' v-bind:resi_parent='resi_parent' v-bind:non_resi_parent='non_resi_parent' v-bind:resi_parent_5560='resi_parent_5560' v-bind:non_resi_parent_5560='non_resi_parent_5560' v-bind:NBbb_DIS='NBbb_DIS' v-bind:CAbb_DIS='CAbb_DIS' v-bind:brosis_dep_DIS='brosis_dep_DIS' v-bind:resi_parent_DIS='resi_parent_DIS' v-bind:non_resi_parent_DIS='non_resi_parent_DIS' v-bind:spouse_disabled_dependent_DIS='spouse_disabled_dependent_DIS' v-bind:STCMainRV='STCMainRV' v-bind:STCOut1='STCOut1'
         v-bind:slfMedInsu='slfMedInsu'
         v-bind:spsMedInsu='spsMedInsu'
         v-bind:slfMedInsu_ppl='slfMedInsu_ppl'
         v-bind:spsMedInsu_ppl='spsMedInsu_ppl'
         v-bind:self_disabled_DIS='self_disabled_DIS'
         v-bind:sps_disabled_DIS='sps_disabled_DIS'
-        v-bind:self_iang_visa='self_iang_visa'
-        v-bind:sps_iang_visa='sps_iang_visa'
-        v-bind:slfDiseaseExp='slfDiseaseExp'
-        v-bind:spsDiseaseExp='spsDiseaseExp'
         v-bind:slfVolunMpf='slfVolunMpf'
         v-bind:spsVolunMpf='spsVolunMpf'
         v-bind:end='end' ></taxNewYear>
@@ -123,7 +119,7 @@
                 <!-- <img class="new_gif" src="static/img/new.gif" alt="new items"> -->
             </h2>
             <!-- MOCK INAG visa -->
-            <div class="a_slide" v-bind:class="{ active: sh_elderly }">
+            <!-- <div class="a_slide" v-bind:class="{ active: sh_elderly }">
                 <p class="sect_title">IANG visa 持有人免稅額<img class="new_gif" src="static/img/new.gif" alt="new items"></p>
                 <div class="cont">
 
@@ -133,7 +129,6 @@
                             <span class="yn">否</span>
                             <switches v-model="self_iang_visa" theme="bootstrap" color="primary"></switches>
                             <span class="yn">是</span>
-                            <!-- <input id="self_disabled_DIS" type="number" v-model="self_disabled_DIS" /> <!- -  STCIn9 -->
                         </div>
                     </label>
 
@@ -143,14 +138,13 @@
                             <span class="yn">否</span>
                             <switches v-model="sps_iang_visa" theme="bootstrap" color="primary"></switches>
                             <span class="yn">是</span>
-                            <!-- <input id="sps_disabled_DIS" type="number" v-model="sps_disabled_DIS" /> <!- -  STCIn9 -->
                         </div>
                     </label>
                 </div>
-            </div>
+            </div> -->
             <!-- MOCK adding number type item and the amount have limitation -->
-            <div v-if="true" class="a_slide" v-bind:class="{ active: sh_elderly }">
-                <p class="sect_title">【武漢肺炎】防疫開支<img class="new_gif" src="static/img/new.gif" alt="new items"></p>
+            <!-- <div v-if="true" class="a_slide" v-bind:class="{ active: sh_elderly }">
+                <p class="sect_title">【新型肺炎】防疫開支<img class="new_gif" src="static/img/new.gif" alt="new items"></p>
                 <div class="cont">
                     <p class="item_title" v-if="martial_status === 'M'">{{ lang.self + '負責' }}</p>
 
@@ -167,9 +161,8 @@
                         <input id="spsDiseaseExp" type="number" min="0" max="999999999" v-model="spsDiseaseExp" />
                         </label>
                     </div>
-
                 </div>
-            </div>
+            </div> -->
             <div class="a_slide" v-bind:class="{ active: sh_elderly }">
                 <p class="sect_title">傷殘人士免稅額</p>
                 <div class="cont">
@@ -201,14 +194,14 @@
                     <p class="item_title" v-if="martial_status === 'M'">{{ lang.self + '負責' }}</p>
 
                     <label for="slfVolunMpf"><span class="label_text">金額</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'volunMpf_info' }">&nbsp;</a>
-                    <input id="slfVolunMpf" type="number" min="0" max="999999999" v-model="slfVolunMpf" />
+                    <input id="slfVolunMpf" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="slfVolunMpf" />
                     </label>
                 
                     <div class="cont_sps" v-if="martial_status === 'M'">
                         <p class="item_title" v-if="martial_status === 'M'">{{ lang.spouse + '負責' }}</p>
 
                         <label for="spsVolunMpf"><span class="label_text">金額</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'volunMpf_info2' }">&nbsp;</a>
-                        <input id="spsVolunMpf" type="number" min="0" max="999999999" v-model="spsVolunMpf" />
+                        <input id="spsVolunMpf" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="spsVolunMpf" />
                         </label>
                     </div>
 
@@ -225,7 +218,7 @@
                     </label>
 
                     <label v-if="slfMedInsu_ppl > 0" for="slfMedInsu"><span class="label_text">每年醫療保險總開支</span>
-                    <input id="slfMedInsu" type="number" min="0" max="999999999" v-model="slfMedInsu" />
+                    <input id="slfMedInsu" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="slfMedInsu" />
                     </label>
                 
                     <div class="cont_sps" v-if="martial_status === 'M'">
@@ -234,8 +227,9 @@
                         <quantity v-bind:min="s_MedicInsu_min" v-bind:max="s_MedicInsu_max" v-model="spsMedInsu_ppl"></quantity>
                         </label>
 
-                        <label v-if="spsMedInsu_ppl > 0" for="spsMedInsu"><span class="label_text">每年醫療保險總開支</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_amt_info' }">&nbsp;</a>
-                        <input id="spsMedInsu" type="number" min="0" max="999999999" v-model="spsMedInsu" />
+                        <!-- <label v-if="spsMedInsu_ppl > 0" for="spsMedInsu"><span class="label_text">每年醫療保險總開支</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'medic_insu_amt_info' }">&nbsp;</a> -->
+                        <label v-if="spsMedInsu_ppl > 0" for="spsMedInsu"><span class="label_text">每年醫療保險總開支</span>
+                        <input id="spsMedInsu" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="spsMedInsu" />
                         </label>
                     </div>
 
@@ -335,7 +329,7 @@
                     </label>
 
                     <label v-if="slfElder > 0" for="self_eldresi_amt"><span class="label_text lbl_large">{{ lang.eldresi_amt }}</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'eldresi_amt_info' }">&nbsp;</a>
-                    <input id="self_eldresi_amt" type="number" min="0" max="999999999" v-model="slfERCE" />
+                    <input id="self_eldresi_amt" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="slfERCE" />
                     </label>
                 
                     <div class="cont_sps" v-if="martial_status === 'M'">
@@ -349,7 +343,7 @@
                         </label>
 
                         <label v-if="martial_status === 'M' && spsElder > 0" for="spouse_eldresi_amt"><span class="label_text">{{ lang.eldresi_amt }}</span><a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'eldresi_amt_info_2' }">&nbsp;</a>
-                        <input id="spouse_eldresi_amt" type="number" min="0" max="999999999" v-model="spsERCE" />
+                        <input id="spouse_eldresi_amt" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="spsERCE" />
                         </label>
                     </div>
 
@@ -462,9 +456,9 @@
         </div>
 
         <div class="footer">
-            <p># 2019/20年度新增兩個稅務扣減項目，分別是自願醫保保費，以及年金及強積金自願供款。當中年金及強積金自願供款扣減尚待立法會通過相關條例，該扣除上限為每人每年60,000元。</p>
+            <!-- <p># 2019/20年度新增兩個稅務扣減項目，分別是自願醫保保費，以及年金及強積金自願供款。當中年金及強積金自願供款扣減尚待立法會通過相關條例，該扣除上限為每人每年60,000元。</p> -->
             <p>本計稅機不會收集任何可追溯到用戶身分的資料，上述結果乃根據讀者輸入的資料計算，僅適合香港居民計算其應繳之薪俸稅或個人入息課稅稅款，結果或與實際數目有出入，僅供讀者作參考之用。詳情可參考<a href="https://www.ird.gov.hk/" target="_blank">稅務局網站</a>所載資料。</p>
-            <p>資料來源：稅務局、18/19及19/20年度財政預算案</p>
+            <p>資料來源：稅務局、19/20及20/21年度財政預算案</p>
         </div>
 
 
@@ -479,7 +473,7 @@
       v-bind:sps_disabled_DIS='sps_disabled_DIS'
       v-bind:end='end' ></taxNewYear>
       
-      <table v-if="true" class="tax2017" border="1" width="100%" style="margin: 0 0 500px;">
+      <table v-if="false" class="tax2017" border="1" width="100%" style="margin: 0 0 500px;">
           <tbody>
               <tr>
                   <td width="46%">總 入 息</td>
@@ -1142,12 +1136,12 @@
     <div class="tool_tips" id="sps_DIS_info">
         <p>18／19預算案新增$75,000免稅額(配偶需要有入息)</p>
     </div>
-    <div class="tool_tips" id="sps_iang_visa_info">
+    <!-- <div class="tool_tips" id="sps_iang_visa_info">
         <p>20／21預算案新增$75,000免稅額(配偶需要有入息)</p>
-    </div>
-    <div class="tool_tips" id="self_iang_visa_info">
+    </div> -->
+    <!-- <div class="tool_tips" id="self_iang_visa_info">
         <p>20／21預算案新增$75,000免稅額(你需要有入息)</p>
-    </div>
+    </div> -->
     <!-- MOCK adding number type item and the amount have limitation -->
     <div class="tool_tips" id="single_disease_expense_info">
         <p>20／21預算案新增$6,000免稅額(你需要有入息)</p>

@@ -662,35 +662,35 @@
             </p>
 
             <p class="nb_save a1" v-if="martial_status !== 'M'" v-bind:class="{ less: STCOut2[30] - STCOut1[30] < 0 }">
-                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[30]) * 0.75 > 30000 ? 30000 : (STCOut1[30]) * 0.75).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
+                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[30]) * 1 > 20000 ? 20000 : (STCOut1[30]) * 1).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
             </p>
             <p class="nb_save a2" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome === 0" v-bind:class="{ }">
                 <span>獲退稅<sup>*</sup>： <span class="rebate_quota">{{ 0 }}元</span></span>
             </p>
             <p class="nb_save a3" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome !== 0" v-bind:class="{ }">
-                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[30]) * 0.75 > 30000 ? 30000 : (STCOut1[30]) * 0.75).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
+                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[30]) * 1 > 20000 ? 20000 : (STCOut1[30]) * 1).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
             </p>
             <p class="nb_save a4" v-if="martial_status === 'M' && slfIncome === 0 && spsIncome !== 0" v-bind:class="{  }">
-                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[31]) * 0.75 > 30000 ? 30000 : (STCOut1[31]) * 0.75).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
+                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[31]) * 1 > 20000 ? 20000 : (STCOut1[31]) * 1).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
             </p>
             <p class="nb_save a5" v-if="martial_status === 'M' && !only_one_income" v-bind:class="{ less: STCOut2[32] - STCOut1[32] < 0 }">
-                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((last_pay) * 0.75 > 30000 ? 30000 : (last_pay) * 0.75).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
+                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((last_pay) * 1 > 20000 ? 20000 : (last_pay) * 1).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
             </p>
 
             <p class="nb_result a1" v-if="martial_status !== 'M'" v-bind:class="{ less: STCOut2[30] - STCOut1[30] < 0 }">
-                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[30] - 0.4 - ((STCOut1[30]) * 0.75 > 30000 ? 30000 : (STCOut1[30]) * 0.75)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
+                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[30] - 0.4 - ((STCOut1[30]) * 1 > 20000 ? 20000 : (STCOut1[30]) * 1)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
             <p class="nb_result a2" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome === 0" v-bind:class="{ }">
                 <span>實際應繳： <span class="rebate_result">{{ 0 }}元</span></span>
             </p>
             <p class="nb_result a3" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome !== 0" v-bind:class="{ }">
-                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[30] - 0.4 - ((STCOut1[30]) * 0.75 > 30000 ? 30000 : (STCOut1[30]) * 0.75)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
+                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[30] - 0.4 - ((STCOut1[30]) * 1 > 20000 ? 20000 : (STCOut1[30]) * 1)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
             <p class="nb_result a4" v-if="martial_status === 'M' && slfIncome === 0 && spsIncome !== 0" v-bind:class="{  }">
-                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[31] - 0.4 - ((STCOut1[31]) * 0.75 > 30000 ? 30000 : (STCOut1[31]) * 0.75)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
+                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[31] - 0.4 - ((STCOut1[31]) * 1 > 20000 ? 20000 : (STCOut1[31]) * 1)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
             <p class="nb_result a5" v-if="martial_status === 'M' && !only_one_income" v-bind:class="{ less: STCOut2[32] - STCOut1[32] < 0 }">
-                <span>實際應繳： <span class="rebate_result">{{ (last_pay - 0.4 - ((last_pay) * 0.75 > 30000 ? 30000 : (last_pay) * 0.75)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
+                <span>實際應繳： <span class="rebate_result">{{ (last_pay - 0.4 - ((last_pay) * 1 > 20000 ? 20000 : (last_pay) * 1)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
 
             <p><small>*退稅尚待有關法例通過</small></p>
@@ -715,36 +715,36 @@
                 <span class="pay_amt">{{ ('' + STCOut2[33]).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>（合併評稅）
             </p>
 
-            <p class="nb_save a1" v-if="martial_status !== 'M'" v-bind:class="{ less: STCOut2[30] - STCOut1[30] < 0 }">
+            <p class="nb_save a1" v-if="false" v-bind:class="{ less: STCOut2[30] - STCOut1[30] < 0 }">
                 <small>（較19/20年度少交） <span class="save_amt">{{ ('' + (STCOut2[30] - STCOut1[30])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
-                <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br>
+                <!-- <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br> -->
                 </small>
             </p>
-            <p class="nb_save a2" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome === 0" v-bind:class="{ }">
+            <p class="nb_save a2" v-if="false" v-bind:class="{ }">
                 <small>（較19/20年度少交） <span class="save_amt">0元</span>
-                <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br>
+                <!-- <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br> -->
                 </small>
             </p>
-            <p class="nb_save a3" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome !== 0" v-bind:class="{ }">
+            <p class="nb_save a3" v-if="false">
                 <small>（較19/20年度少交） <span class="save_amt">{{ ('' + (STCOut2[30] - STCOut1[30])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元（分開評稅）</span>
-                <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br>
+                <!-- <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br> -->
                 </small>
             </p>
-            <p class="nb_save a4" v-if="martial_status === 'M' && slfIncome === 0 && spsIncome !== 0" v-bind:class="{  }">
+            <p class="nb_save a4" v-if="false">
                 <small>（較19/20年度少交） <span class="save_amt">{{ ('' + (STCOut2[31] - STCOut1[31])).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元（分開評稅）</span>
-                <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br>
+                <!-- <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br> -->
                 </small>
             </p>
-            <p class="nb_save a5" v-if="martial_status === 'M' && !only_one_income" v-bind:class="{ less: STCOut2[32] - STCOut1[32] < 0 }">
+            <p class="nb_save a5" v-if="false">
                 <small>（較19/20年度少交） <span class="save_amt">{{ ('' + (min_saved)).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span>
-                <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br>
+                <!-- <a class="toggle_changes" href="javascript:void()" v-on:click.prevent="toggleClass('show_changes')">詳情  ▼</a><br> -->
                 </small>
             </p>
 
             <p><small>#根據19/20年度資料及20/21財政預算案公布措施推算</small></p>
 
 
-            <div v-if="show_changes" class="tax_changes">
+            <div v-if="false" class="tax_changes">
                 <table class="new_budget" cellspacing="0" cellpadding="0" dir="ltr" border="0">
                     <tbody>
                         <tr>

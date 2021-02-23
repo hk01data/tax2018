@@ -506,11 +506,11 @@ $arrowH: 18px;
   max-width: $desktop-width;
   width: 100%;
   padding: 8px;
-  // position: fixed;
+  position: fixed;
   bottom: 0;
   z-index: 110;
   background-color: #f7f7f7;
-  // box-shadow: 0 -2px 8px 0 #AAA;
+  box-shadow: 0 -2px 8px 0 #AAA;
 }
 .result_butn {
   box-sizing: content-box;
