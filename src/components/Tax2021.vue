@@ -662,35 +662,35 @@
             </p>
 
             <p class="nb_save a1" v-if="martial_status !== 'M'" v-bind:class="{ less: STCOut2[30] - STCOut1[30] < 0 }">
-                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[30]) * 1 > 20000 ? 20000 : (STCOut1[30]) * 1).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
+                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[30]) * 1.00 > 10000 ? 10000 : (STCOut1[30]) * 1.00).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
             </p>
             <p class="nb_save a2" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome === 0" v-bind:class="{ }">
                 <span>獲退稅<sup>*</sup>： <span class="rebate_quota">{{ 0 }}元</span></span>
             </p>
             <p class="nb_save a3" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome !== 0" v-bind:class="{ }">
-                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[30]) * 1 > 20000 ? 20000 : (STCOut1[30]) * 1).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
+                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[30]) * 1.00 > 10000 ? 10000 : (STCOut1[30]) * 1.00).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
             </p>
             <p class="nb_save a4" v-if="martial_status === 'M' && slfIncome === 0 && spsIncome !== 0" v-bind:class="{  }">
-                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[31]) * 1 > 20000 ? 20000 : (STCOut1[31]) * 1).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
+                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((STCOut1[31]) * 1.00 > 10000 ? 10000 : (STCOut1[31]) * 1.00).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
             </p>
             <p class="nb_save a5" v-if="martial_status === 'M' && !only_one_income" v-bind:class="{ less: STCOut2[32] - STCOut1[32] < 0 }">
-                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((last_pay) * 1 > 20000 ? 20000 : (last_pay) * 1).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
+                <span>獲退稅<sup>*</sup>： <span class="rebate_quota">({{ ((last_pay) * 1.00 > 10000 ? 10000 : (last_pay) * 1.00).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元)</span></span>
             </p>
 
             <p class="nb_result a1" v-if="martial_status !== 'M'" v-bind:class="{ less: STCOut2[30] - STCOut1[30] < 0 }">
-                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[30] - 0.4 - ((STCOut1[30]) * 1 > 20000 ? 20000 : (STCOut1[30]) * 1)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
+                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[30] - 0.4 - ((STCOut1[30]) * 1.00 > 10000 ? 10000 : (STCOut1[30]) * 1.00)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
             <p class="nb_result a2" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome === 0" v-bind:class="{ }">
                 <span>實際應繳： <span class="rebate_result">{{ 0 }}元</span></span>
             </p>
             <p class="nb_result a3" v-if="martial_status === 'M' && spsIncome === 0 && slfIncome !== 0" v-bind:class="{ }">
-                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[30] - 0.4 - ((STCOut1[30]) * 1 > 20000 ? 20000 : (STCOut1[30]) * 1)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
+                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[30] - 0.4 - ((STCOut1[30]) * 1.00 > 10000 ? 10000 : (STCOut1[30]) * 1.00)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
             <p class="nb_result a4" v-if="martial_status === 'M' && slfIncome === 0 && spsIncome !== 0" v-bind:class="{  }">
-                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[31] - 0.4 - ((STCOut1[31]) * 1 > 20000 ? 20000 : (STCOut1[31]) * 1)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
+                <span>實際應繳： <span class="rebate_result">{{ (STCOut1[31] - 0.4 - ((STCOut1[31]) * 1.00 > 10000 ? 10000 : (STCOut1[31]) * 1.00)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
             <p class="nb_result a5" v-if="martial_status === 'M' && !only_one_income" v-bind:class="{ less: STCOut2[32] - STCOut1[32] < 0 }">
-                <span>實際應繳： <span class="rebate_result">{{ (last_pay - 0.4 - ((last_pay) * 1 > 20000 ? 20000 : (last_pay) * 1)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
+                <span>實際應繳： <span class="rebate_result">{{ (last_pay - 0.4 - ((last_pay) * 1.00 > 10000 ? 10000 : (last_pay) * 1.00)).toFixed(0).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}元</span></span>
             </p>
 
             <p><small>*退稅尚待有關法例通過</small></p>
