@@ -849,10 +849,10 @@ export default {
       return true
     },
     get_deduction () {
-      var YrValue = '2019-2020'
+      var YrValue = '2020-2021'
       // parent.LSPYrEnd = YrValue
       // // //
-      if (YrValue === '2019-2020') {
+      if (YrValue === '2020-2021') {
         this.LimD_DonaLL = 100
         this.LimD_DonaUL = 35
         this.LimD_Education = 100000
@@ -900,7 +900,7 @@ export default {
       if (parseInt(vm.CAbb_DIS, 10) > parseInt(vm.CAbb, 10)) {
         vm.CAbb_DIS = parseInt(vm.CAbb, 10)
       }
-      if (vm.AssessYear === '2019-2020') {
+      if (vm.AssessYear === '2020-2021') {
         if (parseInt(vm.CAbb, 10) + parseInt(vm.NBbb, 10) > 9) {
           // ErrMsgDDA2()
           // setTimeout(function () {
@@ -2044,7 +2044,7 @@ export default {
     }, // End ChkDD
     D1OnChange () {
       var vm = this
-      var YrValue = '2019-2020'
+      var YrValue = '2020-2021'
       // YrValue = dF.D1.options[dF.D1.selectedIndex].value
       vm.YrEnd = parseInt(rightStr(YrValue, 4), 10)
       if (vm.YrEnd < 1995) { // before 94/95
