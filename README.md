@@ -61,7 +61,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
     - edit this.AssessYear === 'xxxx-yyyy'
     - edit get_deduction () { var YrValue = 'xxxx-yyyy'
 
-
+note: update article id for trackingProd
 
 ## Reference:
 - [Tax Rate Table (2017/18)](https://www.ird.gov.hk/eng/pdf/pam61e.pdf)
