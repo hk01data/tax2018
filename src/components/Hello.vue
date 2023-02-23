@@ -38,15 +38,6 @@
                 </label>
             </div>
 <!-- MOCK 6.1 上限 fixed $18,000, like MPF ( 必须有入息 )-->
-            <!-- <div class="a_slide deduct">
-                <p class="item_title">{{ lang.byBook }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'book_info' }">&nbsp;</a></p>
-                <label for="self_book"><span class="label_text">{{ lang.self }}</span>
-                <input id="self_book" type="number" min="0" max="999999999" v-model="slfBook" />
-                </label>
-                <label v-if="martial_status === 'M'" for="spouse_book"><span class="label_text">{{ lang.spouse }}</span>
-                <input id="spouse_book" type="number" min="0" max="999999999" v-model="spsBook" />
-                </label>
-            </div> -->
             <div class="a_slide deduct">
                 <p class="item_title">{{ lang.eduexp }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'eduexp_info' }">&nbsp;</a></p>
                 <label for="self_eduexp"><span class="label_text">{{ lang.self }}</span>
@@ -96,13 +87,33 @@
                 <input id="spouse_oe" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="spsOE" />
                 </label>
             </div>
+
+            <div class="a_slide deduct">
+                <p class="item_title">{{ lang.rent }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'rent_info' }">&nbsp;</a></p>
+                <label for="self_rent"><span class="label_text">{{ lang.self }}</span>
+                <input id="self_rent" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="slfRent" />
+                </label>
+                <label v-if="martial_status === 'M'" for="spouse_rent"><span class="label_text">{{ lang.spouse }}</span>
+                <input id="spouse_rent" type="number" @focus="$event.target.select()" min="0" max="999999999" v-model="spsRent" />
+                </label>
+            </div>
+
+            <!-- <div class="a_slide deduct">
+                <p class="item_title">{{ lang.byBook }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'book_info' }">&nbsp;</a></p>
+                <label for="self_book"><span class="label_text">{{ lang.self }}</span>
+                <input id="self_book" type="number" min="0" max="999999999" v-model="slfBook" />
+                </label>
+                <label v-if="martial_status === 'M'" for="spouse_book"><span class="label_text">{{ lang.spouse }}</span>
+                <input id="spouse_book" type="number" min="0" max="999999999" v-model="spsBook" />
+                </label>
+            </div> -->
             
         </slick>
         </div>
 
         <h2 style="display: none;">Output</h2>
         <!--  onday_onday(10) -->
-        <taxNewYear v-bind:STCIn8='STCIn8' v-bind:martial_status='martial_status' v-bind:slfIncome='slfIncome' v-bind:spsIncome='spsIncome' v-bind:slfResi='slfResi' v-bind:spsResi='spsResi' v-bind:slfOE='slfOE' v-bind:spsOE='spsOE' v-bind:slfSEE='slfSEE' v-bind:spsSEE='spsSEE' v-bind:slfDona='slfDona' v-bind:spsDona='spsDona' v-bind:spsMpf='spsMpf' v-bind:slfMpf='slfMpf' v-bind:slfLoan='slfLoan' v-bind:spsLoan='spsLoan' v-bind:s_Elder_min='s_Elder_min' v-bind:s_Elder_max='s_Elder_max' v-bind:s_tooltip='s_tooltip' v-bind:slfElder='slfElder' v-bind:slfDisdep='slfDisdep' v-bind:slfERCE='slfERCE' v-bind:spsElder='spsElder' v-bind:spsDisdep='spsDisdep' v-bind:spsERCE='spsERCE' v-bind:s_bb_min='s_bb_min' v-bind:s_bb_max='s_bb_max' v-bind:NBbb='NBbb' v-bind:CAbb='CAbb' v-bind:single_parent='single_parent' v-bind:brosis_dep='brosis_dep' v-bind:resi_parent='resi_parent' v-bind:non_resi_parent='non_resi_parent' v-bind:resi_parent_5560='resi_parent_5560' v-bind:non_resi_parent_5560='non_resi_parent_5560' v-bind:NBbb_DIS='NBbb_DIS' v-bind:CAbb_DIS='CAbb_DIS' v-bind:brosis_dep_DIS='brosis_dep_DIS' v-bind:resi_parent_DIS='resi_parent_DIS' v-bind:non_resi_parent_DIS='non_resi_parent_DIS' v-bind:spouse_disabled_dependent_DIS='spouse_disabled_dependent_DIS' v-bind:STCMainRV='STCMainRV' v-bind:STCOut1='STCOut1'
+        <taxNewYear v-bind:STCIn8='STCIn8' v-bind:martial_status='martial_status' v-bind:slfIncome='slfIncome' v-bind:spsIncome='spsIncome' v-bind:slfResi='slfResi' v-bind:spsResi='spsResi' v-bind:slfOE='slfOE' v-bind:spsOE='spsOE' v-bind:slfSEE='slfSEE' v-bind:spsSEE='spsSEE' v-bind:slfRent='slfRent' v-bind:spsRent='spsRent' v-bind:slfDona='slfDona' v-bind:spsDona='spsDona' v-bind:spsMpf='spsMpf' v-bind:slfMpf='slfMpf' v-bind:slfLoan='slfLoan' v-bind:spsLoan='spsLoan' v-bind:s_Elder_min='s_Elder_min' v-bind:s_Elder_max='s_Elder_max' v-bind:s_tooltip='s_tooltip' v-bind:slfElder='slfElder' v-bind:slfDisdep='slfDisdep' v-bind:slfERCE='slfERCE' v-bind:spsElder='spsElder' v-bind:spsDisdep='spsDisdep' v-bind:spsERCE='spsERCE' v-bind:s_bb_min='s_bb_min' v-bind:s_bb_max='s_bb_max' v-bind:NBbb='NBbb' v-bind:CAbb='CAbb' v-bind:single_parent='single_parent' v-bind:brosis_dep='brosis_dep' v-bind:resi_parent='resi_parent' v-bind:non_resi_parent='non_resi_parent' v-bind:resi_parent_5560='resi_parent_5560' v-bind:non_resi_parent_5560='non_resi_parent_5560' v-bind:NBbb_DIS='NBbb_DIS' v-bind:CAbb_DIS='CAbb_DIS' v-bind:brosis_dep_DIS='brosis_dep_DIS' v-bind:resi_parent_DIS='resi_parent_DIS' v-bind:non_resi_parent_DIS='non_resi_parent_DIS' v-bind:spouse_disabled_dependent_DIS='spouse_disabled_dependent_DIS' v-bind:STCMainRV='STCMainRV' v-bind:STCOut1='STCOut1'
         v-bind:slfMedInsu='slfMedInsu'
         v-bind:spsMedInsu='spsMedInsu'
         v-bind:slfMedInsu_ppl='slfMedInsu_ppl'
@@ -111,6 +122,8 @@
         v-bind:sps_disabled_DIS='sps_disabled_DIS'
         v-bind:slfVolunMpf='slfVolunMpf'
         v-bind:spsVolunMpf='spsVolunMpf'
+        v-bind:slfBook='slfBook'
+        v-bind:spsBook='spsBook'
         v-bind:end='end' ></taxNewYear>
 
         <div class="additional new_add">
@@ -143,8 +156,8 @@
                 </div>
             </div> -->
             <!-- MOCK adding number type item and the amount have limitation -->
-            <!-- <div v-if="true" class="a_slide" v-bind:class="{ active: sh_elderly }">
-                <p class="sect_title">【新型肺炎】防疫開支<img class="new_gif" src="static/img/new.gif" alt="new items"></p>
+            <!--<div v-if="true" class="a_slide" v-bind:class="{ active: sh_elderly }">
+               <p class="sect_title">【新型肺炎】防疫開支<img class="new_gif" src="static/img/new.gif" alt="new items"></p>
                 <div class="cont">
                     <p class="item_title" v-if="martial_status === 'M'">{{ lang.self + '負責' }}</p>
 
@@ -458,13 +471,13 @@
         <div class="footer">
             <!-- <p># 2019/20年度新增兩個稅務扣減項目，分別是自願醫保保費，以及年金及強積金自願供款。當中年金及強積金自願供款扣減尚待立法會通過相關條例，該扣除上限為每人每年60,000元。</p> -->
             <p>本計稅機不會收集任何可追溯到用戶身分的資料，上述結果乃根據讀者輸入的資料計算，僅適合香港居民計算其應繳之薪俸稅或個人入息課稅稅款，結果或與實際數目有出入，僅供讀者作參考之用。詳情可參考<a href="https://www.ird.gov.hk/" target="_blank">稅務局網站</a>所載資料。</p>
-            <p>資料來源：稅務局、20/21及21/22年度財政預算案</p>
+            <p>資料來源：稅務局、22/23及23/24年度財政預算案</p>
         </div>
 
 
       <h2 style="display: none;">Output</h2>
       <!--  onday_onday(10) -->
-      <taxNewYear v-if="false" v-bind:STCIn8='STCIn8' v-bind:martial_status='martial_status' v-bind:slfIncome='slfIncome' v-bind:spsIncome='spsIncome' v-bind:slfResi='slfResi' v-bind:spsResi='spsResi' v-bind:slfOE='slfOE' v-bind:spsOE='spsOE' v-bind:slfSEE='slfSEE' v-bind:spsSEE='spsSEE' v-bind:slfDona='slfDona' v-bind:spsDona='spsDona' v-bind:slfMpf='slfMpf' v-bind:spsMpf='spsMpf' v-bind:slfLoan='slfLoan' v-bind:spsLoan='spsLoan' v-bind:s_Elder_min='s_Elder_min' v-bind:s_Elder_max='s_Elder_max' v-bind:s_tooltip='s_tooltip' v-bind:slfElder='slfElder' v-bind:slfDisdep='slfDisdep' v-bind:slfERCE='slfERCE' v-bind:spsElder='spsElder' v-bind:spsDisdep='spsDisdep' v-bind:spsERCE='spsERCE' v-bind:s_bb_min='s_bb_min' v-bind:s_bb_max='s_bb_max' v-bind:NBbb='NBbb' v-bind:CAbb='CAbb' v-bind:single_parent='single_parent' v-bind:brosis_dep='brosis_dep' v-bind:resi_parent='resi_parent' v-bind:non_resi_parent='non_resi_parent' v-bind:resi_parent_5560='resi_parent_5560' v-bind:non_resi_parent_5560='non_resi_parent_5560' v-bind:NBbb_DIS='NBbb_DIS' v-bind:CAbb_DIS='CAbb_DIS' v-bind:brosis_dep_DIS='brosis_dep_DIS' v-bind:resi_parent_DIS='resi_parent_DIS' v-bind:non_resi_parent_DIS='non_resi_parent_DIS' v-bind:spouse_disabled_dependent_DIS='spouse_disabled_dependent_DIS' v-bind:STCMainRV='STCMainRV' v-bind:STCOut1='STCOut1'
+      <taxNewYear v-if="false" v-bind:STCIn8='STCIn8' v-bind:martial_status='martial_status' v-bind:slfIncome='slfIncome' v-bind:spsIncome='spsIncome' v-bind:slfResi='slfResi' v-bind:spsResi='spsResi' v-bind:slfOE='slfOE' v-bind:spsOE='spsOE' v-bind:slfSEE='slfSEE' v-bind:spsSEE='spsSEE' v-bind:slfRent='slfRent' v-bind:spsRent='spsRent' v-bind:slfDona='slfDona' v-bind:spsDona='spsDona' v-bind:slfMpf='slfMpf' v-bind:spsMpf='spsMpf' v-bind:slfLoan='slfLoan' v-bind:spsLoan='spsLoan' v-bind:s_Elder_min='s_Elder_min' v-bind:s_Elder_max='s_Elder_max' v-bind:s_tooltip='s_tooltip' v-bind:slfElder='slfElder' v-bind:slfDisdep='slfDisdep' v-bind:slfERCE='slfERCE' v-bind:spsElder='spsElder' v-bind:spsDisdep='spsDisdep' v-bind:spsERCE='spsERCE' v-bind:s_bb_min='s_bb_min' v-bind:s_bb_max='s_bb_max' v-bind:NBbb='NBbb' v-bind:CAbb='CAbb' v-bind:single_parent='single_parent' v-bind:brosis_dep='brosis_dep' v-bind:resi_parent='resi_parent' v-bind:non_resi_parent='non_resi_parent' v-bind:resi_parent_5560='resi_parent_5560' v-bind:non_resi_parent_5560='non_resi_parent_5560' v-bind:NBbb_DIS='NBbb_DIS' v-bind:CAbb_DIS='CAbb_DIS' v-bind:brosis_dep_DIS='brosis_dep_DIS' v-bind:resi_parent_DIS='resi_parent_DIS' v-bind:non_resi_parent_DIS='non_resi_parent_DIS' v-bind:spouse_disabled_dependent_DIS='spouse_disabled_dependent_DIS' v-bind:STCMainRV='STCMainRV' v-bind:STCOut1='STCOut1'
       v-bind:slfMedInsu='slfMedInsu'
       v-bind:spsMedInsu='spsMedInsu'
       v-bind:slfMedInsu_ppl='slfMedInsu_ppl'
@@ -1100,6 +1113,10 @@
         <p>假設每份保單年供款低於$8,000<a href="https://www.budget.gov.hk/2018/chi/index.html" target="_blank">（詳情）</a></p>
     </div>
 
+    <div class="tool_tips" id="rent_info">
+        <p>個人上限$100,000；如你在本年度全年屬已婚，你和配偶的扣除總額不能超$100,000。</p>
+    </div>
+
     <div class="tool_tips" id="elderly_info">
         <p>上限：4人</p>
     </div>
@@ -1131,10 +1148,10 @@
         <p>上限：4人</p>
     </div>
     <div class="tool_tips" id="self_DIS_info">
-        <p>18／19預算案新增$75,000免稅額(你需要有入息)</p>
+        <p>$75,000免稅額(你需要有入息)</p>
     </div>
     <div class="tool_tips" id="sps_DIS_info">
-        <p>18／19預算案新增$75,000免稅額(配偶需要有入息)</p>
+        <p>$75,000免稅額(配偶需要有入息)</p>
     </div>
     <!-- <div class="tool_tips" id="sps_iang_visa_info">
         <p>20／21預算案新增$75,000免稅額(配偶需要有入息)</p>

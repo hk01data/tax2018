@@ -1,6 +1,6 @@
 // Current Year and Last year
 import vueSlider from 'vue-slider-component'
-import TaxNewYear from '@/components/Tax2021.vue'
+import TaxNewYear from '@/components/Tax2023.vue'
 import Slick from 'vue-slick'
 import Switches from 'vue-switches'
 
@@ -219,6 +219,9 @@ export default {
       spsSEE: 0,
       slfDona: 0,
       spsDona: 0,
+      // 20220223
+      slfRent: 0,
+      spsRent: 0,
       // donation must no less than 100
       slfDona_restrict: 0,
       spsDona_restrict: 0,
@@ -366,7 +369,7 @@ export default {
       slfOE_CAP: 0,
       spsOE_CAP: 0,
 
-      AssessYear: '2020-2021',
+      AssessYear: '2022-2023',
       AL_SING: 0,
       AAL_SING: 0,
       AL_MARR: 0,
@@ -478,9 +481,9 @@ export default {
         self_mpf: '本人-MPF',
         spouse_mpf: '配偶-MPF',
 
-        byBook: '購買考試書籍支出',
-        byBook_self: '個人-購買考試書籍支出',
-        byBook_sps: '配偶-購買考試書籍支出',
+        // byBook: '聘請外傭扣稅',
+        // byBook_self: '個人-聘請外傭扣稅',
+        // byBook_sps: '配偶-聘請外傭扣稅',
 
         homeloan: '居所貸款利息',
         self_homeloan: '本人-居所貸款利息',
@@ -493,6 +496,10 @@ export default {
         medic_insu: '醫療保險開支',
         self_medic_insu: '本人-醫療保險開支',
         spouse_medic_insu: '配偶-醫療保險開支',
+
+        rent: '住宅租金開支',
+        self_rent: '本人-住宅租金開支',
+        spouse_rent: '配偶-住宅租金開支',
 
         end: 0
       }
@@ -581,14 +588,14 @@ export default {
       this.T12OnBlur()
       this.STCOut1_func(this.infin_update)
     },
-    // slfBook: function (val) {
-    //   this.BOOKT11OnBlur()
-    //   this.STCOut1_func(this.infin_update)
-    // },
-    // spsBook: function (val) {
-    //   this.BOOKT12OnBlur()
-    //   this.STCOut1_func(this.infin_update)
-    // },
+    slfBook: function (val) {
+      this.BOOKT11OnBlur()
+      this.STCOut1_func(this.infin_update)
+    },
+    spsBook: function (val) {
+      this.BOOKT12OnBlur()
+      this.STCOut1_func(this.infin_update)
+    },
     slfDona: function (val) {
       if (val === 0 || isNaN(val)) {
         this.slfDona_restrict = 0
@@ -607,6 +614,15 @@ export default {
       this.STCOut1_func(this.infin_update)
     },
     spsSEE: function (val) {
+      this.STCOut1_func(this.infin_update)
+    },
+    // 20220223
+    slfRent: function (val) {
+      this.RENTT11OnBlur()
+      this.STCOut1_func(this.infin_update)
+    },
+    spsRent: function (val) {
+      this.RENTT12OnBlur()
       this.STCOut1_func(this.infin_update)
     },
     slfLoan: function (val) {
@@ -715,13 +731,13 @@ export default {
     to_float (num) {
       return parseFloat(num).toFixed(2)
     },
-    get_rate () {
-      var year = '2020-2021'
+    get_rate () { // onday_onday(6)
+      var year = '2022-2023'
       this.YrEnd = year.split('-')[1]
       var i
       var ok = false
       // // //
-      if (this.AssessYear === '2020-2021') {
+      if (this.AssessYear === '2022-2023') {
         this.AL_SING = 132000 // PAL_SING
         this.AAL_SING = 0 // PAAL_SING
         this.AL_MARR = 264000 // PAL_MARR
@@ -748,6 +764,26 @@ export default {
         this.NBCA[7] = 120000 * 7 // MOCK 700000
         this.NBCA[8] = 120000 * 8 // MOCK 800000
         this.NBCA[9] = 120000 * 9 // MOCK 900000
+        // this.CA[1] = 150000 * 1 // MOCK 100000
+        // this.CA[2] = 150000 * 2 // MOCK 200000
+        // this.CA[3] = 150000 * 3 // MOCK 300000
+        // this.CA[4] = 150000 * 4 // MOCK 400000
+        // this.CA[5] = 150000 * 5 // MOCK 500000
+        // this.CA[6] = 150000 * 6 // MOCK 600000
+        // this.CA[7] = 150000 * 7 // MOCK 700000
+        // this.CA[8] = 150000 * 8 // MOCK 800000
+        // this.CA[9] = 150000 * 9 // MOCK 900000
+        // // PCHILDNB_AL1  to PCHILDNB_AL9
+        // this.NBCA[0] = 0
+        // this.NBCA[1] = 150000 * 1 // MOCK 100000
+        // this.NBCA[2] = 150000 * 2 // MOCK 200000
+        // this.NBCA[3] = 150000 * 3 // MOCK 300000
+        // this.NBCA[4] = 150000 * 4 // MOCK 400000
+        // this.NBCA[5] = 150000 * 5 // MOCK 500000
+        // this.NBCA[6] = 150000 * 6 // MOCK 600000
+        // this.NBCA[7] = 150000 * 7 // MOCK 700000
+        // this.NBCA[8] = 150000 * 8 // MOCK 800000
+        // this.NBCA[9] = 150000 * 9 // MOCK 900000
         this.DBSA = 37500 // PDBSA
         this.DPA = 50000 // PDPAAMT 46000
         this.ADPA = 50000 // PADPAAMT 46000
@@ -760,6 +796,10 @@ export default {
         this.TAX_RANGE[2] = 50000 // MOCK 45000
         this.TAX_RANGE[3] = 50000 // MOCK 45000
         this.TAX_RANGE[4] = 50000
+        // this.TAX_RANGE[1] = 60000 // 50000 MOCK 40000, 60000
+        // this.TAX_RANGE[2] = 60000 // 50000 MOCK 40000, 60000
+        // this.TAX_RANGE[3] = 60000 // 50000 MOCK 40000, 60000
+        // this.TAX_RANGE[4] = 60000 // 50000 MOCK 40000, 60000
         this.TAX_RANGE[5] = 0
         this.TAX_RANGE[6] = 0
         this.TAX_RANGE[7] = 0
@@ -849,22 +889,24 @@ export default {
       return true
     },
     get_deduction () {
-      var YrValue = '2020-2021'
+      var YrValue = '2022-2023'
       // parent.LSPYrEnd = YrValue
       // // //
-      if (YrValue === '2020-2021') {
+      if (YrValue === '2022-2023') {
         this.LimD_DonaLL = 100
         this.LimD_DonaUL = 35
         this.LimD_Education = 100000
         this.LimD_HomeLoan = 100000
         this.LimD_Elderly = 100000 // 100000 MOCK 92000
-        // this.LimD_Elderly_new = 100000 // this.LimD_Elderly MOCK 120000
+        this.LimD_Elderly_new = 100000 // this.LimD_Elderly MOCK 120000
         // this.LimD_Elderly_new = 120000 // this.LimD_Elderly MOCK 120000
         this.LimD_MPF = 18000
         // 上限 fixed $18,000 ike MPF ( 必须有入息 )
-        // this.LimD_BOOK = 10000
+        this.LimD_BOOK = 10000
         this.LimD_rate_MPF = 5
         this.LimP_rate_VAPRP = 10
+        // fix rent limit
+        this.LimD_RENT = 100000
         return true
       }
       return false
@@ -900,7 +942,7 @@ export default {
       if (parseInt(vm.CAbb_DIS, 10) > parseInt(vm.CAbb, 10)) {
         vm.CAbb_DIS = parseInt(vm.CAbb, 10)
       }
-      if (vm.AssessYear === '2020-2021') {
+      if (vm.AssessYear === '2022-2023') {
         if (parseInt(vm.CAbb, 10) + parseInt(vm.NBbb, 10) > 9) {
           // ErrMsgDDA2()
           // setTimeout(function () {
@@ -1190,45 +1232,45 @@ export default {
       vm.spsMpf = Income
       // vm.ChkDD(8)
     },
-    // BOOKT11OnBlur () {
-    //   var vm = this
-    //   var Income, obj, MustReset, ValueResidence
-    //   MustReset = false
-    //   Income = vm.FormatInput(vm.slfBook, 0, vm.LimD_BOOK)
-    //   if (Income === '*') {
-    //     // ErrMsg('你輸入的數值不正確 !')
-    //     MustReset = true
-    //     // vm.slfMpf = 0
-    //     Income = 0
-    //   } else if (Income === '+') {
-    //     // ErrMsg('你不可輸入超過 9 位數字的數值 !')
-    //     MustReset = true
-    //     vm.slfBook = vm.LimD_BOOK
-    //     Income = vm.LimD_BOOK
-    //   }
-    //   vm.slfBook = Income
-    //   // vm.ChkDD(7)
-    // },
-    // BOOKT12OnBlur () {
-    //   console.log('ui update')
-    //   var vm = this
-    //   var Income, obj, MustReset, ValueResidence
-    //   MustReset = false
-    //   Income = vm.FormatInput(vm.spsBook, 0, vm.LimD_BOOK)
-    //   if (Income === '*') {
-    //     // ErrMsg('你輸入的數值不正確 !')
-    //     MustReset = true
-    //     // vm.spsBook = 0
-    //     Income = 0
-    //   } else if (Income === '+') {
-    //     // ErrMsg('你不可輸入超過 9 位數字的數值 !')
-    //     MustReset = true
-    //     vm.spsBook = vm.LimD_BOOK
-    //     Income = vm.LimD_BOOK
-    //   }
-    //   vm.spsBook = Income
-    //   // vm.ChkDD(8)
-    // },
+    BOOKT11OnBlur () {
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      MustReset = false
+      Income = vm.FormatInput(vm.slfBook, 0, vm.LimD_BOOK)
+      if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        // vm.slfMpf = 0
+        Income = 0
+      } else if (Income === '+') {
+        // ErrMsg('你不可輸入超過 9 位數字的數值 !')
+        MustReset = true
+        vm.slfBook = vm.LimD_BOOK
+        Income = vm.LimD_BOOK
+      }
+      vm.slfBook = Income
+      // vm.ChkDD(7)
+    },
+    BOOKT12OnBlur () {
+      console.log('ui update')
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      MustReset = false
+      Income = vm.FormatInput(vm.spsBook, 0, vm.LimD_BOOK)
+      if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        // vm.spsBook = 0
+        Income = 0
+      } else if (Income === '+') {
+        // ErrMsg('你不可輸入超過 9 位數字的數值 !')
+        MustReset = true
+        vm.spsBook = vm.LimD_BOOK
+        Income = vm.LimD_BOOK
+      }
+      vm.spsBook = Income
+      // vm.ChkDD(8)
+    },
     SLFERCE11OnBlur () {
       var vm = this
       var Income, obj, MustReset, ValueResidence
@@ -1474,6 +1516,45 @@ export default {
       vm.spsVolunMpf = Income
       vm.ChkDD(0)
     },
+    RENTT11OnBlur () {
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      MustReset = false
+      Income = vm.FormatInput(vm.slfRent, 0, vm.LimD_RENT)
+      if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        // vm.slfMpf = 0
+        Income = 0
+      } else if (Income === '+') {
+        // ErrMsg('你不可輸入超過 9 位數字的數值 !')
+        MustReset = true
+        vm.slfRent = vm.LimD_RENT
+        Income = vm.LimD_RENT
+      }
+      vm.slfRent = Income
+      // vm.ChkDD(7)
+    },
+    RENTT12OnBlur () {
+      console.log('ui update')
+      var vm = this
+      var Income, obj, MustReset, ValueResidence
+      MustReset = false
+      Income = vm.FormatInput(vm.spsRent, 0, vm.LimD_RENT)
+      if (Income === '*') {
+        // ErrMsg('你輸入的數值不正確 !')
+        MustReset = true
+        // vm.spsRent = 0
+        Income = 0
+      } else if (Income === '+') {
+        // ErrMsg('你不可輸入超過 9 位數字的數值 !')
+        MustReset = true
+        vm.spsRent = vm.LimD_RENT
+        Income = vm.LimD_RENT
+      }
+      vm.spsRent = Income
+      // vm.ChkDD(8)
+    },
     // slfDiseaseOnBlur () {
     //   var vm = this
     //   var Income, obj, MustReset, ValueResidence
@@ -1578,9 +1659,11 @@ export default {
           ClrTxt(vm.slfMpf)
           // console.log('ClrTxt(')
           // MOCK BOOK
-          // ClrTxt(vm.slfBook)
+          ClrTxt(vm.slfBook)
           // console.log('ClrTxt(')
           ClrTxt(vm.slfOE)
+          // 20220223
+          ClrTxt(vm.slfRent)
           // console.log('ClrTxt(')
           MsgID = 2
           slfDDreseted = true
@@ -2044,7 +2127,7 @@ export default {
     }, // End ChkDD
     D1OnChange () {
       var vm = this
-      var YrValue = '2020-2021'
+      var YrValue = '2022-2023'
       // YrValue = dF.D1.options[dF.D1.selectedIndex].value
       vm.YrEnd = parseInt(rightStr(YrValue, 4), 10)
       if (vm.YrEnd < 1995) { // before 94/95
@@ -2125,9 +2208,12 @@ export default {
       vm.spsDona_restrict = 0
       vm.slfMpf = 0
       vm.spsMpf = 0
+      // 20220223
+      vm.slfRent = 0
+      vm.spsRent = 0
       // MOCK
-      // vm.slfBook = 0
-      // vm.spsBook = 0
+      vm.slfBook = 0
+      vm.spsBook = 0
       vm.slfLoan = 0
       vm.spsLoan = 0
       vm.slfElder = 0
@@ -2205,9 +2291,11 @@ export default {
         this.slfERCE = 0
         this.slfERCE_forCompute = 0
         this.slfMpf = 0
+        // 20220223
+        this.slfRent = 0
         // MOCK
-        // this.slfBook = 0
-        this.slfDiseaseExp = 0
+        this.slfBook = 0
+        // this.slfDiseaseExp = 0
         this.slfLoan = 0
         // ErrMsg('由於你沒有入息，因此你不能扣除居所貸款利息。')
       }
@@ -2223,8 +2311,10 @@ export default {
         this.spsERCE = 0
         this.spsERCE_forCompute = 0
         this.spsMpf = 0
+        // 20220223
+        this.spsRent = 0
         // MOCK
-        // this.spsBook = 0
+        this.spsBook = 0
         this.spsLoan = 0
         // ErrMsg('由於你們沒有入息，因此你們不能扣除居所貸款利息。')
       }
@@ -2294,8 +2384,8 @@ export default {
       this.spsDona_restrict = parseFloat(this.spsDona_restrict) < 100 || isNaN(parseFloat(this.spsDona_restrict)) ? 0 : parseFloat(this.spsDona_restrict)
 
       // 扣稅總額
-      this.STCIn14 = parseFloat(this.slfDona_restrict) + parseFloat(this.slfERCE_forCompute) + parseFloat(this.slfMpf) + parseFloat(this.slfSEE) + parseFloat(this.slfOE)
-      this.STCIn15 = parseFloat(this.spsDona_restrict) + parseFloat(this.spsERCE_forCompute) + parseFloat(this.spsMpf) + parseFloat(this.spsSEE) + parseFloat(this.spsOE)
+      this.STCIn14 = parseFloat(this.slfDona_restrict) + parseFloat(this.slfERCE_forCompute) + parseFloat(this.slfMpf) + parseFloat(this.slfSEE) + parseFloat(this.slfOE) + parseFloat(this.slfRent)
+      this.STCIn15 = parseFloat(this.spsDona_restrict) + parseFloat(this.spsERCE_forCompute) + parseFloat(this.spsMpf) + parseFloat(this.spsSEE) + parseFloat(this.spsOE) + parseFloat(this.spsRent)
 
       // 扣稅總額 onday_onday(5)
       this.STCIn14 = this.STCIn14 + parseFloat(this.slfMedInsu)
@@ -3374,9 +3464,12 @@ export default {
         '#spouse_donation': this.spsDona_restrict,
         '#self_mpf': this.slfMpf,
         '#spouse_mpf': this.spsMpf,
+        // 20220223
+        '#self_rent': this.slfRent,
+        '#spouse_rent': this.spsRent,
         // MOCK
-        // '#self_book': this.slfBook,
-        // '#spouse_book': this.spsBook,
+        '#self_book': this.slfBook,
+        '#spouse_book': this.spsBook,
         '#self_homeloan': this.slfLoan,
         '#spouse_homeloan': this.spsLoan,
         '#self_elderly': this.slfElder,
