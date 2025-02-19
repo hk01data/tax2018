@@ -1,6 +1,6 @@
 // Current Year and Last year
 import vueSlider from 'vue-slider-component'
-import TaxNewYear from '@/components/Tax2023.vue'
+import TaxNewYear from '@/components/Tax2024.vue'
 import Slick from 'vue-slick'
 import Switches from 'vue-switches'
 
@@ -228,8 +228,8 @@ export default {
       slfMpf: 0,
       spsMpf: 0,
       // 上限 fixed $18,000, like MPF ( 必须有入息 )
-      // slfBook: 0,
-      // spsBook: 0,
+      slfBook: 0,
+      spsBook: 0,
       slfLoan: 0,
       spsLoan: 0,
       slfElder: 0, // 0,
@@ -369,7 +369,7 @@ export default {
       slfOE_CAP: 0,
       spsOE_CAP: 0,
 
-      AssessYear: '2022-2023',
+      AssessYear: '2023-2024',
       AL_SING: 0,
       AAL_SING: 0,
       AL_MARR: 0,
@@ -481,11 +481,11 @@ export default {
         self_mpf: '本人-MPF',
         spouse_mpf: '配偶-MPF',
 
-        // byBook: '聘請外傭扣稅',
-        // byBook_self: '個人-聘請外傭扣稅',
-        // byBook_sps: '配偶-聘請外傭扣稅',
+        byBook: '輔助生育服務開支（24/25起*）',
+        byBook_self: '個人-輔助生育服務開支',
+        byBook_sps: '配偶-輔助生育服務開支',
 
-        homeloan: '居所貸款利息',
+        homeloan: '居所貸款利息*#',
         self_homeloan: '本人-居所貸款利息',
         spouse_homeloan: '配偶-居所貸款利息',
 
@@ -497,7 +497,7 @@ export default {
         self_medic_insu: '本人-醫療保險開支',
         spouse_medic_insu: '配偶-醫療保險開支',
 
-        rent: '住宅租金開支',
+        rent: '住宅租金開支*#',
         self_rent: '本人-住宅租金開支',
         spouse_rent: '配偶-住宅租金開支',
 
@@ -732,38 +732,38 @@ export default {
       return parseFloat(num).toFixed(2)
     },
     get_rate () { // onday_onday(6)
-      var year = '2022-2023'
+      var year = '2023-2024'
       this.YrEnd = year.split('-')[1]
       var i
       var ok = false
       // // //
-      if (this.AssessYear === '2022-2023') {
+      if (this.AssessYear === '2023-2024') {
         this.AL_SING = 132000 // PAL_SING
         this.AAL_SING = 0 // PAAL_SING
         this.AL_MARR = 264000 // PAL_MARR
         this.AAL_MARR = 0 // PAAL_MARR
         this.SPA = 132000 // PSPA
         this.CA[0] = 0
-        this.CA[1] = 120000 * 1 // MOCK 100000
-        this.CA[2] = 120000 * 2 // MOCK 200000
-        this.CA[3] = 120000 * 3 // MOCK 300000
-        this.CA[4] = 120000 * 4 // MOCK 400000
-        this.CA[5] = 120000 * 5 // MOCK 500000
-        this.CA[6] = 120000 * 6 // MOCK 600000
-        this.CA[7] = 120000 * 7 // MOCK 700000
-        this.CA[8] = 120000 * 8 // MOCK 800000
-        this.CA[9] = 120000 * 9 // MOCK 900000
+        this.CA[1] = 130000 * 1 // MOCK 100000
+        this.CA[2] = 130000 * 2 // MOCK 200000
+        this.CA[3] = 130000 * 3 // MOCK 300000
+        this.CA[4] = 130000 * 4 // MOCK 400000
+        this.CA[5] = 130000 * 5 // MOCK 500000
+        this.CA[6] = 130000 * 6 // MOCK 600000
+        this.CA[7] = 130000 * 7 // MOCK 700000
+        this.CA[8] = 130000 * 8 // MOCK 800000
+        this.CA[9] = 130000 * 9 // MOCK 900000
         // PCHILDNB_AL1  to PCHILDNB_AL9
         this.NBCA[0] = 0
-        this.NBCA[1] = 120000 * 1 // MOCK 100000
-        this.NBCA[2] = 120000 * 2 // MOCK 200000
-        this.NBCA[3] = 120000 * 3 // MOCK 300000
-        this.NBCA[4] = 120000 * 4 // MOCK 400000
-        this.NBCA[5] = 120000 * 5 // MOCK 500000
-        this.NBCA[6] = 120000 * 6 // MOCK 600000
-        this.NBCA[7] = 120000 * 7 // MOCK 700000
-        this.NBCA[8] = 120000 * 8 // MOCK 800000
-        this.NBCA[9] = 120000 * 9 // MOCK 900000
+        this.NBCA[1] = 130000 * 1 // MOCK 100000
+        this.NBCA[2] = 130000 * 2 // MOCK 200000
+        this.NBCA[3] = 130000 * 3 // MOCK 300000
+        this.NBCA[4] = 130000 * 4 // MOCK 400000
+        this.NBCA[5] = 130000 * 5 // MOCK 500000
+        this.NBCA[6] = 130000 * 6 // MOCK 600000
+        this.NBCA[7] = 130000 * 7 // MOCK 700000
+        this.NBCA[8] = 130000 * 8 // MOCK 800000
+        this.NBCA[9] = 130000 * 9 // MOCK 900000
         // this.CA[1] = 150000 * 1 // MOCK 100000
         // this.CA[2] = 150000 * 2 // MOCK 200000
         // this.CA[3] = 150000 * 3 // MOCK 300000
@@ -889,24 +889,24 @@ export default {
       return true
     },
     get_deduction () {
-      var YrValue = '2022-2023'
+      var YrValue = '2023-2024'
       // parent.LSPYrEnd = YrValue
       // // //
-      if (YrValue === '2022-2023') {
+      if (YrValue === '2023-2024') {
         this.LimD_DonaLL = 100
         this.LimD_DonaUL = 35
         this.LimD_Education = 100000
-        this.LimD_HomeLoan = 100000
+        this.LimD_HomeLoan = 120000
         this.LimD_Elderly = 100000 // 100000 MOCK 92000
         this.LimD_Elderly_new = 100000 // this.LimD_Elderly MOCK 120000
         // this.LimD_Elderly_new = 120000 // this.LimD_Elderly MOCK 120000
         this.LimD_MPF = 18000
         // 上限 fixed $18,000 ike MPF ( 必须有入息 )
-        this.LimD_BOOK = 10000
+        this.LimD_BOOK = 100000
         this.LimD_rate_MPF = 5
         this.LimP_rate_VAPRP = 10
         // fix rent limit
-        this.LimD_RENT = 100000
+        this.LimD_RENT = 120000
         return true
       }
       return false
@@ -942,7 +942,7 @@ export default {
       if (parseInt(vm.CAbb_DIS, 10) > parseInt(vm.CAbb, 10)) {
         vm.CAbb_DIS = parseInt(vm.CAbb, 10)
       }
-      if (vm.AssessYear === '2022-2023') {
+      if (vm.AssessYear === '2023-2024') {
         if (parseInt(vm.CAbb, 10) + parseInt(vm.NBbb, 10) > 9) {
           // ErrMsgDDA2()
           // setTimeout(function () {
@@ -2127,7 +2127,7 @@ export default {
     }, // End ChkDD
     D1OnChange () {
       var vm = this
-      var YrValue = '2022-2023'
+      var YrValue = '2023-2024'
       // YrValue = dF.D1.options[dF.D1.selectedIndex].value
       vm.YrEnd = parseInt(rightStr(YrValue, 4), 10)
       if (vm.YrEnd < 1995) { // before 94/95

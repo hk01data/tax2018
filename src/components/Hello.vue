@@ -98,7 +98,7 @@
                 </label>
             </div>
 
-            <!-- <div class="a_slide deduct">
+            <div class="a_slide deduct">
                 <p class="item_title">{{ lang.byBook }}<a href="javascript:void(0);" class="icon_info" v-tooltip.bottom.end="{ html: 'book_info' }">&nbsp;</a></p>
                 <label for="self_book"><span class="label_text">{{ lang.self }}</span>
                 <input id="self_book" type="number" min="0" max="999999999" v-model="slfBook" />
@@ -106,7 +106,7 @@
                 <label v-if="martial_status === 'M'" for="spouse_book"><span class="label_text">{{ lang.spouse }}</span>
                 <input id="spouse_book" type="number" min="0" max="999999999" v-model="spsBook" />
                 </label>
-            </div> -->
+            </div>
             
         </slick>
         </div>
@@ -471,7 +471,10 @@
         <div class="footer">
             <!-- <p># 2019/20年度新增兩個稅務扣減項目，分別是自願醫保保費，以及年金及強積金自願供款。當中年金及強積金自願供款扣減尚待立法會通過相關條例，該扣除上限為每人每年60,000元。</p> -->
             <p>本計稅機不會收集任何可追溯到用戶身分的資料，上述結果乃根據讀者輸入的資料計算，僅適合香港居民計算其應繳之薪俸稅或個人入息課稅稅款，結果或與實際數目有出入，僅供讀者作參考之用。詳情可參考<a href="https://www.ird.gov.hk/" target="_blank">稅務局網站</a>所載資料。</p>
-            <p>資料來源：稅務局、22/23及23/24年度財政預算案</p>
+            <p>*為2023年施政報告中，鼓勵生育及締造有利育兒環境的相關稅務措施，適用於2024/25或之後的課税年度，須完成立法程序後才可實施。</p>
+            <p>#如你是與在2023年10月25日或之後首名出生的子女同住，你的居所貸款利息或住宅租金的最高扣除額，2024/25年度起將由現時100,000元提高至120,000元，直至該名同住子女滿18歲為止，須完成立法程序後才可實施。</p>
+            <P>註：2024/25年預算案建議由該課稅年度起實施薪俸稅和個人入息課稅的標準稅率兩級制，即以標準稅率計算入息淨額超過500萬元的納稅人的稅額時，首500萬元的入息淨額繼續以15%計算，超過500萬元的部分則以16%計算。此建議尚待通過，故未應用於此計算器中。</p>
+            <p>資料來源：稅務局、23/24及24/25年度財政預算案、2023年施政報告</p>
         </div>
 
 
@@ -1098,10 +1101,11 @@
         <p>課稅年度內的總供款；上限$18,000<a href="http://www.ird.gov.hk/chi/pdf/pam38c.pdf" target="_blank">（詳情）</a>。</p>
     </div>
     <div class="tool_tips" id="book_info">
-        <p>課稅年度內的總支出；上限$10,000<a href="http://www.ird.gov.hk/chi/pdf/pam38c.pdf" target="_blank">（詳情）</a>。</p>
+        <p>2024/25課税年度起，增設每年最多100,000元輔助生育服務開支扣除。<a href="https://www.ird.gov.hk/chi/tax/policyaddress.htm" target="_blank">（詳情）</a>。</p>
     </div>
     <div class="tool_tips" id="homeloan_info">
         <p>只供業主作答；上限$100,000<a href="http://www.gov.hk/tc/residents/taxes/salaries/allowances/deductions/homeloan.htm" target="_blank">（詳情）</a></p>
+        <p>2024/25課税年度起，如你是與在2023年10月25日或之後首名出生的子女同住，你的居所貸款利息最高扣除額，將由現時100,000元提高至120,000元，直至該名同住子女滿18歲為止（尚待法例通過）。<a href="https://www.ird.gov.hk/chi/tax/policyaddress.htm" target="_blank">（詳情）</a></p>
     </div>
     <div class="tool_tips" id="residence_info">
         <p>上限為入息10%<a href="http://www.gov.hk/tc/residents/taxes/salaries/salariestax/chargeable/residence.htm" target="_blank">（詳情）</a></p>
@@ -1115,6 +1119,7 @@
 
     <div class="tool_tips" id="rent_info">
         <p>個人上限$100,000；如你在本年度全年屬已婚，你和配偶的扣除總額不能超$100,000。</p>
+        <p>2024/25課税年度起，如你是與在2023年10月25日或之後首名出生的子女同住，你的住宅租金的最高扣除額，將由現時100,000元提高至120,000元，直至該名同住子女滿18歲為止（尚待法例通過）。<a href="https://www.ird.gov.hk/chi/tax/policyaddress.htm" target="_blank">（詳情）</a></p>
     </div>
 
     <div class="tool_tips" id="elderly_info">

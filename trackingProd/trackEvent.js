@@ -54,11 +54,11 @@ var myTracker = new trackerClient({
 }, false);
 
 /* Config the selected article detail */
-const page_path = "社會新聞/865781/【計稅機2023】";
-const author = "\u8B1D\u5A9B\u5F70, \u9673\u5609\u6167, \u90ED\u66C9\u6674, \u6EAB\u6842\u5A77, \u7C21\u6D69\u5FB7";  // 陳嘉慧, 簡浩德, 蕭輝浩
-const channel = "\u793E\u6703\u65B0\u805E"; // 社會新聞
-const section = "\u793E\u6703\u65B0\u805E"; // 社會新聞
-const article_id = "865781";
+const page_path = "研數所/993251/【計稅機2024】";
+const author = "\u7c21\u6d69\u5fb7, \u9673\u5609\u6167, \u856d\u8f1d\u6d69";  // 簡浩德, 陳嘉慧, 蕭輝浩
+const channel = "\u7814\u6578\u6240"; // 研數所
+const section = "\u7814\u6578\u6240"; // 研數所
+const article_id = "993251";
 
 function fireArticlePV(url) {
     try {
